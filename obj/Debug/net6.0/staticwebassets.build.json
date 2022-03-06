@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AP5SeHqVrUskTX0WbUEHufpjTDH06kcpYBn7K3sbub4=",
+  "Hash": "fTJNufaqndgHVlWaCN9rKSSfJecflo0N7EMXWosTZB8=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/scopedcss/projectbundle/bulkybook.bundle.scp.css"
+    },
+    {
+      "Identity": "/home/mike/Code/Dotnet/bulkybook/wwwroot/css/bootswatchtheme.css",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/Dotnet/bulkybook/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "css/bootswatchtheme.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/bootswatchtheme.css"
     },
     {
       "Identity": "/home/mike/Code/Dotnet/bulkybook/wwwroot/css/site.css",
