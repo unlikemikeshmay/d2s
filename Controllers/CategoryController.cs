@@ -5,11 +5,14 @@ namespace bulkybook.Controllers;
 
 public class CategoryController : Controller
 {
+    private readonly IConfiguration Configuration;
     private readonly ApplicationDbContext _db;
     
-    public CategoryController(ApplicationDbContext db)
+    public CategoryController(ApplicationDbContext db,IConfiguration configuration)
     {
         _db = db;
+        Configuration = configuration;
+
     }
   public IActionResult Delete(int? id)
     {
@@ -81,6 +84,7 @@ public class CategoryController : Controller
     public IActionResult Index()
     {
         IEnumerable<Category> objCategoryList = _db.Categories;
+        TempData["test"] = Configuration["TestThing"];
         return View(objCategoryList);
     }
     //GET
