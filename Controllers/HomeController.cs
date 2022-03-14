@@ -18,7 +18,7 @@ public class HomeController : Controller
     }
 
     
-    public async IActionResult Index()
+    public async Task<IActionResult> Index()
     {
 
         Config conf = new Config();
@@ -26,17 +26,33 @@ public class HomeController : Controller
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
         conf.memType = "3";
-
-        await CallBungieNet();
-
-        return View(conf); 
-    }
-    private static async Task CallBungieNet(string apiKey)
-    {  
+        try
+        {
+            string res = await CallBungieNetUser(conf.apiKey.ToString(),conf.rootUrl,conf.clientID.ToString());
+            return View(res); 
+        }
+        catch(Exception e){
+            return View(e.Message);
+        }
        
-        client.DefaultRequestHeaders.Accept.Clear();
-         client.DefaultRequestHeaders.Add("x-api-key",$"{apiKey}");
-         client.GetStringAsync
+
+        
+    }
+    private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
+    {  
+        try{
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Add("x-api-key",$"{apiKey}");
+           string responseBody = await client.GetStringAsync(rootUrl+$"/User/GetBungieNetUserById/{clientID}/");
+           return responseBody;
+        }
+        catch(HttpRequestException e)
+        {
+            Console.WriteLine("\nException Caught!");
+            Console.WriteLine("Message: {0} ",e.Message);
+            return e.Message;
+        }
+        
     }
     public IActionResult Privacy()
     {
