@@ -29,10 +29,12 @@ public class HomeController : Controller
         try
         {
             string res = await CallBungieNetUser(conf.apiKey.ToString(),conf.rootUrl,conf.clientID.ToString());
+            TempData["res"] = res;
             return View(res); 
         }
         catch(Exception e){
-            return View(e.Message);
+             TempData["error"] = e.Message;
+            return View();
         }
        
 
