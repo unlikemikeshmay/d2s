@@ -21,7 +21,7 @@ public class HomeController : Controller
                 try{
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Add("x-api-key",$"{apiKey}");
-           string responseBody = await client.GetStringAsync($"https://www.bungie.net/en/OAuth/Authorize?client_id={client-id}&response_type=code");
+           string responseBody = await client.GetStringAsync($"https://www.bungie.net/en/OAuth/Authorize?client_id={clientID}&response_type=code");
            return responseBody;
         }
         catch(HttpRequestException e)
