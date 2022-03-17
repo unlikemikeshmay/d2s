@@ -59,7 +59,7 @@ Config conf = new Config();
         conf.memType = "3";
         try
         {
-            string res = await CallBungieNetUser(conf.apiKey.ToString(),conf.rootUrl,conf.clientID.ToString());
+            string res = await Authorize(conf.apiKey.ToString(),conf.rootUrl,conf.clientID.ToString());
             TempData["res"] = res;
             return View(); 
         }
