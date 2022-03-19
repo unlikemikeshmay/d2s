@@ -43,7 +43,6 @@ Config conf = new Config();
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
         conf.memType = "3";
-
         try
         {
             //var view =  await Authorize(conf.clientID.ToString());

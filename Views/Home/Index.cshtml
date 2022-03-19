@@ -6,7 +6,10 @@
 <div class="text-center">
     <h1 class="display-4">D2 From github</h1>
     <div class="container">
-        <button class="btn"  asp-controller="Home" asp-action="Authorize">Log In User</button>
+       <input type="button"
+        value="Log In User"
+        onclick="location.href='@Url.Action("Authorize", "Home")'"
+        />
     </div>
     
 </div>
