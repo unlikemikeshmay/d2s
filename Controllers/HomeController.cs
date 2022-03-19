@@ -16,7 +16,7 @@ public class HomeController : Controller
         _logger = logger;
         Configuration = configuration;
     }
-    public async Task<IActionResult> Authorize(string clientID)
+    public IActionResult Authorize(string clientID)
     {
 Config conf = new Config();
 //add logic to handle if session is set
@@ -26,8 +26,7 @@ Config conf = new Config();
         conf.memType = "3"; */
         try
         {
-            // set if  block to catch session data and test if its valid.
-
+            // set if  block to catch session data and test if its valid.g
             string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?&response_type=code";
             RedirectResult redirectResult = new RedirectResult(requestBody,false);
             return redirectResult;
@@ -48,7 +47,6 @@ Config conf = new Config();
         try
         {
             //var view =  await Authorize(conf.clientID.ToString());
-             
             return View();
         }
         catch(Exception e){
