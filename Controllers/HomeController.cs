@@ -16,52 +16,40 @@ public class HomeController : Controller
         _logger = logger;
         Configuration = configuration;
     }
-  private static async Task<string> _Authenticate(string apiKey, string rootUrl,string clientID)
-    {
-                try{
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Add("x-api-key",$"{apiKey}");
-           string responseBody = await client.GetStringAsync($"https://www.bungie.net/en/OAuth/Authorize?client_id={clientID}&response_type=code");
-           return responseBody;
-        }
-        catch(HttpRequestException e)
-        {
-            Console.WriteLine("\nException Caught!");
-            Console.WriteLine("Message: {0} ",e.Message);
-            return e.Message;
-        }
-    }
-    public async Task<string> Authorize()
+    public async Task<IActionResult> Authorize(string clientID)
     {
 Config conf = new Config();
-        conf.clientID = int.Parse(Configuration["clientID"]);
+//add logic to handle if session is set
+     /*    conf.clientID = int.Parse(Configuration["clientID"]);
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
-        conf.memType = "3";
+        conf.memType = "3"; */
         try
         {
-            string res = await _Authenticate(conf.apiKey.ToString(),conf.rootUrl,conf.clientID.ToString());
-            TempData["res"] = res;
-            return res; 
+            // set if  block to catch session data and test if its valid.
+
+            string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?client_id={clientID}&response_type=code";
+            RedirectResult redirectResult = new RedirectResult(requestBody,false);
+            return redirectResult;
         }
         catch(Exception e){
              TempData["error"] = e.Message;
-            return e.Message;
+            return View();
         }
     }
     public async Task<IActionResult> Index()
     {
-
         Config conf = new Config();
         conf.clientID = int.Parse(Configuration["clientID"]);
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
         conf.memType = "3";
+
         try
         {
-            string res = await Authorize();
-            TempData["res"] = res;
-            return View(); 
+            var view =  await Authorize(conf.clientID.ToString());
+             
+            return view; 
         }
         catch(Exception e){
              TempData["error"] = e.Message;
