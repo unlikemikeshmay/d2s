@@ -7,7 +7,7 @@ namespace bulkybook.Controllers;
 
 public class HomeController : Controller
 {
-    private string Sessiontoken = "";
+    public const string SessionToken = "_Token";
     private readonly ILogger<HomeController> _logger;
     private readonly IConfiguration Configuration;
     private static readonly HttpClient client = new HttpClient();
@@ -40,6 +40,7 @@ Config conf = new Config();
     
     public IActionResult Loggedin(string code){
         //conditional rendering so non logged in users get redirected to login/home page
+
         if(code == null || code.Length == 0){
             //redirect to home/login
             ViewData["LayoutName"] = "_LayoutLogin";
@@ -48,10 +49,17 @@ Config conf = new Config();
             //set sessiontoken and make request to get user info
             // populate appropriate memories with player info
             //persistence needed?
-            HttpContext.Session.SetString(Sessiontoken,code);
-            ViewData["token"] = HttpContext.Session.GetString(Sessiontoken);
+
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
+            HttpContext.Session.SetString(SessionToken,code);
+            var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
+            _logger.LogInformation("Session Token: {SeshToken}",seshToken);
             return RedirectToAction("Index","Player");
+            }else{
+                return RedirectToAction("Index","Home");
+            }
+           
         }
     }
     public IActionResult Index()
@@ -61,7 +69,8 @@ Config conf = new Config();
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
         conf.memType = "3";
-        if(Sessiontoken != null && Sessiontoken.Length != 0)
+
+        if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
         {
             try
             {
@@ -73,6 +82,7 @@ Config conf = new Config();
                 TempData["error"] = e.Message;
                 return View();
             }
+        }
         }else{
             ViewData["LayoutName"] = "_LayoutLogin";
             return View();
