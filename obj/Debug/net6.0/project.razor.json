@@ -16308,6 +16308,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Home/Loggedin.cshtml",
+      "TargetPath": "Views\\Home\\Loggedin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"

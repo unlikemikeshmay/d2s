@@ -37,7 +37,22 @@ Config conf = new Config();
             return View();
         }
     }
-    public async Task<IActionResult> Index()
+    public IActionResult Loggedin(string code){
+        //conditional rendering so non logged in users get redirected to login/home page
+        if(code == null || code.Length == 0){
+            //redirect to home/login
+            ViewData["LayoutName"] = "_LayoutLogin";
+            return RedirectToAction("Index","Home");
+        }else{
+            //set sessiontoken and make request to get user info
+            // populate appropriate memories with player info
+            //persistence needed?
+            ViewData["token"] = code;
+            ViewData["LayoutName"] = "_Layout";
+            return View();
+        }
+    }
+    public IActionResult Index()
     {
         Config conf = new Config();
         conf.clientID = int.Parse(Configuration["clientID"]);
@@ -60,10 +75,6 @@ Config conf = new Config();
             ViewData["LayoutName"] = "_LayoutLogin";
             return View();
         }
-       
-       
-
-        
     }
   
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
