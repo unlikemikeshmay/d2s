@@ -7,6 +7,7 @@ namespace bulkybook.Controllers;
 
 public class HomeController : Controller
 {
+    private string Sessiontoken = "";
     private readonly ILogger<HomeController> _logger;
     private readonly IConfiguration Configuration;
     private static readonly HttpClient client = new HttpClient();
@@ -43,15 +44,23 @@ Config conf = new Config();
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
         conf.memType = "3";
-        try
+        if(Sessiontoken != null && Sessiontoken.Length != 0)
         {
-            //var view =  await Authorize(conf.clientID.ToString());
+            try
+            {
+                ViewData["LayoutName"] = "_Layout";
+                //var view =  await Authorize(conf.clientID.ToString());
+                return View();
+            }
+            catch(Exception e){
+                TempData["error"] = e.Message;
+                return View();
+            }
+        }else{
+            ViewData["LayoutName"] = "_LayoutLogin";
             return View();
         }
-        catch(Exception e){
-             TempData["error"] = e.Message;
-            return View();
-        }
+       
        
 
         
