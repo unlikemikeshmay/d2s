@@ -28,7 +28,7 @@ Config conf = new Config();
         try
         {
             // set if  block to catch session data and test if its valid.g
-            string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?&response_type=code";
+            string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?client_id={clientID}&response_type=code";
             RedirectResult redirectResult = new RedirectResult(requestBody,false);
             return redirectResult;
         }
