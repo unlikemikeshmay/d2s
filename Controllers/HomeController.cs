@@ -17,18 +17,18 @@ public class HomeController : Controller
         _logger = logger;
         Configuration = configuration;
     }
-    public IActionResult Authorize(string clientID)
+    public IActionResult Authorize()
     {
 Config conf = new Config();
 //add logic to handle if session is set
-     /*    conf.clientID = int.Parse(Configuration["clientID"]);
+        conf.clientID = int.Parse(Configuration["clientID"]);
         conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
         conf.rootUrl = Configuration["rootUrl"].ToString();
-        conf.memType = "3"; */
+        conf.memType = "3"; 
         try
         {
             // set if  block to catch session data and test if its valid.g
-            string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?client_id={clientID}&response_type=code";
+            string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?client_id={conf.clientID}&response_type=code";
             RedirectResult redirectResult = new RedirectResult(requestBody,false);
             return redirectResult;
         }
