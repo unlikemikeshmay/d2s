@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using bulkybook.Models;
-using System.Threading.Tasks;
+
 
 namespace bulkybook.Controllers;
 
@@ -37,6 +37,7 @@ Config conf = new Config();
             return View();
         }
     }
+    
     public IActionResult Loggedin(string code){
         //conditional rendering so non logged in users get redirected to login/home page
         if(code == null || code.Length == 0){
@@ -47,9 +48,10 @@ Config conf = new Config();
             //set sessiontoken and make request to get user info
             // populate appropriate memories with player info
             //persistence needed?
-            ViewData["token"] = code;
+            HttpContext.Session.SetString(Sessiontoken,code);
+            ViewData["token"] = HttpContext.Session.GetString(Sessiontoken);
             ViewData["LayoutName"] = "_Layout";
-            return View();
+            return RedirectToAction("Index","Player");
         }
     }
     public IActionResult Index()
