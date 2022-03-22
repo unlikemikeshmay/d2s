@@ -21,9 +21,11 @@ namespace bulkybook.Data
             config.rootUrl = _configuration["rootUrl"].ToString();
             string combinedUrl = $"{config.rootUrl}//User/GetBungieNetUserById/{config.clientID}/";
             try{
-
+return player;
             }catch(HttpRequestException e){
-                Console.WriteLine("\nException Caught!")
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine();
+                
             }
 
         }
