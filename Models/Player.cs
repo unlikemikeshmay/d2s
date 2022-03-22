@@ -5,4 +5,5 @@ public class Player {
     [Key]
     public int Id {get;set;}
     public string subClass {get;set;}
+    public string response {get;set;}
 }

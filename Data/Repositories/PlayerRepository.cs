@@ -9,10 +9,10 @@ namespace bulkybook.Data
     {
         private IConfiguration _configuration;
         static readonly HttpClient client = new HttpClient();
-         public PlayerRepository(IHttpClientFactory httpClientFactory,IConfiguration configuration){
+         public PlayerRepository(HttpClient httpClient,IConfiguration configuration){
              _configuration = configuration;
          }
-        public async Player GetById(int id)
+        public async Task<string> GetById(int id)
         {
             Config config = new Config();
             Player player = new Player();
@@ -20,12 +20,18 @@ namespace bulkybook.Data
             config.clientID = int.Parse(_configuration["clientID"]);
             config.rootUrl = _configuration["rootUrl"].ToString();
             string combinedUrl = $"{config.rootUrl}//User/GetBungieNetUserById/{config.clientID}/";
-            try{
-return player;
+            try
+            {
+                client.DefaultRequestHeaders.Add("x-api-key",config.apiKey.ToString());
+                HttpResponseMessage response = await client.GetAsync(combinedUrl);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                return responseBody;  
             }catch(HttpRequestException e){
                 Console.WriteLine("\nException Caught!");
-                Console.WriteLine();
-                
+                Console.WriteLine("Message :{0} ",e.Message);
+                return e.Message;
             }
 
         }

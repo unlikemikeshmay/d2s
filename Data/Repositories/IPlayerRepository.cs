@@ -5,6 +5,6 @@ namespace bulkybook.Data
 {
     public interface IPlayerRepository
     {
-        Player GetById(int id);
+         Task<string> GetById(int id);
     }
 }
