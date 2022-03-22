@@ -31,7 +31,7 @@ public class PlayerController : Controller
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
             var playerRes = _playerRepository.GetById(conf.clientID);
-            ViewData["res"] = playerRes;
+            ViewData["res"] = playerRes.Result;
             return View();
     }
     
