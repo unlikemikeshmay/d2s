@@ -18,7 +18,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-
+builder.Services.AddScoped<IPlayerRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
