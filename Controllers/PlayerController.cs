@@ -18,7 +18,7 @@ public class PlayerController : Controller
         _playerRepository = playerRepository;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         Config conf = new Config();
         Player player = new Player();
@@ -31,8 +31,9 @@ public class PlayerController : Controller
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
             var playerRes = _playerRepository.GetById(conf.clientID);
+            OAuthResponse authd = await _playerRepository.AuthorizeUser(seshToken);
             ViewData["res"] = playerRes.Result;
-            return View();
+            ViewData["athd"] = authd.membership_id;
+            return await Task.Run(() => View());
     }
-    
 }
