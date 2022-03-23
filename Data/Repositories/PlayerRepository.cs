@@ -49,8 +49,9 @@ namespace bulkybook.Data
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
+             _config.secret = _configuration["secret"];
 
-                var x = $"{_config.clientID}:{_config.apiKey}";
+                var x = $"{_config.clientID}:{_config.secret}";
                 var y = System.Text.Encoding.UTF8.GetBytes(x);
                 var encoded = System.Convert.ToBase64String(y);
 
@@ -80,22 +81,6 @@ namespace bulkybook.Data
             var res =  await response.Content.ReadAsStringAsync();
             oauthresponse.membership_id =  res.ToString();
             return oauthresponse;
-
-
-
-            /* request.post({
-    url: 'https://www.bungie.net/Platform/App/OAuth/Token/',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic ' + X
-    }, 
-    data: {
-      'grant_type': 'authorization_code',
-      'code': '7f39897b4a1b17e4f5753a0a90c21***'
-    }
-  }, function(err, res, body){
-    console.log(body);
-}); */
         }
     }
 }
