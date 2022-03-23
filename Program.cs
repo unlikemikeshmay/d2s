@@ -5,12 +5,13 @@ using bulkybook.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>  options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
 );
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDistributedMemoryCache();
-
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -18,7 +19,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

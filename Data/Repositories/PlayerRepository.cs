@@ -8,9 +8,11 @@ namespace bulkybook.Data
     public class PlayerRepository : IPlayerRepository
     {
         private IConfiguration _configuration;
-        static readonly HttpClient client = new HttpClient();
+        private readonly HttpClient _httpClient;
          public PlayerRepository(HttpClient httpClient,IConfiguration configuration){
              _configuration = configuration;
+             _httpClient = httpClient;
+
          }
         public async Task<string> GetById(int id)
         {
@@ -22,8 +24,8 @@ namespace bulkybook.Data
             string combinedUrl = $"{config.rootUrl}//User/GetBungieNetUserById/{config.clientID}/";
             try
             {
-                client.DefaultRequestHeaders.Add("x-api-key",config.apiKey.ToString());
-                HttpResponseMessage response = await client.GetAsync(combinedUrl);
+                _httpClient.DefaultRequestHeaders.Add("x-api-key",config.apiKey.ToString());
+                HttpResponseMessage response = await _httpClient.GetAsync(combinedUrl);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
 
