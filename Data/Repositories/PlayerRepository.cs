@@ -21,7 +21,7 @@ namespace bulkybook.Data
             config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
             config.clientID = int.Parse(_configuration["clientID"]);
             config.rootUrl = _configuration["rootUrl"].ToString();
-            string combinedUrl = $"{config.rootUrl}//User/GetBungieNetUserById/{config.clientID}/";
+            string combinedUrl = $"{config.rootUrl}/User/GetBungieNetUserById/?id={config.clientID}/";
             try
             {
                 _httpClient.DefaultRequestHeaders.Add("x-api-key",config.apiKey.ToString());
@@ -31,7 +31,8 @@ namespace bulkybook.Data
 
                 return responseBody;  
             }catch(HttpRequestException e){
-                Console.WriteLine("\nException Caught!");
+                Console.WriteLine(
+                    "\nException Caught!");
                 Console.WriteLine("Message :{0} ",e.Message);
                 return e.Message;
             }
