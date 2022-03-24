@@ -58,13 +58,13 @@ namespace bulkybook.Data
 
             //_httpClient.DefaultRequestHeaders.Add("Content-Type","application/x-www-form-urlencoded");
             _httpClient.DefaultRequestHeaders.Add("X-API-Key",$"{_config.apiKey}");
-            _httpClient.DefaultRequestHeaders.Add("Authorization",$"Basic {encoded}");
+            //_httpClient.DefaultRequestHeaders.Add("Authorization",$"Basic {x}");
 
             OAuthResponse oauthresponse = new OAuthResponse();
 
             //convert authorization to base64
-
-            string url = $"https://www.bungie.net/Platform/App/OAuth/Token/?grant_type=authorization_code&client_id={_config.clientID}&code={id}";
+        //string url = $"https://www.bungie.net/Platform/App/OAuth/Token/?grant_type=authorization_code&client_id={_config.clientID}&code={id}";
+            string url = $"https://www.bungie.net/Platform/App/OAuth/Token/;
             
             var urlEncoded = HttpUtility.UrlEncode(url);
 
@@ -84,3 +84,4 @@ namespace bulkybook.Data
         }
     }
 }
+// "client_id={CLIENT_ID}&grant_type=authorization_code&code={authCode}"
