@@ -55,9 +55,7 @@ Config conf = new Config();
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",seshToken);
-            RouteValueDictionary dict = new RouteValueDictionary();
-            dict.Add("token",seshToken);
-            return RedirectToAction("Index","Player",dict);
+            return RedirectToAction("Index","Player");
             }else{
                 return RedirectToAction("Index","Home");
             }
