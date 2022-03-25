@@ -57,8 +57,8 @@ Config conf = new Config();
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",seshToken);
-            OAuthResponse authToken = await _playerRepository.AuthorizeUser(seshToken);
-            return RedirectToAction("Player","Home",authToken);
+            var authToken =  _playerRepository.AuthorizeUser(seshToken);
+            return View("Player", await authToken);
             }else{
                 return RedirectToAction("Index","Home");
             }
