@@ -16358,11 +16358,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Player/Index.cshtml",
-      "TargetPath": "Views\\Player\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -16370,6 +16365,11 @@
     {
       "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Home/Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Home/Player.cshtml",
+      "TargetPath": "Views\\Home\\Player.cshtml",
       "FileKind": "mvc"
     }
   ],

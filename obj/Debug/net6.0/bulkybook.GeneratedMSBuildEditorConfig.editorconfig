@@ -39,12 +39,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Mb2dnZWRpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/mike/Code/Dotnet/bulkybook/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[/home/mike/Code/Dotnet/bulkybook/Views/Home/Player.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QbGF5ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/mike/Code/Dotnet/bulkybook/Views/Player/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxheWVyL0luZGV4LmNzaHRtbA==
+[/home/mike/Code/Dotnet/bulkybook/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/mike/Code/Dotnet/bulkybook/Views/Shared/Error.cshtml]

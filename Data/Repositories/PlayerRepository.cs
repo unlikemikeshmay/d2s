@@ -72,7 +72,7 @@ namespace bulkybook.Data
             dict.Add("grant_type","authorization_code");
             dict.Add("code",$"id");
             dict.Add("client_id",_config.clientID.ToString());
-            dict.Add("redirect_uri","https://destinyscan.azurewebsites.net/home/loggedin/{code}");
+            //dict.Add("redirect_uri","https://destinyscan.azurewebsites.net/home/loggedin/{code}");
             
 
             

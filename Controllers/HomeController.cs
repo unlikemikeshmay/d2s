@@ -1,29 +1,31 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using bulkybook.Models;
-
+using bulkybook.Data;
 
 namespace bulkybook.Controllers;
 
 public class HomeController : Controller
 {
+    private IPlayerRepository _playerRepository;
     public const string SessionToken = "_Token";
     private readonly ILogger<HomeController> _logger;
-    private readonly IConfiguration Configuration;
+    private readonly IConfiguration _configuration;
     private static readonly HttpClient client = new HttpClient();
 
-    public HomeController(ILogger<HomeController> logger,IConfiguration configuration)
+    public HomeController(ILogger<HomeController> logger,IConfiguration configuration,IPlayerRepository playerRepository)
     {
         _logger = logger;
-        Configuration = configuration;
+        _configuration = configuration;
+        _playerRepository = playerRepository;
     }
     public IActionResult Authorize()
     {
 Config conf = new Config();
 //add logic to handle if session is set
-        conf.clientID = int.Parse(Configuration["clientID"]);
-        conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
-        conf.rootUrl = Configuration["rootUrl"].ToString();
+        conf.clientID = int.Parse(_configuration["clientID"]);
+        conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+        conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3"; 
         try
         {
@@ -55,7 +57,7 @@ Config conf = new Config();
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",seshToken);
-            return RedirectToAction("Index","Player");
+            return RedirectToAction("Player","Home");
             }else{
                 return RedirectToAction("Index","Home");
             }
@@ -65,9 +67,9 @@ Config conf = new Config();
     public IActionResult Index()
     {
         Config conf = new Config();
-        conf.clientID = int.Parse(Configuration["clientID"]);
-        conf.apiKey = Guid.Parse(Configuration["apiKey"].ToString());
-        conf.rootUrl = Configuration["rootUrl"].ToString();
+        conf.clientID = int.Parse(_configuration["clientID"]);
+        conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+        conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3";
 
         if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
@@ -87,6 +89,24 @@ Config conf = new Config();
             ViewData["LayoutName"] = "_LayoutLogin";
             return View();
         }
+    }
+     public async Task<IActionResult> Player()
+    {
+        Config conf = new Config();
+        Player player = new Player();
+        conf.clientID = int.Parse(_configuration["clientID"]);
+        conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+        conf.rootUrl = _configuration["rootUrl"].ToString();
+        conf.memType = "3";
+            var seshToken = HttpContext.Session.GetString(SessionToken);
+            ViewData["token"] = seshToken;
+            ViewData["LayoutName"] = "_Layout";
+            _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
+            var playerRes = _playerRepository.GetById(conf.clientID);
+            OAuthResponse authd = await _playerRepository.AuthorizeUser(seshToken);
+            ViewData["res"] = playerRes.Result;
+            ViewData["athd"] = authd.membership_id;
+            return await Task.Run(() => View());
     }
   
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
