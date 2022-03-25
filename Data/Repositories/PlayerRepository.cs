@@ -41,7 +41,7 @@ namespace bulkybook.Data
                 return e.Message;
             }
         }
-        public OAuthResponse AuthorizeUser(string id)
+        public async Task<OAuthResponse> AuthorizeUser(string id)
         {
              Config _config = new Config();
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
@@ -77,8 +77,8 @@ namespace bulkybook.Data
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,url){Content = new FormUrlEncodedContent(dict)};
             
             
-            HttpResponseMessage response = _httpClient.SendAsync(request);
-            var res =  response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await _httpClient.SendAsync(request);
+            var res =  await response.Content.ReadAsStringAsync();
             oauthresponse.membership_id =  res.ToString();
             return oauthresponse;
         }

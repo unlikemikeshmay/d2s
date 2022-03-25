@@ -40,7 +40,7 @@ Config conf = new Config();
         }
     }
     
-    public IActionResult Loggedin(string code){
+    public async Task<IActionResult> Loggedin(string code){
         //conditional rendering so non logged in users get redirected to login/home page
 
         if(code == null || code.Length == 0){
@@ -57,7 +57,7 @@ Config conf = new Config();
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",seshToken);
-            OAuthResponse authToken =  _playerRepository.AuthorizeUser(seshToken);
+            OAuthResponse authToken = await _playerRepository.AuthorizeUser(seshToken);
             return RedirectToAction("Player","Home",authToken);
             }else{
                 return RedirectToAction("Index","Home");
