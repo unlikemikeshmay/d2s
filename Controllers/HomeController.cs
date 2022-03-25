@@ -91,7 +91,7 @@ Config conf = new Config();
             return View();
         }
     }
-     public async Task<IActionResult> Player()
+     public  IActionResult Player()
     {
         Config conf = new Config();
         Player player = new Player();
@@ -103,11 +103,11 @@ Config conf = new Config();
             ViewData["token"] = seshToken;
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
-            var playerRes = _playerRepository.GetById(conf.clientID);
+            var playerRes = _playerRepository.GetById("B89jdVf9V/lAhQot2WFMlaCa+5XptA7aCAAA");
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             ViewData["res"] = playerRes.Result;
             //ViewData["athd"] = authd.membership_id;
-            return await Task.Run(() => View());
+            return View();
     }
   
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)

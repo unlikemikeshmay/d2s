@@ -18,13 +18,13 @@ namespace bulkybook.Data
              
 
          }
-        public async Task<string> GetById(int id)
+        public async Task<string> GetById(string id)
         {
             Config _config = new Config();
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            string combinedUrl = $"{_config.rootUrl}/User/GetBungieNetUserById/?id={_config.clientID}/";
+            string combinedUrl = $"{_config.rootUrl}/User/GetBungieNetUserById/?id={id}/";
             try
             {
                 _httpClient.DefaultRequestHeaders.Add("x-api-key",_config.apiKey.ToString());
