@@ -70,8 +70,10 @@ namespace bulkybook.Data
 
             var dict = new Dictionary<string,string>();
             dict.Add("grant_type","authorization_code");
-            dict.Add("client_id",_config.clientID.ToString());
             dict.Add("code",$"id");
+            dict.Add("client_id",_config.clientID.ToString());
+            dict.Add("redirect_uri","https://destinyscan.azurewebsites.net/home/loggedin/{code}");
+            
 
             
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,url){Content = new FormUrlEncodedContent(dict)};
