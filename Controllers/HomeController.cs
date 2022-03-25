@@ -30,7 +30,7 @@ Config conf = new Config();
         try
         {
             // set if  block to catch session data and test if its valid.g
-            string requestBody =$"https://www.bungie.net/en/OAuth/Authorize?client_id={conf.clientID}&response_type=code";
+            string requestBody =$"https://www.bungie.net/en/OAuth/Authorizeu?client_id={conf.clientID}&response_type=code";
             RedirectResult redirectResult = new RedirectResult(requestBody,false);
             return redirectResult;
         }
@@ -57,14 +57,15 @@ Config conf = new Config();
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",seshToken);
-            return RedirectToAction("Player","Home");
+            OAuthResponse authToken =  _playerRepository.AuthorizeUser(seshToken);
+            return RedirectToAction("Player","Home",authToken);
             }else{
                 return RedirectToAction("Index","Home");
             }
            
         }
     }
-    public IActionResult Index()
+    public IActionResult Index(string code)
     {
         Config conf = new Config();
         conf.clientID = int.Parse(_configuration["clientID"]);
@@ -103,9 +104,9 @@ Config conf = new Config();
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
             var playerRes = _playerRepository.GetById(conf.clientID);
-            OAuthResponse authd = await _playerRepository.AuthorizeUser(seshToken);
+           // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             ViewData["res"] = playerRes.Result;
-            ViewData["athd"] = authd.membership_id;
+            //ViewData["athd"] = authd.membership_id;
             return await Task.Run(() => View());
     }
   
