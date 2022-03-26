@@ -95,7 +95,7 @@ namespace bulkybook.Data
                     grant_type = "authorization_code",
                     code = id,
                 }).ReceiveJson(); */
-                var res  = await url.WithHeader("Authorization", $"Basic {_config.clientID}:{_config.secret}").PostUrlEncodedAsync(new {
+                var res  = await url.WithHeader("Authorization", $"Basic {_config.clientID}:{_config.secret}").WithHeader("x-api-key",$"{_config.apiKey}").PostUrlEncodedAsync(new {
                     client_id = _config.clientID,
                     grant_type = "authorization_code",
                     code = id,
