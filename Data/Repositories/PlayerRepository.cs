@@ -86,6 +86,8 @@ namespace bulkybook.Data
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
              _config.secret = _configuration["secret"];
+            try{
+
             
                 var url = new Uri($"https://www.bungie.net/Platform/App/OAuth/Token/");
                 var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
@@ -95,6 +97,11 @@ namespace bulkybook.Data
                 }).ReceiveJson();
                // OAuthResponse response = await res;
             return res;
+            }catch(FlurlHttpException e){
+                OAuthResponse res = new OAuthResponse();
+                res.membership_id = e.Message;
+                return res;
+            }
             
             
 
