@@ -59,9 +59,10 @@ Config conf = new Config();
             Player player = new Player();
             PlayerViewModel pvm = new PlayerViewModel();
             player.UserName = await _playerRepository.GetById(authToken.access_token);
-            ViewData["autht"] = $"this is the master token: {authToken}";
+            
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
+            ViewData["autht"] = pvm.OAuthResponse.membership_id;
             return await Task.Run(() => View("Player",  pvm));
 
            
