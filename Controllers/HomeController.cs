@@ -62,7 +62,7 @@ Config conf = new Config();
             
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
-            ViewData["autht"] = pvm.OAuthResponse.membership_id;
+            ViewData["autht"] = pvm.OAuthResponse.access_token;
             return await Task.Run(() => View("Player",  pvm));
 
            
