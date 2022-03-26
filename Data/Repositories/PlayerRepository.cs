@@ -100,6 +100,9 @@ namespace bulkybook.Data
             }catch(FlurlHttpException e){
                 OAuthResponse res = new OAuthResponse();
                 res.membership_id = e.Message;
+                res.refresh_token = e.InnerException.ToString();
+                res.token_type = e.StackTrace;
+                
                 return res;
             }
             
