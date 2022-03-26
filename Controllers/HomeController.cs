@@ -51,7 +51,7 @@ Config conf = new Config();
             //set sessiontoken and make request to get user info
             // populate appropriate memories with player info
             //persistence needed?
-            if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
+
             HttpContext.Session.SetString(SessionToken,code);
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
@@ -60,9 +60,7 @@ Config conf = new Config();
             var authToken = await _playerRepository.AuthorizeUser(seshToken);
             ViewData["autht"] = authToken;
             return await Task.Run(() => View("Player",  authToken));
-            }else{
-                return await Task.Run(() => View("Index"));
-            }
+
            
         }
     }
