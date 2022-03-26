@@ -88,13 +88,13 @@ namespace bulkybook.Data
              _config.secret = _configuration["secret"];
             
                 var url = new Uri($"https://www.bungie.net/Platform/App/OAuth/Token/");
-                Task<OAuthResponse> res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
+                var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
                     client_id = _config.clientID,
                     grant_type = "authorization_code",
                     code = id,
-                }).ReceiveJson<Task<OAuthResponse>>();
-                OAuthResponse response = await res;
-            return response;
+                }).ReceiveJson();
+               // OAuthResponse response = await res;
+            return res;
             
             
 
