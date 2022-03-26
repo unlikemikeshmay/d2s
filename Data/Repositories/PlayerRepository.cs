@@ -78,8 +78,8 @@ namespace bulkybook.Data
             
             
             HttpResponseMessage response = await _httpClient.SendAsync(request);
-            var res = response.Content.ReadAsStringAsync();
-            oauthresponse.membership_id =  res.ToString();
+            //var res = response.Content.ReadAsStringAsync();
+            oauthresponse.membership_id =  response.ToString();
             return oauthresponse;
         }
     }
