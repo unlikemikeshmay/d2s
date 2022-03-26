@@ -53,12 +53,12 @@ Config conf = new Config();
             //persistence needed?
 
             HttpContext.Session.SetString(SessionToken,code);
-            var seshToken = HttpContext.Session.GetString(SessionToken);
+            
             ViewData["LayoutName"] = "_Layout";
-            _logger.LogInformation("Session Token: {SeshToken}",seshToken);
-            ViewData["token"]= seshToken;
-            var authToken = await _playerRepository.AuthorizeUser(seshToken);
-            ViewData["autht"] = authToken;
+            _logger.LogInformation("Session Token: {SeshToken}",code);
+            ViewData["token"]= code;
+            var authToken = await _playerRepository.AuthorizeUser(code);
+            ViewData["autht"] = $"this is the master token: {authToken}";
             return await Task.Run(() => View("Player",  authToken));
 
            
