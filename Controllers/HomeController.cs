@@ -61,8 +61,8 @@ Config conf = new Config();
             player.UserName = await _playerRepository.GetById(authToken.access_token);
             ViewData["autht"] = $"this is the master token: {authToken}";
             pvm.Player = player;
-            pvm.OAuthResponse = authToken
-            return await Task.Run(() => View("Player",  authToken));
+            pvm.OAuthResponse = authToken;
+            return await Task.Run(() => View("Player",  pvm));
 
            
         }
@@ -107,7 +107,7 @@ Config conf = new Config();
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
            // var playerRes = _playerRepository.GetById();
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
-            ViewData["res"] = playerRes.Result;
+            
             //ViewData["athd"] = authd.membership_id;
             return View();
     }
