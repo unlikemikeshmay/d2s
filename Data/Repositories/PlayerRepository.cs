@@ -95,12 +95,12 @@ namespace bulkybook.Data
                     grant_type = "authorization_code",
                     code = id,
                 }).ReceiveJson(); */
-                string res  = await url.PostUrlEncodedAsync(new {
+                dynamic d  = await url.PostUrlEncodedAsync(new {
                     grant_type = "authorization_code",
                     client_id = _config.clientID,
                     code = id,
                 }).ReceiveJson();
-                Console.WriteLine("response after authorize post: {0}",res);
+                Console.WriteLine("response after authorize post: {0}",default);
                 OAuthResponse response = new OAuthResponse();
                 response.membership_id = "test";
                 //response.membership_id = res;
