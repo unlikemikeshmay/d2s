@@ -95,11 +95,12 @@ namespace bulkybook.Data
                     grant_type = "authorization_code",
                     code = id,
                 }).ReceiveJson(); */
-                var res  = await url.WithHeader("Authorization", $"Basic {_config.clientID}:{_config.secret}").WithHeader("x-api-key",$"{_config.apiKey}").PostUrlEncodedAsync(new {
-                    client_id = _config.clientID,
+                var res  = await url.PostUrlEncodedAsync(new {
                     grant_type = "authorization_code",
+                    client_id = _config.clientID,
                     code = id,
                 }).ReceiveJson();
+                Console.WriteLine("response after authorize post: {0}",res);
                // OAuthResponse response = await res;
             return res;
             }catch(FlurlHttpException e){
@@ -118,3 +119,4 @@ namespace bulkybook.Data
     }
 }
 // "client_id={CLIENT_ID}&grant_type=authorization_code&code={authCode}"
+//?code=5f830898adfee9ff0648507cf022a8ac
