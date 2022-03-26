@@ -60,7 +60,7 @@ Config conf = new Config();
             ViewData["token"]= seshToken;
             var authToken =  _playerRepository.AuthorizeUser(seshToken);
             ViewData["autht"] = authToken;
-            return View("Player", await authToken);
+            return View("Player",  authToken);
             }else{
                 return View("Index");
             }
@@ -139,3 +139,4 @@ Config conf = new Config();
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+//System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1[bulkybook.Models.OAuthResponse,bulkybook.Data.PlayerRepository+<AuthorizeUser>d__4] 
