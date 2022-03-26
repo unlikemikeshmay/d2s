@@ -90,7 +90,12 @@ namespace bulkybook.Data
 
             
                 var url = new Uri($"https://www.bungie.net/Platform/App/OAuth/Token/");
-                var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
+/*                 var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
+                    client_id = _config.clientID,
+                    grant_type = "authorization_code",
+                    code = id,
+                }).ReceiveJson(); */
+                var res  = await url.WithHeader("Authorization", $"Basic {_config.clientID}:{_config.secret}").PostUrlEncodedAsync(new {
                     client_id = _config.clientID,
                     grant_type = "authorization_code",
                     code = id,
