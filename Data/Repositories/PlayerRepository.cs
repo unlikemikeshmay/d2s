@@ -95,13 +95,14 @@ namespace bulkybook.Data
                     grant_type = "authorization_code",
                     code = id,
                 }).ReceiveJson(); */
-                var res  = await url.PostUrlEncodedAsync(new {
+                string res  = await url.PostUrlEncodedAsync(new {
                     grant_type = "authorization_code",
                     client_id = _config.clientID,
                     code = id,
                 }).ReceiveJson();
                 Console.WriteLine("response after authorize post: {0}",res);
-                OAuthResponse response = res;
+                OAuthResponse response = new OAuthResponse();
+                response.membership_id = res;
             return response;
             }catch(FlurlHttpException e){
                 OAuthResponse res = new OAuthResponse();
