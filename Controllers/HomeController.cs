@@ -51,8 +51,7 @@ Config conf = new Config();
             //set sessiontoken and make request to get user info
             // populate appropriate memories with player info
             //persistence needed?
-
-            if(string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
+            if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
             HttpContext.Session.SetString(SessionToken,code);
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["LayoutName"] = "_Layout";
