@@ -102,6 +102,7 @@ namespace bulkybook.Data
                 res.membership_id = e.Message;
                 
                 res.token_type = e.StackTrace;
+                res.access_token  = e.Source;
                 
                 return res;
             }
