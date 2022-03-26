@@ -100,9 +100,13 @@ namespace bulkybook.Data
                     client_id = _config.clientID,
                     code = id,
                 }).ReceiveJson();
-                Console.WriteLine("response after authorize post: {0}",default);
+                Console.WriteLine("response after authorize post: {0}",d);
+
                 OAuthResponse response = new OAuthResponse();
-                response.membership_id = "test";
+                response.access_token = d.access_token;
+                response.token_type = d.token_type;
+                response.expires_in = d.expires_in;
+                response.membership_id = d.membership_id;
                 //response.membership_id = res;
             return response;
             }catch(FlurlHttpException e){

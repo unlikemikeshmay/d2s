@@ -57,8 +57,8 @@ Config conf = new Config();
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
             ViewData["token"]= code;
-            //var authToken = await _playerRepository.AuthorizeUser(code);
-            var authToken = "derp";
+            var authToken = await _playerRepository.AuthorizeUser(code);
+            //var authToken = "derp";
             ViewData["autht"] = $"this is the master token: {authToken}";
             return await Task.Run(() => View("Player",  authToken));
 
