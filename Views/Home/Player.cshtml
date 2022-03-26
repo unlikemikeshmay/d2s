@@ -1,11 +1,9 @@
-@model OAuthResponse
+@model PlayerViewModel
 <partial name="_Notification"/>
 <div class="container">
     <h1>You are logged in (player)</h1>
     <h2>@ViewData["token"]</h2>
     <h2>@ViewData["res"]</h2>
     <h2>@ViewData["autht"] </h2>
-   @*  <h2>@Model.membership_id</h2>
-    <h2>@Model.token_type</h2>
-    <h2>@Model.access_token</h2> *@
+    <h2>@Model.Player.UserName</h2>
 </div>

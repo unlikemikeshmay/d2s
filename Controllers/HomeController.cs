@@ -50,16 +50,18 @@ Config conf = new Config();
         }else{
             //set sessiontoken and make request to get user info
             // populate appropriate memories with player info
-            //persistence needed?
-
-            HttpContext.Session.SetString(SessionToken,code);
-            
+            //persistence needed? 
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
             ViewData["token"]= code;
-            var authToken = await _playerRepository.AuthorizeUser(code);
-            //var authToken = "derp";
+            OAuthResponse authToken = await _playerRepository.AuthorizeUser(code);
+            
+            Player player = new Player();
+            PlayerViewModel pvm = new PlayerViewModel();
+            player.UserName = await _playerRepository.GetById(authToken.access_token);
             ViewData["autht"] = $"this is the master token: {authToken}";
+            pvm.Player = player;
+            pvm.OAuthResponse = authToken
             return await Task.Run(() => View("Player",  authToken));
 
            
@@ -103,7 +105,7 @@ Config conf = new Config();
             ViewData["token"] = seshToken;
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
-            var playerRes = _playerRepository.GetById("B89jdVf9V/lAhQot2WFMlaCa+5XptA7aCAAA");
+           // var playerRes = _playerRepository.GetById();
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             ViewData["res"] = playerRes.Result;
             //ViewData["athd"] = authd.membership_id;
