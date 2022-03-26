@@ -101,8 +101,8 @@ namespace bulkybook.Data
                     code = id,
                 }).ReceiveJson();
                 Console.WriteLine("response after authorize post: {0}",res);
-               // OAuthResponse response = await res;
-            return res;
+                OAuthResponse response = await res;
+            return response;
             }catch(FlurlHttpException e){
                 OAuthResponse res = new OAuthResponse();
                 res.membership_id = e.Message;
