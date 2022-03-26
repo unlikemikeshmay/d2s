@@ -6,6 +6,6 @@ namespace bulkybook.Data
     public interface IPlayerRepository
     {
          Task<string> GetById(string id);
-         OAuthResponse AuthorizeUser(string id);
+         Task<OAuthResponse> AuthorizeUser(string id);
     }
 }

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7MkyrBz7GjNkvRrMsctU3KvxaRYLADCgLOD4UhFwDr8CAOsmZwRdYQqUHtsjRzSBLh3YTO2ON0JwOaPqh715lQ==",
+  "dgSpecHash": "82j3EAK7OWbSpVMDJSRh8kjbZm8kxZewnzBf/zdh68S5oFxwD7zggaV3ujhF42OANxbfSj4TuvUTsdHiPz0mug==",
   "success": true,
   "projectFilePath": "/home/mike/Code/Dotnet/bulkybook/bulkybook.csproj",
   "expectedPackageFiles": [
+    "/home/mike/.nuget/packages/flurl/3.0.4/flurl.3.0.4.nupkg.sha512",
+    "/home/mike/.nuget/packages/flurl.http/3.2.2/flurl.http.3.2.2.nupkg.sha512",
     "/home/mike/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/mike/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
     "/home/mike/.nuget/packages/messagepack.annotations/2.1.152/messagepack.annotations.2.1.152.nupkg.sha512",

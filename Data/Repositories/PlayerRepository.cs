@@ -1,9 +1,6 @@
 using bulkybook.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Web;
+using Flurl;
+using Flurl.Http;
 
 namespace bulkybook.Data
 {
@@ -41,7 +38,7 @@ namespace bulkybook.Data
                 return e.Message;
             }
         }
-        public OAuthResponse AuthorizeUser(string id)
+       /*  public Task<OAuthResponse> AuthorizeUser(string id)
         {
              Config _config = new Config();
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
@@ -62,9 +59,9 @@ namespace bulkybook.Data
 
             //convert authorization to base64
         //string url = $"https://www.bungie.net/Platform/App/OAuth/Token/?grant_type=authorization_code&client_id={_config.clientID}&code={id}";
-            string url = $"https://www.bungie.net/Platform/App/OAuth/Token/";
+           
             
-            var urlEncoded = HttpUtility.UrlEncode(url);
+            
 
             var dict = new Dictionary<string,string>();
             dict.Add("grant_type","authorization_code");
@@ -81,6 +78,24 @@ namespace bulkybook.Data
             //var res = response.Content.ReadAsStringAsync();
             oauthresponse.membership_id =  response.ToString();
             return oauthresponse;
+        } */
+         public Task<OAuthResponse> AuthorizeUser(string id)
+        {
+             Config _config = new Config();
+             _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+             _config.clientID = int.Parse(_configuration["clientID"]);
+             _config.rootUrl = _configuration["rootUrl"].ToString();
+             _config.secret = _configuration["secret"];
+            
+                var url = new Uri($"https://www.bungie.net/Platform/App/OAuth/Token/");
+                var resp = url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
+                    client_id = _config.clientID,
+                    grant_type = "authorization_code",
+                    code = id,
+                }).ReceiveJson<OAuthResponse>();
+            return resp;
+            
+
         }
     }
 }
