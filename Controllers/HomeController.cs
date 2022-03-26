@@ -58,11 +58,11 @@ Config conf = new Config();
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",seshToken);
             ViewData["token"]= seshToken;
-            var authToken =  _playerRepository.AuthorizeUser(seshToken);
+            var authToken = await _playerRepository.AuthorizeUser(seshToken);
             ViewData["autht"] = authToken;
-            return View("Player",  authToken);
+            return await Task.Run(() => View("Player",  authToken));
             }else{
-                return View("Index");
+                return await Task.Run(() => View("Index"));
             }
            
         }
