@@ -1,3 +1,4 @@
+using System.Web;
 using bulkybook.Models;
 using Flurl;
 using Flurl.Http;
@@ -21,7 +22,7 @@ namespace bulkybook.Data
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            Url url = $"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}";
+            Url url = HttpUtility.UrlEncode($"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}");
             try
             {
             //might have to set bearer token- dunno yet
