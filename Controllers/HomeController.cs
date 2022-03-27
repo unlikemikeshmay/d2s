@@ -58,7 +58,7 @@ Config conf = new Config();
             
             Player player = new Player();
             PlayerViewModel pvm = new PlayerViewModel();
-            player.UserName = await _playerRepository.GetById(authToken.access_token);
+            player = await _playerRepository.GetById(authToken.access_token);
             
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
