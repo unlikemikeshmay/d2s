@@ -15,18 +15,53 @@ namespace bulkybook.Data
              
 
          }
-        public async Task<Player> GetById(string id)
+        public async Task<Player> GetById(string memid,string bt)
         {
             Config _config = new Config();
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            Url url = $"{_config.rootUrl}/User/GetBungieNetUserById/?id={id}/";
+            Url url = $"{_config.rootUrl}/User/GetBungieNetUserById/?id={memid}/";
             try
             {
             //might have to set bearer token- dunno yet
               Player player = new Player();
-              player = await url.WithHeader("x-api-key",$"{_config.apiKey}").GetJsonAsync<Player>();
+              dynamic d = await url.WithOAuthBearerToken(bt).WithHeader("x-api-key",$"{_config.apiKey}").GetJsonAsync();
+                player.membershipId = d.membershipId;
+                player.uniqueName = d.uniqueName;
+                player.normalizedName = d.normalizedName;
+                player.displayName = d.displayName;
+                player.profilePicture = d.profilePicture;
+                player.profileTheme = d.profileTheme;
+                player.userTitle = d.userTitle;
+                player.successMessageFlags = d.successMessageFlags;
+                player.isDeleted = d.isDeleted;
+                player.about = d.about;
+                player.firstAccess = d.firstAccess;
+                player.lastUpdate = d.lastUpdate;
+                player.legacyPortalUID = d.legacyPortalUID;
+                //player.context = d.context;
+                player.psnDisplayName = d.psnDisplayName;
+                player.xboxDisplayName = d.xboxDisplayName;
+                player.fbDisplayName = d.fbDisplayName;
+                player.showActivity = d.showActivity;
+                player.locale = d.locale;
+                player.localeInheritDefault = d.localeInheritDefault;
+                player.lastBanReportId = d.lastBanReportId;
+                player.showGroupMessaging = d.showGroupMessaging;
+                player.profilePicturePath = d.profilePicturePath;
+                player.profilePictureWidePath = d.profilePictureWidePath;
+                player.profileThemeName = d.profileThemeName;
+                player.userTitleDisplay = d.userTitleDisplay;
+                player.statusText = d.statusText;
+                player.statusDate = d.statusDate;
+                player.profileBanExpire = d.profileBanExpire;
+                player.blizzardDisplayName = d.blizzardDisplayName;
+                player.steamDisplayName = d.steamDisplayName;
+                player.stadiaDisplayName = d.stadiaDisplayName;
+                player.twitchDisplayName = d.twitchDisplayName;
+                player.cachedBungieGlobalDisplayName = d.cachedBungieGlobalDisplayName;
+                player.cachedBungieGlobalDisplayNameCode = d.cachedBungieGlobalDisplayNameCode;
               Console.WriteLine("Player returned from the response: {0}",player);
                 return player;  
             }catch(HttpRequestException e){

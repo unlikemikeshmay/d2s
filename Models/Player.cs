@@ -10,12 +10,12 @@ public class Player {
     public Int32? profilePicture {get;set;}
     public Int32 profileTheme {get;set;}
     public Int32 userTitle {get;set;}
-    public Int64 successMessageFlag {get;set;}
+    public Int64 successMessageFlags {get;set;}
     public Boolean isDeleted {get;set;}
     public string about {get;set;}
     public DateTime firstAccess {get;set;}
     public DateTime lastUpdate {get;set;}
-    public Int64 lagacyPortalIUID {get;set;}
+    public Int64 legacyPortalUID {get;set;}
     public string? context {get;set;}
     public string? psnDisplayName {get;set;}
     public string? xboxDisplayName {get;set;}

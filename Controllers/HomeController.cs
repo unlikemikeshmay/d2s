@@ -49,19 +49,27 @@ Config conf = new Config();
             return RedirectToAction("Index","Home");
         }else{
             //set sessiontoken and make request to get user info
+            if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
+                //check if the token is expired--
+            }
+            PlayerViewModel pvm = new PlayerViewModel();
+            Player player = new Player();
+            OAuthResponse authToken = new OAuthResponse();
+            pvm.Player = player;
+            pvm.OAuthResponse = authToken;
             // populate appropriate memories with player info
             //persistence needed? 
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
             ViewData["token"]= code;
-            OAuthResponse authToken = await _playerRepository.AuthorizeUser(code);
+            authToken = await _playerRepository.AuthorizeUser(code);
             
-            Player player = new Player();
-            PlayerViewModel pvm = new PlayerViewModel();
-            player = await _playerRepository.GetById(authToken.access_token);
+
+            //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
+
+            player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
             
-            pvm.Player = player;
-            pvm.OAuthResponse = authToken;
+
             ViewData["authmem"] = pvm.OAuthResponse.access_token;
             ViewData["disp"] = pvm.Player.steamDisplayName;
             return await Task.Run(() => View("Player",  pvm));
