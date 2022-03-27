@@ -15,27 +15,28 @@ namespace bulkybook.Data
              
 
          }
-        public async Task<string> GetById(string id)
+        public async Task<Player> GetById(string id)
         {
             Config _config = new Config();
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            string combinedUrl = $"{_config.rootUrl}/User/GetBungieNetUserById/?id={id}/";
+            Url url = $"{_config.rootUrl}/User/GetBungieNetUserById/?id={id}/";
             try
             {
-                _httpClient.DefaultRequestHeaders.Add("x-api-key",_config.apiKey.ToString());
-                 //_httpClient.DefaultRequestHeaders.Add("Content-Type","application/x-www-form-urlencoded");
-                HttpResponseMessage response = await _httpClient.GetAsync(combinedUrl);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-
-                return responseBody;  
+            //might have to set bearer token- dunno yet
+              Player player = new Player();
+              player = await url.WithHeader("x-api-key",$"{_config.apiKey}").GetJsonAsync<Player>();
+              Console.WriteLine("Player returned from the response: {0}",player);
+                return player;  
             }catch(HttpRequestException e){
+
                 Console.WriteLine(
                     "\nException Caught!");
                 Console.WriteLine("Message :{0} ",e.Message);
-                return e.Message;
+                Player player = new Player();
+                player.steamDisplayName = e.Message;
+                return player;
             }
         }
        /*  public Task<OAuthResponse> AuthorizeUser(string id)
