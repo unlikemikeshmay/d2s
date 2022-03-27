@@ -21,7 +21,7 @@ namespace bulkybook.Data
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            Url url = $"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}/{bt}";
+            Url url = $"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}";
             try
             {
             //might have to set bearer token- dunno yet
