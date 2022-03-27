@@ -21,12 +21,13 @@ namespace bulkybook.Data
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            Url url = $"{_config.rootUrl}/User/GetBungieNetUserById/{memid}";
+            Url url = $"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}";
             try
             {
+                var key = "X-API-Key";
             //might have to set bearer token- dunno yet
               Player player = new Player();
-              dynamic d = await url.WithHeader("x-api-key",$"{_config.apiKey}").WithHeader("Authorization", $"Bearer {bt}").GetJsonAsync();
+              dynamic d = await url.WithHeaders(new{ key = $"{_config.apiKey}", Authorization = $"Bearer {bt}"}).GetJsonAsync();
                 player.membershipId = d.membershipId;
                 player.uniqueName = d.uniqueName;
                 player.normalizedName = d.normalizedName;
