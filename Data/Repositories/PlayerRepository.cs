@@ -26,7 +26,7 @@ namespace bulkybook.Data
             {
             //might have to set bearer token- dunno yet
               Player player = new Player();
-              dynamic d = await url.WithHeaders(new{ key = $"{_config.apiKey}", Authorization = $"Bearer {bt}"}).GetJsonAsync();
+              dynamic d = await url.WithHeaders(new{ key = $"{_config.apiKey}", Authorization = $"Bearer {bt}"}).GetJsonAsync<Player>();
                 player.membershipId = d.membershipId;
                 player.uniqueName = d.uniqueName;
                 player.normalizedName = d.normalizedName;
