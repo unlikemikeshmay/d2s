@@ -25,8 +25,12 @@ namespace bulkybook.Data
             try
             {
             //might have to set bearer token- dunno yet
+            
               Player player = new Player();
-              dynamic d = await url.WithHeaders(new{ key = $"{_config.apiKey}", Authorization = $"Bearer {bt}"}).GetJsonAsync<Player>();
+              dynamic d = await url
+                .WithHeader("X-API-Key",$"{_config.apiKey}")
+                .WithHeader("Authorization" , $"Bearer {bt}")
+                .GetJsonAsync();
                 player.membershipId = d.membershipId;
                 player.uniqueName = d.uniqueName;
                 player.normalizedName = d.normalizedName;
@@ -84,7 +88,7 @@ namespace bulkybook.Data
             try{
 
             
-                var url = new Uri($"https://www.bungie.net/Platform/App/OAuth/Token/");
+                var url = new Uri($"{_config.rootUrl}/App/OAuth/Token/");
 /*                 var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
                     client_id = _config.clientID,
                     grant_type = "authorization_code",
