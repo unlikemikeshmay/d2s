@@ -62,7 +62,7 @@ Config conf = new Config();
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
             ViewData["token"]= code;
-            /* authToken = await _playerRepository.AuthorizeUser(code);
+            authToken = await _playerRepository.AuthorizeUser(code);
             
 
             //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
@@ -71,7 +71,7 @@ Config conf = new Config();
             
 
             ViewData["authmem"] = pvm.OAuthResponse.access_token;
-            ViewData["disp"] = pvm.Player.steamDisplayName; */
+            ViewData["disp"] = pvm.Player.steamDisplayName;
             return await Task.Run(() => View("Player",  pvm));
 
            
