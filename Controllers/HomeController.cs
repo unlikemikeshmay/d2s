@@ -63,7 +63,7 @@ Config conf = new Config();
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
             ViewData["authmem"] = pvm.OAuthResponse.access_token;
-            
+            ViewData["disp"] = pvm.Player.steamDisplayName;
             return await Task.Run(() => View("Player",  pvm));
 
            
