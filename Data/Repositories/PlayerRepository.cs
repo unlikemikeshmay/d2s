@@ -35,7 +35,7 @@ namespace bulkybook.Data
                 RestResponse response = await client.ExecuteAsync(request);
 
                 Console.WriteLine(response.Content);
-               /*  player.membershipId = d.membershipId;
+                player.membershipId = d.membershipId;
                 player.uniqueName = d.uniqueName;
                 player.normalizedName = d.normalizedName;
                 player.displayName = d.displayName;
@@ -69,7 +69,7 @@ namespace bulkybook.Data
                 player.stadiaDisplayName = d.stadiaDisplayName;
                 player.twitchDisplayName = d.twitchDisplayName;
                 player.cachedBungieGlobalDisplayName = d.cachedBungieGlobalDisplayName;
-                player.cachedBungieGlobalDisplayNameCode = d.cachedBungieGlobalDisplayNameCode; */
+                player.cachedBungieGlobalDisplayNameCode = d.cachedBungieGlobalDisplayNameCode;
               Console.WriteLine("Player returned from the response: {0}",player);
                 return player;  
             }catch(HttpRequestException e){
