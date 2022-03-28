@@ -55,17 +55,16 @@ Config conf = new Config();
             PlayerViewModel pvm = new PlayerViewModel();
             Player player = new Player();
             OAuthResponse authToken = new OAuthResponse();
-            pvm.Player = player;
-            pvm.OAuthResponse = authToken;
-            ViewData["autht"] = pvm.OAuthResponse.access_token;
+
             // populate appropriate memories with player info
             //persistence needed? 
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
             ViewData["token"]= code;
-            //authToken = await _playerRepository.AuthorizeUser(code);
-            
-
+            authToken = await _playerRepository.AuthorizeUser(code);
+            pvm.Player = player;
+            pvm.OAuthResponse = authToken;
+            ViewData["autht"] = pvm.OAuthResponse.access_token;
             //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
 
             //player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
