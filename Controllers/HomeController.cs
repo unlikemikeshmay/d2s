@@ -72,7 +72,13 @@ Config conf = new Config();
 
             ViewData["authmem"] = pvm.OAuthResponse.access_token;
             ViewData["disp"] = pvm.Player.steamDisplayName;
-            return await Task.Run(() => View("Player",  pvm));
+            if(player.membershipId != null){
+                return await Task.Run(() => View("Player",  player));
+            }
+            else {
+                return await Task.Run(() => View("Player"));
+            }
+            
 
            
         }
