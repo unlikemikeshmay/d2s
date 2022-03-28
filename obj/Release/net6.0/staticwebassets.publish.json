@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NUTNsRrvUPUr2h3868i+3Hiyoaa3gOlV/QhlY8i2zAE=",
+  "Hash": "uUO6vAM4J4FaguQ5SysSbGoqh4I8SgCEyddrgpXKsHk=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/home/mike/Code/Dotnet/bulkybook/wwwroot/Images/registration_traveler_bg.png",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/Dotnet/bulkybook/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "Images/registration_traveler_bg.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/registration_traveler_bg.png"
     },
     {
       "Identity": "/home/mike/Code/Dotnet/bulkybook/wwwroot/js/site.js",

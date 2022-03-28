@@ -91,28 +91,24 @@ namespace bulkybook.Data
              _config.secret = _configuration["secret"];
 
                 var client = new RestClient($"{_config.rootUrl}/App/OAuth/Token/");
-/*                 var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
-                    client_id = _config.clientID,
-                    grant_type = "authorization_code",
-                    code = id,
-                }).ReceiveJson(); */
-/*                 dynamic d  = await url.PostUrlEncodedAsync(new {
-                    grant_type = "authorization_code",
-                    client_id = _config.clientID,
-                    code = id,
-                }).ReceiveJson(); */
-
                 var request = new RestRequest();
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                //request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1tNlRgw__HGw; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPR1wypgjcLnPd; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
+                request.AddParameter("grant_type", "authorization_code");
+                request.AddParameter("code", $"{id}");
+                request.AddParameter("client_id", $"{_config.clientID}");
+                var response = await client.PostAsync<OAuthResponse>(request);
+                Console.WriteLine(response);
                 
                 Console.WriteLine("response after authorize post: {0}",request);
 
-                OAuthResponse response = new OAuthResponse();
-              /*   response.access_token = d.access_token;
-                response.token_type = d.token_type;
-                response.expires_in = d.expires_in;
-                response.membership_id = d.membership_id; */
+                OAuthResponse oAuthResponse = new OAuthResponse();
+                oAuthResponse.access_token = response.access_token;
+                oAuthResponse.token_type = response.token_type;
+                oAuthResponse.expires_in = response.expires_in;
+                oAuthResponse.membership_id = response.membership_id; 
                 //response.membership_id = res;
-            return response;
+            return oAuthResponse;
             
             
             
