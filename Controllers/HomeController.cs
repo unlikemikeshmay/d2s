@@ -58,6 +58,7 @@ Config conf = new Config();
 
             // populate appropriate memories with player info
             //persistence needed? 
+            throw( new DataMisalignedException());
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
             ViewData["token"]= code;

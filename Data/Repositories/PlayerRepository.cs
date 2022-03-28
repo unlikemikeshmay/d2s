@@ -1,6 +1,6 @@
 using bulkybook.Models;
-using Flurl;
-using Flurl.Http;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace bulkybook.Data
 {
@@ -21,17 +21,21 @@ namespace bulkybook.Data
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
-            Url url = $"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}";
             try
             {
             //might have to set bearer token- dunno yet
             
               Player player = new Player();
-              dynamic d = await url
-                .WithHeader("X-API-Key",$"{_config.apiKey}")
-                .WithHeader("Authorization" , $"Bearer {bt}")
-                .GetJsonAsync();
-                player.membershipId = d.membershipId;
+              var client = new RestClient($"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}");
+                var request = new RestRequest();
+                request.AddHeader("X-API-Key", $"{_config.apiKey}");
+                request.AddHeader("Authorization", $"Bearer {bt}");
+                //request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1StlRgw__FbC; __cflb=0H28vP5GxS7vgVH4MZT6rB7QcDNQ8jpmSJi6XkaDAcT; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
+
+                RestResponse response = await client.ExecuteAsync(request);
+
+                Console.WriteLine(response.Content);
+               /*  player.membershipId = d.membershipId;
                 player.uniqueName = d.uniqueName;
                 player.normalizedName = d.normalizedName;
                 player.displayName = d.displayName;
@@ -65,7 +69,7 @@ namespace bulkybook.Data
                 player.stadiaDisplayName = d.stadiaDisplayName;
                 player.twitchDisplayName = d.twitchDisplayName;
                 player.cachedBungieGlobalDisplayName = d.cachedBungieGlobalDisplayName;
-                player.cachedBungieGlobalDisplayNameCode = d.cachedBungieGlobalDisplayNameCode;
+                player.cachedBungieGlobalDisplayNameCode = d.cachedBungieGlobalDisplayNameCode; */
               Console.WriteLine("Player returned from the response: {0}",player);
                 return player;  
             }catch(HttpRequestException e){
@@ -85,38 +89,31 @@ namespace bulkybook.Data
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
              _config.secret = _configuration["secret"];
-            try{
 
-            
-                var url = new Uri($"{_config.rootUrl}/App/OAuth/Token/");
+                var client = new RestClient($"{_config.rootUrl}/App/OAuth/Token/");
 /*                 var res  = await url.WithHeaders(new { Content = "application/x-www-form-urlencoded",Authorization = $"Basic {_config.clientID}:{_config.secret}"}).PostUrlEncodedAsync(new {
                     client_id = _config.clientID,
                     grant_type = "authorization_code",
                     code = id,
                 }).ReceiveJson(); */
-                dynamic d  = await url.PostUrlEncodedAsync(new {
+/*                 dynamic d  = await url.PostUrlEncodedAsync(new {
                     grant_type = "authorization_code",
                     client_id = _config.clientID,
                     code = id,
-                }).ReceiveJson();
-                Console.WriteLine("response after authorize post: {0}",d);
+                }).ReceiveJson(); */
+
+                var request = new RestRequest();
+                
+                Console.WriteLine("response after authorize post: {0}",request);
 
                 OAuthResponse response = new OAuthResponse();
-                response.access_token = d.access_token;
+              /*   response.access_token = d.access_token;
                 response.token_type = d.token_type;
                 response.expires_in = d.expires_in;
-                response.membership_id = d.membership_id;
+                response.membership_id = d.membership_id; */
                 //response.membership_id = res;
             return response;
-            }catch(FlurlHttpException e){
-                OAuthResponse res = new OAuthResponse();
-                res.membership_id = e.Message;
-                
-                res.token_type = e.StackTrace;
-                res.access_token  = e.Source;
-                
-                return res;
-            }
+            
             
             
 
@@ -125,3 +122,13 @@ namespace bulkybook.Data
 }
 // "client_id={CLIENT_ID}&grant_type=authorization_code&code={authCode}"
 //?code=5f830898adfee9ff0648507cf022a8ac
+
+
+/* var client = new RestClient("https://www.bungie.net/Platform/User/GetBungieNetUserById/20814900");
+client.Timeout = -1;
+var request = new RestRequest(Method.GET);
+request.AddHeader("X-API-Key", "7973756ba5f149d0860c8f815440e8f4");
+request.AddHeader("Authorization", "BearerCJWBBBKGAgAgPRqKv6IQtL3I/XLYPcB4LnQBW8O9K37ByTzVn+mHHv3gAAAATdW5N1e//0Exh6xlowP/cV7thAxxXy+3fCuw/mXhAdQ9FOrw7UqvKiZBj7a/K0/o/nau43nuTPdAWHIsB7Gzeqq3lrVtmJ6oIBpQOJUxEjaFuDmQLQzASldcYBXDFzvnBB1eGybsZ7R4lrGLCz3UXw0dhT7/d1j8muUENz4a33TswVRrBf5G2/I3XOIEKkyAmTUeVbtiWVbVufsrHQme8a29lNa/74MzmLsO0zecPN2dFTBmV1tNgKiiUh2SvIUbh+O93g9q+r/pz2LPWeHvlVMyJyAesVCT0KyqkwCLrqE=");
+request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1StlRgw__FbC; __cflb=0H28vP5GxS7vgVH4MZT6rB7QcDNQ8jpmSJi6XkaDAcT; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
+IRestResponse response = client.Execute(request);
+Console.WriteLine(response.Content); */
