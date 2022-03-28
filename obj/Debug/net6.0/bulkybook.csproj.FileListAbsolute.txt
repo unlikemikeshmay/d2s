@@ -548,8 +548,6 @@
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/bulkybook.pdb
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/bulkybook.genruntimeconfig.cache
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/ref/bulkybook.dll
-/home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/Flurl.dll
-/home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/Flurl.Http.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/refs/Microsoft.Extensions.Caching.Abstractions.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/refs/Microsoft.Extensions.Caching.Memory.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/refs/Microsoft.Extensions.Configuration.Abstractions.dll

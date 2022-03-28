@@ -34,7 +34,6 @@
     ".NETCoreApp,Version=v6.0": {
       "bulkybook/1.0.0": {
         "dependencies": {
-          "Flurl.Http": "3.2.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.2",
           "Microsoft.AspNetCore.Identity.UI": "6.0.2",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.2",
@@ -338,33 +337,6 @@
         },
         "compile": {
           "bulkybook.dll": {}
-        }
-      },
-      "Flurl/3.0.4": {
-        "runtime": {
-          "lib/netstandard2.0/Flurl.dll": {
-            "assemblyVersion": "3.0.4.0",
-            "fileVersion": "3.0.4.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Flurl.dll": {}
-        }
-      },
-      "Flurl.Http/3.2.2": {
-        "dependencies": {
-          "Flurl": "3.0.4",
-          "Newtonsoft.Json": "13.0.1",
-          "System.Text.Encoding.CodePages": "4.7.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Flurl.Http.dll": {
-            "assemblyVersion": "3.2.2.0",
-            "fileVersion": "3.2.2.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Flurl.Http.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -4694,20 +4666,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Flurl/3.0.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-2bgCzOs3TGwRkfcijCiH+7o9Pz4pyVnt4yyLX2vD3wlMSekpmGhqe2zA4988qSMmPa6AqeekX13CY4FvsjsDJQ==",
-      "path": "flurl/3.0.4",
-      "hashPath": "flurl.3.0.4.nupkg.sha512"
-    },
-    "Flurl.Http/3.2.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-zVen69D8Qr1uZN4ua0ZnOMuDZol66w04AnwOSCyE5Kqy5GGbAtk0m7bKXaU+FJJ9R7ByVIKAG/kpGbGMGdt2/Q==",
-      "path": "flurl.http/3.2.2",
-      "hashPath": "flurl.http.3.2.2.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
