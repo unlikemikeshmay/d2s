@@ -41,6 +41,7 @@
           "Microsoft.EntityFrameworkCore.Design": "6.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.2",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2",
           "RestSharp": "107.3.0",
           "Microsoft.AspNetCore.Antiforgery": "6.0.0.0",
