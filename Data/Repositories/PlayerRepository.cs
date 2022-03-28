@@ -101,12 +101,15 @@ namespace bulkybook.Data
                 Console.WriteLine(response);
                 
                 Console.WriteLine("response after authorize post: {0}",request);
-
                 OAuthResponse oAuthResponse = new OAuthResponse();
-                oAuthResponse.access_token = response.access_token;
+                if (response.access_token != null){
+                    oAuthResponse.access_token = response.access_token;
                 oAuthResponse.token_type = response.token_type;
                 oAuthResponse.expires_in = response.expires_in;
                 oAuthResponse.membership_id = response.membership_id; 
+                }
+                
+                
                 //response.membership_id = res;
             return oAuthResponse;
             
