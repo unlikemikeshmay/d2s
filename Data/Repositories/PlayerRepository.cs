@@ -35,8 +35,8 @@ namespace bulkybook.Data
 
                 RestResponse response = await client.ExecuteAsync(request);
                 dynamic res = JsonConvert.DeserializeObject(response.Content);
-                Console.WriteLine(response.Content);
-                player.membershipId = res.membershipId;
+
+                player.membershipId = Convert.ToInt64(res.membershipId);
                 player.uniqueName = res.uniqueName;
                 player.normalizedName = res.normalizedName;
                 player.displayName = res.displayName;
