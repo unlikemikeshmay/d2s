@@ -1,4 +1,5 @@
 using bulkybook.Models;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 
@@ -33,43 +34,43 @@ namespace bulkybook.Data
                 //request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1StlRgw__FbC; __cflb=0H28vP5GxS7vgVH4MZT6rB7QcDNQ8jpmSJi6XkaDAcT; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
 
                 RestResponse response = await client.ExecuteAsync(request);
-
+                dynamic res = JsonConvert.DeserializeObject(response.Content);
                 Console.WriteLine(response.Content);
-               /*  player.membershipId = d.membershipId;
-                player.uniqueName = d.uniqueName;
-                player.normalizedName = d.normalizedName;
-                player.displayName = d.displayName;
-                player.profilePicture = d.profilePicture;
-                player.profileTheme = d.profileTheme;
-                player.userTitle = d.userTitle;
-                player.successMessageFlags = d.successMessageFlags;
-                player.isDeleted = d.isDeleted;
-                player.about = d.about;
-                player.firstAccess = d.firstAccess;
-                player.lastUpdate = d.lastUpdate;
-                player.legacyPortalUID = d.legacyPortalUID;
+                player.membershipId = res.membershipId;
+                player.uniqueName = res.uniqueName;
+                player.normalizedName = res.normalizedName;
+                player.displayName = res.displayName;
+                player.profilePicture = res.profilePicture;
+                player.profileTheme = res.profileTheme;
+                player.userTitle = res.userTitle;
+                player.successMessageFlags = res.successMessageFlags;
+                player.isDeleted = res.isDeleted;
+                player.about = res.about;
+                player.firstAccess = res.firstAccess;
+                player.lastUpdate = res.lastUpdate;
+                player.legacyPortalUID = res.legacyPortalUID;
                 //player.context = d.context;
-                player.psnDisplayName = d.psnDisplayName;
-                player.xboxDisplayName = d.xboxDisplayName;
-                player.fbDisplayName = d.fbDisplayName;
-                player.showActivity = d.showActivity;
-                player.locale = d.locale;
-                player.localeInheritDefault = d.localeInheritDefault;
-                player.lastBanReportId = d.lastBanReportId;
-                player.showGroupMessaging = d.showGroupMessaging;
-                player.profilePicturePath = d.profilePicturePath;
-                player.profilePictureWidePath = d.profilePictureWidePath;
-                player.profileThemeName = d.profileThemeName;
-                player.userTitleDisplay = d.userTitleDisplay;
-                player.statusText = d.statusText;
-                player.statusDate = d.statusDate;
-                player.profileBanExpire = d.profileBanExpire;
-                player.blizzardDisplayName = d.blizzardDisplayName;
-                player.steamDisplayName = d.steamDisplayName;
-                player.stadiaDisplayName = d.stadiaDisplayName;
-                player.twitchDisplayName = d.twitchDisplayName;
-                player.cachedBungieGlobalDisplayName = d.cachedBungieGlobalDisplayName;
-                player.cachedBungieGlobalDisplayNameCode = d.cachedBungieGlobalDisplayNameCode; */
+                player.psnDisplayName = res.psnDisplayName;
+                player.xboxDisplayName = res.xboxDisplayName;
+                player.fbDisplayName = res.fbDisplayName;
+                player.showActivity = res.showActivity;
+                player.locale = res.locale;
+                player.localeInheritDefault = res.localeInheritDefault;
+                player.lastBanReportId = res.lastBanReportId;
+                player.showGroupMessaging = res.showGroupMessaging;
+                player.profilePicturePath = res.profilePicturePath;
+                player.profilePictureWidePath = res.profilePictureWidePath;
+                player.profileThemeName = res.profileThemeName;
+                player.userTitleDisplay = res.userTitleDisplay;
+                player.statusText = res.statusText;
+                player.statusDate = res.statusDate;
+                player.profileBanExpire = res.profileBanExpire;
+                player.blizzardDisplayName = res.blizzardDisplayName;
+                player.steamDisplayName = res.steamDisplayName;
+                player.stadiaDisplayName = res.stadiaDisplayName;
+                player.twitchDisplayName = res.twitchDisplayName;
+                player.cachedBungieGlobalDisplayName = res.cachedBungieGlobalDisplayName;
+                player.cachedBungieGlobalDisplayNameCode = res.cachedBungieGlobalDisplayNameCode; 
               Console.WriteLine("Player returned from the response: {0}",player);
                 return player;  
             }catch(HttpRequestException e){
@@ -98,18 +99,19 @@ namespace bulkybook.Data
                 request.AddParameter("code", $"{id}");
                 request.AddParameter("client_id", $"{_config.clientID}");
                 var response = await client.ExecutePostAsync(request);
-                Console.WriteLine(response);
+                dynamic res = JsonConvert.DeserializeObject(response.Content);
+                Console.WriteLine(res);
                 
                 Console.WriteLine("response after authorize post: {0}",request);
                 OAuthResponse oAuthResponse = new OAuthResponse();
-/*                 if (response.access_token != null){
-                    oAuthResponse.access_token = response.access_token;
-                oAuthResponse.token_type = response.token_type;
-                oAuthResponse.expires_in = response.expires_in;
-                oAuthResponse.membership_id = response.membership_id; 
-                } */
+                if (res.access_token != null){
+                oAuthResponse.access_token = res.access_token;
+                oAuthResponse.token_type = res.token_type;
+                oAuthResponse.expires_in = res.expires_in;
+                oAuthResponse.membership_id = res.membership_id; 
+                }
                 
-                oAuthResponse.access_token = response.Content;
+                
                 //response.membership_id = res;
             return oAuthResponse;
             

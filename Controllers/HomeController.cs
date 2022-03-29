@@ -60,17 +60,17 @@ Config conf = new Config();
             //persistence needed? 
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
-            ViewData["token"] = code;
+           // ViewData["token"] = code;
             authToken = await _playerRepository.AuthorizeUser(code);
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
-            ViewData["autht"] = pvm.OAuthResponse.access_token;
+           // ViewData["autht"] = pvm.OAuthResponse.access_token;
             //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
             if(authToken.membership_id != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
             }
             if(pvm.OAuthResponse.access_token != null && pvm.Player.steamDisplayName != null){
-                ViewData["authmem"] = pvm.OAuthResponse.access_token;
+               // ViewData["authmem"] = pvm.OAuthResponse.access_token;
                 ViewData["disp"] = pvm.Player.steamDisplayName;
             }
             
