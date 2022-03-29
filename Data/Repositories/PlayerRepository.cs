@@ -97,19 +97,19 @@ namespace bulkybook.Data
                 request.AddParameter("grant_type", "authorization_code");
                 request.AddParameter("code", $"{id}");
                 request.AddParameter("client_id", $"{_config.clientID}");
-                var response = await client.PostAsync<OAuthResponse>(request);
+                var response = await client.ExecutePostAsync(request);
                 Console.WriteLine(response);
                 
                 Console.WriteLine("response after authorize post: {0}",request);
                 OAuthResponse oAuthResponse = new OAuthResponse();
-                if (response.access_token != null){
+/*                 if (response.access_token != null){
                     oAuthResponse.access_token = response.access_token;
                 oAuthResponse.token_type = response.token_type;
                 oAuthResponse.expires_in = response.expires_in;
                 oAuthResponse.membership_id = response.membership_id; 
-                }
+                } */
                 
-                
+                oAuthResponse.access_token = response.Content;
                 //response.membership_id = res;
             return oAuthResponse;
             
