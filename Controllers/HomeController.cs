@@ -77,7 +77,7 @@ Config conf = new Config();
             }
             else{
                 ViewData["disp"] = "access token is null or steamdisplay is null";
-                ViewData["player"] = player.displayName
+                ViewData["player"] = player.displayName;
             }
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
