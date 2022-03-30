@@ -62,23 +62,23 @@ Config conf = new Config();
             _logger.LogInformation("Session Token: {SeshToken}",code);
            // ViewData["token"] = code;
             authToken = await _playerRepository.AuthorizeUser(code);
-            pvm.Player = player;
-            pvm.OAuthResponse = authToken;
+            
              ViewData["autht"] = pvm.OAuthResponse.access_token;
             //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
             if(authToken.access_token != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
 
             }
-            if(pvm.OAuthResponse.access_token != null && pvm.Player.steamDisplayName != null){
-               ViewData["authmem"] = pvm.OAuthResponse.access_token;
-                ViewData["disp"] = pvm.Player.steamDisplayName;
+            if(authToken.access_token != null && player.steamDisplayName != null){
+               ViewData["authmem"] = authToken.access_token;
+                ViewData["disp"] = player.steamDisplayName;
             }
             else{
                 ViewData["disp"] = "access token is null or steamdisplay is null";
             }
-            
-            if(player.membershipId != null){
+            pvm.Player = player;
+            pvm.OAuthResponse = authToken;
+            if(pvm.Player.membershipId != null){
                 return await Task.Run(() => View("Player",  pvm.Player));
             }
             else {
