@@ -72,6 +72,8 @@ Config conf = new Config();
             if(authToken.access_token != null && player.steamDisplayName != null){
                ViewData["authmem"] = authToken.access_token;
                 ViewData["disp"] = player.steamDisplayName;
+                ViewData["player"] = player;
+
             }
             else{
                 ViewData["disp"] = "access token is null or steamdisplay is null";
