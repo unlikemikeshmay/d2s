@@ -40,7 +40,7 @@ namespace bulkybook.Data
                 player.uniqueName = res.uniqueName;
                 player.normalizedName = res.normalizedName;
                 player.displayName = res.displayName;
-                player.profilePicture = res.profilePicture;
+                player.profilePicture = Convert.ToInt32(res.profilePicture);
                 player.profileTheme = Convert.ToInt32(res.profileTheme);
                 player.userTitle = Convert.ToInt32(res.userTitle);
                 player.successMessageFlags = Convert.ToInt64(res.successMessageFlags);
@@ -55,9 +55,9 @@ namespace bulkybook.Data
                 player.fbDisplayName = res.fbDisplayName;
                 player.showActivity = Convert.ToBoolean(res.showActivity);
                 player.locale = res.locale;
-                player.localeInheritDefault = res.localeInheritDefault;
+                player.localeInheritDefault = Convert.ToBoolean(res.localeInheritDefault);
                 player.lastBanReportId = Convert.ToInt64(res.lastBanReportId);
-                player.showGroupMessaging = res.showGroupMessaging;
+                player.showGroupMessaging = Convert.ToBoolean(res.showGroupMessaging);
                 player.profilePicturePath = res.profilePicturePath;
                 player.profilePictureWidePath = res.profilePictureWidePath;
                 player.profileThemeName = res.profileThemeName;
