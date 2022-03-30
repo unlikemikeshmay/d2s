@@ -63,7 +63,7 @@ Config conf = new Config();
            // ViewData["token"] = code;
             authToken = await _playerRepository.AuthorizeUser(code);
             
-             ViewData["autht"] = pvm.OAuthResponse.access_token;
+             ViewData["autht"] = authToken.access_token;
             //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
             if(authToken.access_token != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
