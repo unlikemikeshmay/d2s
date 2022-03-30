@@ -35,7 +35,10 @@ namespace bulkybook.Data
 
                 RestResponse response = await client.ExecuteAsync(request);
                 dynamic res = JsonConvert.DeserializeObject(response.Content);
-
+                if(res == null){
+                    player.steamDisplayName = "res is null";
+                    return player;
+                }
                 player.membershipId = Convert.ToInt64(res.membershipId);
                 player.uniqueName = res.uniqueName;
                 player.normalizedName = res.normalizedName;
