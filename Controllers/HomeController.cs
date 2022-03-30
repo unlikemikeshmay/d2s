@@ -72,7 +72,7 @@ Config conf = new Config();
             if(authToken.access_token != null && player.displayName != null){
                ViewData["authmem"] = authToken.access_token;
                 ViewData["disp"] = player.displayName;
-                ViewData["player"] = player;
+                
 
             }
             else{
