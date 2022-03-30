@@ -75,7 +75,7 @@ Config conf = new Config();
             }
             
             if(player.membershipId != null){
-                return await Task.Run(() => View("Player",  player));
+                return await Task.Run(() => View("Player",  pvm.Player));
             }
             else {
                 return await Task.Run(() => View("Player"));
