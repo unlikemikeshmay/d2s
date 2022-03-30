@@ -53,7 +53,7 @@ namespace bulkybook.Data
                 player.psnDisplayName = res.psnDisplayName;
                 player.xboxDisplayName = res.xboxDisplayName;
                 player.fbDisplayName = res.fbDisplayName;
-                player.showActivity = res.showActivity;
+                player.showActivity = Convert.ToBoolean(res.showActivity);
                 player.locale = res.locale;
                 player.localeInheritDefault = res.localeInheritDefault;
                 player.lastBanReportId = Convert.ToInt64(res.lastBanReportId);
