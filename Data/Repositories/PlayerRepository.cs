@@ -44,7 +44,7 @@ namespace bulkybook.Data
                 player.profileTheme = Convert.ToInt32(res.profileTheme);
                 player.userTitle = Convert.ToInt32(res.userTitle);
                 player.successMessageFlags = Convert.ToInt64(res.successMessageFlags);
-                player.isDeleted = res.isDeleted;
+                player.isDeleted = Convert.ToBoolean(res.isDeleted);
                 player.about = res.about;
                 player.firstAccess = Convert.ToDateTime(res.firstAccess);
                 player.lastUpdate = Convert.ToDateTime(res.lastUpdate);
