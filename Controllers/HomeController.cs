@@ -71,7 +71,7 @@ Config conf = new Config();
 
             }
             if(pvm.OAuthResponse.access_token != null && pvm.Player.steamDisplayName != null){
-               /ViewData["authmem"] = pvm.OAuthResponse.access_token;
+               ViewData["authmem"] = pvm.OAuthResponse.access_token;
                 ViewData["disp"] = pvm.Player.steamDisplayName;
             }
             else{
