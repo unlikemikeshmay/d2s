@@ -81,7 +81,7 @@ Config conf = new Config();
             }
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
-            if(pvm.Player.membershipId != null){
+            if(player.membershipId != null){
                 return await Task.Run(() => View("Player",  player));
             }
             else {
