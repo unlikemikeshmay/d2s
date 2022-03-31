@@ -33,7 +33,7 @@ namespace bulkybook.Data
                 request.AddHeader("Authorization", $"Bearer {bt}");
                 //request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1StlRgw__FbC; __cflb=0H28vP5GxS7vgVH4MZT6rB7QcDNQ8jpmSJi6XkaDAcT; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
 
-                RestResponse response = await client.ExecuteAsync(request);
+                RestResponse response = await client.GetAsync(request);
                 dynamic res = JsonConvert.DeserializeObject(response.Content);
                 if(res == null){
                     player.displayName= "res is null";
