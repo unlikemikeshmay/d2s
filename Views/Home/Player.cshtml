@@ -1,12 +1,33 @@
 @model Player
 <partial name="_Notification"/>
-<div class="container">
-    <h1>You are logged in (player)</h1>
-     <h2>@ViewData["token"]</h2>
-    <h2>@ViewData["res"]</h2>
-    <h2>@ViewData["autht"]</h2>
-    <h2>@ViewData["player"]</h2>
-    <h2>@ViewData["disp"]</h2> 
-    <h2>@Model.steamDisplayName</h2>
-   
+<div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+        <h1>@Model.uniqueName</h1>
+        <h3>@Model.firstAccess</h3>
+    </header>
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5"></div>
+</div>
+   @* make these created from list of users in future *@
+<div class="row align-items">
+    @* class col-md-{x} make this 12/amount of characters registers//out of 3 *@
+    <div class="col-md-3">
+        <div class="h-100 p5 bg-light border rounded-3">
+            <h2>add guardian here</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi incidunt illo aspernatur maxime ipsum corporis quo, itaque recusandae minus odio nihil autem doloremque temporibus magni ad provident alias nemo reprehenderit.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="h-100 p5 bg-dark border rounded-3">
+             <h2>add guardian here</h2>
+             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi incidunt illo aspernatur maxime ipsum corporis quo, itaque recusandae minus odio nihil autem doloremque temporibus magni ad provident alias nemo reprehenderit.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="h-100 p5 bg-light border rounded-3">
+            <h2>add guardian here</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi incidunt illo aspernatur maxime ipsum corporis quo, itaque recusandae minus odio nihil autem doloremque temporibus magni ad provident alias nemo reprehenderit.</p>
+        </div>
+    </div>
+</div>
 </div>
