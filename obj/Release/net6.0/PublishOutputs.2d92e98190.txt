@@ -365,6 +365,7 @@
 /home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/NuGet.Protocol.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/NuGet.Versioning.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/RestSharp.dll
+/home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/RestSharp.Serializers.NewtonsoftJson.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/System.Composition.AttributedModel.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/System.Composition.Convention.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Release/net6.0/publish/System.Composition.Hosting.dll

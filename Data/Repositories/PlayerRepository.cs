@@ -36,7 +36,8 @@ namespace bulkybook.Data
                 request.AddHeader("Authorization", $"Bearer{bt}");
               //  request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1o9hRgw__bwh; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPQrk9YXqJMpwM; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
                 var response = await client.ExecuteGetAsync(request);
-                dynamic res = JsonConvert.DeserializeObject(response.Content);
+                dynamic resdes = JsonConvert.DeserializeObject(response.Content);
+                var res = resdes.Response;
                 Console.WriteLine("inside getbyid");
                 Console.WriteLine(response.Content);
                 if(response.Content == null){
@@ -47,7 +48,7 @@ namespace bulkybook.Data
                 player.uniqueName = res.uniqueName;
                 player.normalizedName = res.normalizedName;
                 //player.displayName = res.displayName;
-                player.displayName = "hamlo";
+                player.displayName = res.displayName;
                 player.profilePicture = Convert.ToInt32(res.profilePicture);
                 player.profileTheme = Convert.ToInt32(res.profileTheme);
                 player.userTitle = Convert.ToInt32(res.userTitle);

@@ -359,6 +359,7 @@
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/NuGet.Protocol.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/NuGet.Versioning.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/RestSharp.dll
+/home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/RestSharp.Serializers.NewtonsoftJson.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/System.Composition.AttributedModel.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/System.Composition.Convention.dll
 /home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/System.Composition.Hosting.dll
@@ -561,4 +562,3 @@
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/bulkybook.pdb
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/bulkybook.genruntimeconfig.cache
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/ref/bulkybook.dll
-/home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/RestSharp.Serializers.NewtonsoftJson.dll
