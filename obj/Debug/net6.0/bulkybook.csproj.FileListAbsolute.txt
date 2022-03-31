@@ -561,3 +561,4 @@
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/bulkybook.pdb
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/bulkybook.genruntimeconfig.cache
 /home/mike/Code/Dotnet/bulkybook/obj/Debug/net6.0/ref/bulkybook.dll
+/home/mike/Code/Dotnet/bulkybook/bin/Debug/net6.0/RestSharp.Serializers.NewtonsoftJson.dll

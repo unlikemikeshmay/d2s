@@ -69,15 +69,15 @@ Config conf = new Config();
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
 
             }
-            if(authToken.access_token != null && player.displayName != null){
+            if(authToken.access_token != null && player.uniqueName != null){
                ViewData["authmem"] = authToken.access_token;
-                ViewData["disp"] = player.displayName;
+                ViewData["disp"] = player.uniqueName;
                 
 
             }
             else{
                 ViewData["disp"] = "access token is null or steamdisplay is null";
-                ViewData["player"] = player.displayName;
+                ViewData["player"] = player.uniqueName;
             }
             pvm.Player = player;
             pvm.OAuthResponse = authToken;

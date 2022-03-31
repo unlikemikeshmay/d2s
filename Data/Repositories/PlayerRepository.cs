@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 
+using RestSharp.Serializers.NewtonsoftJson;
+
 namespace bulkybook.Data
 {
     public class PlayerRepository : IPlayerRepository
@@ -28,18 +30,20 @@ namespace bulkybook.Data
             
               Player player = new Player();
               var client = new RestClient($"https://www.bungie.net/Platform/User/GetBungieNetUserById/{memid}");
-                var request = new RestRequest();
-                request.AddHeader("X-API-Key", $"{_config.apiKey}");
-                request.AddHeader("Authorization", $"Bearer {bt}");
-                //request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1StlRgw__FbC; __cflb=0H28vP5GxS7vgVH4MZT6rB7QcDNQ8jpmSJi6XkaDAcT; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
 
-                RestResponse response = await client.GetAsync(request);
-                dynamic res = JsonConvert.DeserializeObject(response.Content);
-                if(res == null){
+                var request = new RestRequest();
+                request.AddHeader("X-API-Key", "7973756ba5f149d0860c8f815440e8f4");
+                request.AddHeader("Authorization", $"Bearer{bt}");
+              //  request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1o9hRgw__bwh; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPQrk9YXqJMpwM; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
+                var response = await client.ExecuteGetAsync(request);
+                player = JsonConvert.DeserializeObject<Player>(response.Content);
+                Console.WriteLine("inside getbyid");
+                Console.WriteLine(response.Content);
+                if(response.Content == null){
                     player.displayName= "res is null";
                     return player;
                 }
-                player.membershipId = Convert.ToInt64(res.membershipId);
+               /*  player.membershipId = Convert.ToInt64(res.membershipId);
                 player.uniqueName = res.uniqueName;
                 player.normalizedName = res.normalizedName;
                 //player.displayName = res.displayName;
@@ -74,7 +78,7 @@ namespace bulkybook.Data
                 player.stadiaDisplayName = res.stadiaDisplayName;
                 player.twitchDisplayName = res.twitchDisplayName;
                 player.cachedBungieGlobalDisplayName = res.cachedBungieGlobalDisplayName;
-                player.cachedBungieGlobalDisplayNameCode = Convert.ToInt16(res.cachedBungieGlobalDisplayNameCode); 
+                player.cachedBungieGlobalDisplayNameCode = Convert.ToInt16(res.cachedBungieGlobalDisplayNameCode);  */
               Console.WriteLine("Player returned from the response: {0}",player);
                 return player;  
             }catch(HttpRequestException e){
@@ -82,6 +86,9 @@ namespace bulkybook.Data
                 Console.WriteLine(
                     "\nException Caught!");
                 Console.WriteLine("Message :{0} ",e.Message);
+                Console.WriteLine(e.StatusCode);
+                Console.WriteLine(e.InnerException);
+                Console.WriteLine(e.StackTrace);
                 Player player = new Player();
                 player.steamDisplayName = e.Message;
                 return player;
