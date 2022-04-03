@@ -131,6 +131,11 @@ namespace bulkybook.Data
             
 
         }
+
+        public Task<VendorResponse> GetVendorList(long characterId, long destinyMembershipId, int membershipType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 // "client_id={CLIENT_ID}&grant_type=authorization_code&code={authCode}"
