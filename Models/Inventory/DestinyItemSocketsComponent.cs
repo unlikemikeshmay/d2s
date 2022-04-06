@@ -1,6 +1,6 @@
 namespace bulkybook.Models;
 
-public class DestinyItemSocketState
+public class DestinyItemSocketsComponent
 {
     List<DestinyItemSocketState> sockets {get;set;}
     

@@ -10,5 +10,5 @@ In practice, a socket will *either* have reusable plugs *or* it will allow for p
 KEY = The INDEX into the item's list of sockets. VALUE = The set of plugs for that socket.
 
 If a socket doesn't have any reusable plugs defined at the item scope, there will be no entry for that socket.  */
-    public Dictionary<Int32, IEnumerable<T>> plugs {get;set;}
+    public Dictionary<Int32, List<DestinyInventoryItemDefinition>> plugs {get;set;}
 }
