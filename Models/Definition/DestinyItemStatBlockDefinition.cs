@@ -9,5 +9,8 @@ If you are using live data or precomputed stats data on the DestinyInventoryItem
 Type: uint32
 Mapped to Manifest Database Definition: Destiny.Definitions.DestinyStatGroupDefinition  */
     public UInt32 statGroupHash {get;set;}
-
+    public Dictionary<UInt32, DestinyInventoryItemStatDefinition> stats {get;set;}
+    public Boolean hasDisplayable {get;set;}
+    public UInt32 primaryBaseStatsHash {get;set;}
+    
 }
