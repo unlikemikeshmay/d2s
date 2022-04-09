@@ -11,5 +11,8 @@ public class DestinyItemQualityBlockDefinition
 Type: uint32
 Mapped to Manifest Database Definition: Destiny.Definitions.Progression.DestinyProgressionLevelRequirementDefinition  */
     public UInt32 progressionLevelRequirementHash {get;set;}
+    public UInt32 currentVersion {get;set;}
+    public List<DestinyItemVersionDefinition> versions {get;set;}
+    
 
 }

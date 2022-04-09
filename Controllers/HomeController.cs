@@ -82,6 +82,7 @@ Config conf = new Config();
             pvm.Player = player;
             pvm.OAuthResponse = authToken;
             if(pvm.Player.membershipId != null){
+                HttpContext.Session.SetString("bearer",authToken.access_token);
                 return await Task.Run(() => View("Player",  player));
             }
             else {
