@@ -1,9 +1,9 @@
-@model Player
+@model PlayerViewModel
 <partial name="_Notification"/>
 <div class="container py-4">
     <header class="pb-3 mb-4 border-bottom">
-        <h1>@Model.uniqueName</h1>
-        <h3>@Model.firstAccess</h3>
+        <h1>@Model.Player.uniqueName</h1>
+        <h3>@Model.Player.firstAccess</h3>
     </header>
 <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid "></div>

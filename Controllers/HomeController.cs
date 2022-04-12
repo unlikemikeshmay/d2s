@@ -83,14 +83,11 @@ Config conf = new Config();
             pvm.OAuthResponse = authToken;
             if(pvm.Player.membershipId != null){
                 HttpContext.Session.SetString("bearer",authToken.access_token);
-                return await Task.Run(() => View("Player",  player));
+                return await Task.Run(() => RedirectToAction("Player",pvm));
             }
             else {
                 return await Task.Run(() => View("Player"));
-            }
-            
-
-           
+            }  
         }
     }
     public IActionResult Index(string code)
@@ -119,23 +116,33 @@ Config conf = new Config();
             return View();
         }
     }
-     public  IActionResult Player()
+     public  async Task<IActionResult> Player(PlayerViewModel pvm)
     {
+        
         Config conf = new Config();
         Player player = new Player();
         conf.clientID = int.Parse(_configuration["clientID"]);
         conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
         conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3";
+        string bearer = HttpContext.Session.GetString("bearer");
             var seshToken = HttpContext.Session.GetString(SessionToken);
             ViewData["token"] = seshToken;
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
            // var playerRes = _playerRepository.GetById();
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
+            try{
+                 DestinyProfileResponse profile = await _playerRepository.GetProfile(Convert.ToInt64(pvm.OAuthResponse.membership_id),3,bearer);
+                Console.WriteLine("profile");
+                Console.WriteLine(profile);
+                return await Task.Run(() => View("Player"));
+            }catch(Exception e)
+            {
+                Debug.WriteLine("Exception Message: "+ e.Message);
+                return await Task.Run(() => View("Player"));
+            }
             
-            //ViewData["athd"] = authd.membership_id;
-            return View();
     }
   
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
