@@ -152,7 +152,7 @@ namespace bulkybook.Data
                 dynamic resdes = JsonConvert.DeserializeObject(response.Content);
                 var res = resdes.Response;
                 profileResponse.profile.data = res;
-                return profileResponse;
+                return res;
         }
         public async Task<VendorResponse> GetVendorList(long characterId, long destinyMembershipId, int membershipType)
         {

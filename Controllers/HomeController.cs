@@ -133,7 +133,7 @@ Config conf = new Config();
            // var playerRes = _playerRepository.GetById();
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             try{
-                 DestinyProfileResponse profile = await _playerRepository.GetProfile(Convert.ToInt64(pvm.OAuthResponse.membership_id),3,bearer);
+                var profile = await _playerRepository.GetProfile(Convert.ToInt64(pvm.OAuthResponse.membership_id),3,bearer);
                 Console.WriteLine("profile");
                 Console.WriteLine(profile);
                 return await Task.Run(() => View("Player"));
