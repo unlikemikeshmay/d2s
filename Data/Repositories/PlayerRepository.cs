@@ -131,9 +131,10 @@ namespace bulkybook.Data
             
 
         }
-        public async Task<DestinyProfileResponse> GetProfile(Int64 destinyMembershipId, Int32 membershipType,string bearer)
+        public async Task<GetProfileResponse> GetProfile(Int64 destinyMembershipId, Int32 membershipType,string bearer)
         {
-            DestinyProfileResponse profileResponse = new DestinyProfileResponse();
+           GetProfileResponse profileResponse = new GetProfileResponse();
+
             Config _config = new Config();
              _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
              _config.clientID = int.Parse(_configuration["clientID"]);
@@ -141,6 +142,7 @@ namespace bulkybook.Data
              _config.secret = _configuration["secret"];
             string endpointUrl = $"/Destiny2/{membershipType}/Profile/{destinyMembershipId}/";
             string completeUrl = $"{_config.rootUrl}{endpointUrl}";
+            Console.WriteLine("Complete url: {0}",completeUrl);
              Player player = new Player();
               var client = new RestClient(completeUrl);
 
@@ -150,9 +152,15 @@ namespace bulkybook.Data
               //  request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1o9hRgw__bwh; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPQrk9YXqJMpwM; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
                 var response = await client.ExecuteGetAsync(request);
                 dynamic resdes = JsonConvert.DeserializeObject(response.Content);
-                var res = resdes.Response;
-                profileResponse.profile.data = res;
-                return res;
+                profileResponse.Response = resdes.Response;
+                profileResponse.ErrorCode = resdes.ErrorCode;
+                profileResponse.ThrottleSeconds = resdes.ThrottleSeconds;
+                profileResponse.ErrorStatus = resdes.ErrorStatus;
+                profileResponse.Message = resdes.Message;
+                profileResponse.MessageData = resdes.MessageData;
+                profileResponse.DetailedErrorTrace = resdes.DetailedErrorTrace;
+                
+                return profileResponse;
         }
         public async Task<VendorResponse> GetVendorList(long characterId, long destinyMembershipId, int membershipType)
         {
