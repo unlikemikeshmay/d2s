@@ -9,6 +9,6 @@ namespace bulkybook.Data
          Task<OAuthResponse> AuthorizeUser(string id);
          Task<VendorResponse> GetVendorList(Int64 characterId, Int64 destinyMembershipId,Int32 membershipType);
          Task<GetProfileResponse> GetProfile(Int64 destinyMembershipId, Int32 membershipType,string bearer);
-         Task<GetUserMembershipData> GetMembershipDataById(Int64 membershipId, Int32 membershipType);
+         Task<GetUserMembershipData> GetMembershipDataById(Int64 membershipId, Int32 membershipType,string bearer);
     }
 }

@@ -79,11 +79,12 @@ Config conf = new Config();
                 ViewData["disp"] = "access token is null or steamdisplay is null";
                 ViewData["player"] = player.uniqueName;
             }
-            pvm.Player = player;
-            pvm.OAuthResponse = authToken;
-            if(pvm.Player.membershipId != null){
+/*             pvm.Player = player;
+            pvm.OAuthResponse = authToken; */
+            if(player.membershipId != null){
                 HttpContext.Session.SetString("bearer",authToken.access_token);
-                return await Task.Run(() => RedirectToAction("Player",pvm));
+                HttpContext.Session.SetString("membership_id",authToken.membership_id);
+                return await Task.Run(() => RedirectToAction("Player",authToken));
             }
             else {
                 return await Task.Run(() => View("Player"));
@@ -116,7 +117,7 @@ Config conf = new Config();
             return View();
         }
     }
-     public  async Task<IActionResult> Player(PlayerViewModel pvm)
+     public  async Task<IActionResult> Player(OAuthResponse oAuthResponse)
     {
         
         Config conf = new Config();
@@ -126,14 +127,20 @@ Config conf = new Config();
         conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3";
         string bearer = HttpContext.Session.GetString("bearer");
+        string membership_id = HttpContext.Session.GetString("membership_id");
             var seshToken = HttpContext.Session.GetString(SessionToken);
+            _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
             ViewData["token"] = seshToken;
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
            // var playerRes = _playerRepository.GetById();
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             try{
-                GetProfileResponse profile = await _playerRepository.GetProfile(Convert.ToInt64(pvm.OAuthResponse.membership_id),3,bearer);
+                GetUserMembershipData getUserMembershipData = new GetUserMembershipData();
+                GetProfileResponse profile = new GetProfileResponse();
+                getUserMembershipData = await _playerRepository.GetMembershipDataById(Convert.ToInt64(membership_id),Convert.ToInt32(conf.memType),bearer);
+
+                profile = await _playerRepository.GetProfile(Convert.ToInt64(getUserMembershipData.Response.destinyMemberships[0].membershipId),3,bearer);
                 Console.WriteLine("profile");
                 Console.WriteLine(profile);
                 return await Task.Run(() => View("Player"));

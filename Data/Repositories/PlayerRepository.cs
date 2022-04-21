@@ -168,9 +168,32 @@ namespace bulkybook.Data
             return vendorResponse;
         }
 
-        public Task<GetUserMembershipData> GetMembershipDataById(long membershipId, int membershipType)
-        {
-            throw new NotImplementedException();
+        public async Task<GetUserMembershipData> GetMembershipDataById(long membershipId, int membershipType,string bearer)
+        {   GetUserMembershipData getUserMembershipData = new GetUserMembershipData();
+             Config _config = new Config();
+             _config.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+             _config.clientID = int.Parse(_configuration["clientID"]);
+             _config.rootUrl = _configuration["rootUrl"].ToString();
+             _config.secret = _configuration["secret"];
+            string endpointUrl = $"/User/GetMembershipsById/{membershipId}/{membershipType}/";
+            string completeUrl = $"{_config.rootUrl}{endpointUrl}";
+            var client = new RestClient(completeUrl);
+             var request = new RestRequest();
+                request.AddHeader("X-API-Key", _config.apiKey.ToString());
+                request.AddHeader("Authorization", $"Bearer{bearer}");
+                var response = await client.ExecuteGetAsync(request);
+                dynamic resdes = JsonConvert.DeserializeObject(response.Content);
+                Console.WriteLine("membership details: {0}",resdes);
+                
+                getUserMembershipData.Response = resdes.Response;
+                getUserMembershipData.ErrorCode = resdes.ErrorCode;
+                getUserMembershipData.ThrottleSeconds = resdes.ThrottleSeconds;
+                getUserMembershipData.ErrorStatus = resdes.ErrorStatus;
+                getUserMembershipData.Message = resdes.Message;
+                getUserMembershipData.MessageData = resdes.MessageData;
+                getUserMembershipData.DetailedErrorTrace = resdes.DetailedErrorTrace;
+
+                return getUserMembershipData;
         }
     }
 }
