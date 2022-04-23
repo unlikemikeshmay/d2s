@@ -24,7 +24,7 @@ public class HomeController : Controller
 Config conf = new Config();
 //add logic to handle if session is set
         conf.clientID = int.Parse(_configuration["clientID"]);
-        conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+        conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3"; 
         try
@@ -95,7 +95,7 @@ Config conf = new Config();
     {
         Config conf = new Config();
         conf.clientID = int.Parse(_configuration["clientID"]);
-        conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+        conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3";
 
@@ -119,16 +119,16 @@ Config conf = new Config();
     }
      public  async Task<IActionResult> Player(OAuthResponse oAuthResponse)
     {
-        
+        PlayerViewModel pvm = new PlayerViewModel();
         Config conf = new Config();
         Player player = new Player();
         conf.clientID = int.Parse(_configuration["clientID"]);
-        conf.apiKey = Guid.Parse(_configuration["apiKey"].ToString());
+        conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3";
         string bearer = HttpContext.Session.GetString("bearer");
         string membership_id = HttpContext.Session.GetString("membership_id");
-            var seshToken = HttpContext.Session.GetString(SessionToken);
+        var seshToken = HttpContext.Session.GetString(SessionToken);
             _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
             ViewData["token"] = seshToken;
             ViewData["LayoutName"] = "_Layout";
@@ -143,7 +143,9 @@ Config conf = new Config();
                 profile = await _playerRepository.GetProfile(Convert.ToInt64(getUserMembershipData.Response.destinyMemberships[0].membershipId),3,bearer);
                 Console.WriteLine("profile");
                 Console.WriteLine(profile);
-                return await Task.Run(() => View("Player"));
+                pvm.destinyProfileResponse = profile.Response;
+                
+                return await Task.Run(() => View("Player",pvm));
             }catch(Exception e)
             {
                 Debug.WriteLine("Exception Message: "+ e.Message);

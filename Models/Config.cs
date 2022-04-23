@@ -16,7 +16,7 @@ public enum MembershipType
 public class Config
 {
     public int clientID {get;set;}
-    public Guid? apiKey {get;set;}
+    public string apiKey {get;set;}
     public string? rootUrl {get;set;}
 
     public string? memType {get;set;}

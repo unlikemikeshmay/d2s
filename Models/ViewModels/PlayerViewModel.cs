@@ -4,5 +4,7 @@ public class PlayerViewModel
 {
     public Player? Player {get;set;}
     public OAuthResponse? OAuthResponse {get;set;}
+    public DestinyProfileResponse? destinyProfileResponse {get;set;}
+
 
 }
