@@ -152,14 +152,7 @@ namespace bulkybook.Data
               //  request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1o9hRgw__bwh; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPQrk9YXqJMpwM; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
                 var response = await client.ExecuteGetAsync(request);
                 var resdes = JsonConvert.DeserializeObject<GetProfileResponse>(response.Content);
-               /*  profileResponse.Response = resdes.Response;
-                profileResponse.ErrorCode = resdes.ErrorCode;
-                profileResponse.ThrottleSeconds = resdes.ThrottleSeconds;
-                profileResponse.ErrorStatus = resdes.ErrorStatus;
-                profileResponse.Message = resdes.Message;
-                profileResponse.MessageData = resdes.MessageData;
-                profileResponse.DetailedErrorTrace = resdes.DetailedErrorTrace; */
-                Console.WriteLine("getprofileresponse: {0}",resdes);
+                Console.WriteLine("getprofileresponse: {0}",resdes.Response);
                 return resdes;
         }
         public async Task<VendorResponse> GetVendorList(long characterId, long destinyMembershipId, int membershipType)
@@ -185,54 +178,6 @@ namespace bulkybook.Data
                 var resdes = JsonConvert.DeserializeObject<GetUserMembershipData>(response.Content);
                 Console.WriteLine("membership details: {0}",resdes);
                 
-               /*  getUserMembershipData.Response.destinyMemberships[0].LastSeenDisplayName = resdes.Response.destinyMemberships[0].LastSeenDisplayName;
-                getUserMembershipData.Response.destinyMemberships[0].LastSeenDisplayNameType = resdes.Response.destinyMemberships[0].LastSeenDisplayNameType;
-                getUserMembershipData.Response.destinyMemberships[0].iconPath = resdes.Response.destinyMemberships[0].iconPath;
-                getUserMembershipData.Response.destinyMemberships[0].crossSaveOverride = resdes.Response.destinyMemberships[0].crossSaveOverride;
-                getUserMembershipData.Response.destinyMemberships[0].applicableMembershipTypes[0] = resdes.Response.destinyMemberships[0].applicableMembershipTypes[0];
-                getUserMembershipData.Response.destinyMemberships[0].isPublic = resdes.Response.destinyMemberships[0].isPublic;
-                getUserMembershipData.Response.destinyMemberships[0].membershipType = resdes.Response.destinyMemberships[0].membershipType;
-                getUserMembershipData.Response.destinyMemberships[0].membershipId = resdes.Response.destinyMemberships[0].membershipId;
-                getUserMembershipData.Response.destinyMemberships[0].displayName = resdes.Response.destinyMemberships[0].displayName;
-                getUserMembershipData.Response.destinyMemberships[0].bungieGlobalDisplayName = resdes.Response.destinyMemberships[0].bungieGlobalDisplayName;
-                getUserMembershipData.Response.destinyMemberships[0].bungieGlobalDisplayNameCode = resdes.Response.destinyMemberships[0].bungieGlobalDisplayNameCode;
-                getUserMembershipData.Response.bungieNetUser.membershipId = resdes.Response.bungieNetUser.membershipId;
-                getUserMembershipData.Response.bungieNetUser.uniqueName = resdes.Response.bungieNetUser.uniqueName;
-                getUserMembershipData.Response.bungieNetUser.displayName = resdes.Response.bungieNetUser.displayName;
-                getUserMembershipData.Response.bungieNetUser.profilePicture = resdes.Response.bungieNetUser.profilePicture;
-                getUserMembershipData.Response.bungieNetUser.profileTheme = resdes.Response.bungieNetUser.profileTheme;
-                getUserMembershipData.Response.bungieNetUser.userTitle = resdes.Response.bungieNetUser.userTitle;
-                getUserMembershipData.Response.bungieNetUser.successMessageFlags = resdes.Response.bungieNetUser.successMessageFlags;
-                getUserMembershipData.Response.bungieNetUser.isDeleted = resdes.Response.bungieNetUser.isDeleted;
-                getUserMembershipData.Response.bungieNetUser.about = resdes.Response.bungieNetUser.about;
-                getUserMembershipData.Response.bungieNetUser.firstAccess = resdes.Response.bungieNetUser.firstAccess;
-                getUserMembershipData.Response.bungieNetUser.lastUpdate = resdes.Response.bungieNetUser.lastUpdate;
-                getUserMembershipData.Response.bungieNetUser.showActivity = resdes.Response.bungieNetUser.showActivity;
-                getUserMembershipData.Response.bungieNetUser.locale = resdes.Response.bungieNetUser.locale;
-                getUserMembershipData.Response.bungieNetUser.localeInheritDefault = resdes.Response.bungieNetUser.localeInheritDefault;
-                getUserMembershipData.Response.bungieNetUser.showGroupMessaging = resdes.Response.bungieNetUser.showGroupMessaging;
-                getUserMembershipData.Response.bungieNetUser.profilePicturePath = resdes.Response.bungieNetUser.profilePicturePath;
-                getUserMembershipData.Response.bungieNetUser.profileThemeName = resdes.Response.bungieNetUser.profileThemeName;
-                getUserMembershipData.Response.bungieNetUser.userTitleDisplay = resdes.Response.bungieNetUser.userTitleDisplay;
-                getUserMembershipData.Response.bungieNetUser.statusText = resdes.Response.bungieNetUser.statusText;
-                getUserMembershipData.Response.bungieNetUser.statusDate = resdes.Response.bungieNetUser.statusDate;
-                getUserMembershipData.Response.bungieNetUser.blizzardDisplayName = resdes.Response.bungieNetUser.blizzardDisplayName;
-                getUserMembershipData.Response.bungieNetUser.steamDisplayName = resdes.Response.bungieNetUser.steamDisplayName;
-                getUserMembershipData.Response.bungieNetUser.cachedBungieGlobalDisplayName = resdes.Response.bungieNetUser.cachedBungieGlobalDisplayName;
-                getUserMembershipData.Response.bungieNetUser.cachedBungieGlobalDisplayNameCode = resdes.Response.bungieNetUser.cachedBungieGlobalDisplayNameCode;
-                getUserMembershipData.ErrorCode = resdes.ErrorCode;
-                getUserMembershipData.ThrottleSeconds = resdes.ThrottleSeconds;
-                getUserMembershipData.ErrorStatus = resdes.ErrorStatus;
-                getUserMembershipData.Message = resdes.Message;
-                getUserMembershipData.MessageData = resdes.MessageData; */
-                /* getUserMembershipData.ErrorCode = resdes.ErrorCode;
-                getUserMembershipData.ThrottleSeconds = resdes.ThrottleSeconds;
-                getUserMembershipData.ErrorStatus = resdes.ErrorStatus;
-                getUserMembershipData.Message = resdes.Message;
-                getUserMembershipData.MessageData = resdes.MessageData;
-                getUserMembershipData.DetailedErrorTrace = resdes.DetailedErrorTrace; */
-                
-
                 return resdes;
         }
     }

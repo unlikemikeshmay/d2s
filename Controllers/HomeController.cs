@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using bulkybook.Models;
 using bulkybook.Data;
+using System.Text.Json;
 
 namespace bulkybook.Controllers;
 
@@ -9,6 +10,7 @@ public class HomeController : Controller
 {
     private IPlayerRepository _playerRepository;
     public const string SessionToken = "_Token";
+    public const string pvmData = "_pvm";
     private readonly ILogger<HomeController> _logger;
     private readonly IConfiguration _configuration;
     private static readonly HttpClient client = new HttpClient();
@@ -144,7 +146,8 @@ Config conf = new Config();
                 Console.WriteLine("profile");
                 Console.WriteLine(profile);
                 pvm.destinyProfileResponse = profile.Response;
-                
+                string pvmJson = JsonSerializer.Serialize(pvm);
+                HttpContext.Session.SetString(pvmData,pvmJson);
                 return await Task.Run(() => View("Player",pvm));
             }catch(Exception e)
             {
@@ -153,7 +156,19 @@ Config conf = new Config();
             }
             
     }
-  
+    public async Task<IActionResult> CharacterList()
+    {
+        try{
+            var pvm = JsonSerializer.Deserialize<PlayerViewModel>(HttpContext.Session.GetString(pvmData));
+            ViewData["characters"] = pvm.destinyProfileResponse.characters.data.Values;
+            return await Task.Run(() => PartialView("_charactersPartial"));
+        }catch(Exception e)
+        {
+            Console.WriteLine("Error in partial view: {0}",e.Message);
+            return await Task.Run(() => PartialView("_charactersPartial"));
+        }
+        
+    }
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
     {  
         try{

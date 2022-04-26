@@ -3,6 +3,7 @@
 <div class="container py-4">
     <header class="pb-3 mb-4 border-bottom">
         <h1>@Model.destinyProfileResponse.profile.data.userInfo.displayName</h1>
+        
 
     </header>
 <div class="p-5 mb-4 bg-light rounded-3">
@@ -12,22 +13,29 @@
 <div class="row align-items">
     @* class col-md-{x} make this 12/amount of characters registers//out of 3 *@
     <div class="col-m-4">
-        <div class="h-100 p5 bg-light border rounded-3">
-            <h2>add guardian here</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi incidunt illo aspernatur maxime ipsum corporis quo, itaque recusandae minus odio nihil autem doloremque temporibus magni ad provident alias nemo reprehenderit.</p>
-        </div>
+        
+    @foreach (var character in Model.destinyProfileResponse.characters.data)
+{
+
+    <div class="h-100 p5 bg-light border rounded-3">
+            @switch (@character.Value.classType)
+            {
+                case 0:
+                <h2>Class: Titan</h2>
+                break;
+                case 1:
+                <h2>Class: Hunter</h2>
+                break;
+                case 2:
+                <h2>Class: Warlock</h2>
+                break;
+                default:
+                <h2>Class: Unknown</h2>
+                break;
+            }
+            <h2>Light Level: @character.Value.light</h2>
     </div>
-    <div class="col-md-4">
-        <div class="h-100 p5 bg-dark border rounded-3">
-             <h2>add guardian here</h2>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi incidunt illo aspernatur maxime ipsum corporis quo, itaque recusandae minus odio nihil autem doloremque temporibus magni ad provident alias nemo reprehenderit.</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="h-100 p5 bg-light border rounded-3">
-            <h2>add guardian here</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi incidunt illo aspernatur maxime ipsum corporis quo, itaque recusandae minus odio nihil autem doloremque temporibus magni ad provident alias nemo reprehenderit.</p>
-        </div>
-    </div>
+}
+
 </div>
-</div>
+</div>((int?)((int?)
