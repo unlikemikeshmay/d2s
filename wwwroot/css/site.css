@@ -17,3 +17,14 @@ body {
   margin-bottom: 60px;
   background-image: url("/Images/registration_traveler_bg.png");
 }
+/* profile page */
+.displayNameCode {
+  color:darkcyan;
+}
+/* login screen */
+.parent{
+  min-height: 100vh;
+}
+.signInHeader{
+  color:white;
+}

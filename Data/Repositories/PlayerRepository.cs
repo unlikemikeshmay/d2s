@@ -176,7 +176,7 @@ namespace bulkybook.Data
                 request.AddHeader("Authorization", $"Bearer{bearer}");
                 var response = await client.ExecuteGetAsync(request);
                 var resdes = JsonConvert.DeserializeObject<GetUserMembershipData>(response.Content);
-                Console.WriteLine("membership details: {0}",resdes);
+                Console.WriteLine("membership details: {0}",resdes.Response);
                 
                 return resdes;
         }
