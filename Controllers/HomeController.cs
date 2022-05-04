@@ -172,6 +172,10 @@ Config conf = new Config();
             }
             
     }
+    public async Task<IActionResult> ViewCharacter(Int32 id)
+    {
+        return await Task.Run(() => View("Character"));
+    }
     public async Task<IActionResult> CharacterList()
     {
         try{

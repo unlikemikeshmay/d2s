@@ -16373,6 +16373,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Home/Character.cshtml",
+      "TargetPath": "Views\\Home\\Character.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/mike/Code/Dotnet/bulkybook/Views/Home/Player.cshtml",
       "TargetPath": "Views\\Home\\Player.cshtml",
       "FileKind": "mvc"

@@ -25,6 +25,9 @@ body {
 .parent{
   min-height: 100vh;
 }
+.child{
+  background-color: rgba(white, white, white, 1) !important;
+}
 .signInHeader{
   color:white;
 }

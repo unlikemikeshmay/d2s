@@ -21,7 +21,7 @@
       @foreach (var character in Model.destinyProfileResponse.characters.data)
 {
   
-     <div class="col-md-6" style="background-image: url('https://www.bungie.net/Platform{@character.Value.emblemBackgroundPath}');">
+     <div onclick="location.href='@Url.Action("ViewCharacter")'" class="col-md-6" style="background-image: url('https://www.bungie.net/Platform{@character.Value.emblemBackgroundPath}');">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
         <p>https://www.bungie.net/Platform @character.Value.emblemBackgroundPath</p>
         @switch (@character.Value.classType)
