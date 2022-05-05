@@ -2,13 +2,23 @@
 using Microsoft.AspNetCore.Mvc;
 using bulkybook.Models;
 using bulkybook.Data;
+using System.Text.Json;
+using System.Net;
+
 
 namespace bulkybook.Controllers;
 
 public class HomeController : Controller
 {
+    
+   
+    string bearer;
+    Player player = new Player();
+    PlayerViewModel pvm = new PlayerViewModel();
+    OAuthResponse authToken = new OAuthResponse();
     private IPlayerRepository _playerRepository;
     public const string SessionToken = "_Token";
+    public const string pvmData = "_pvm";
     private readonly ILogger<HomeController> _logger;
     private readonly IConfiguration _configuration;
     private static readonly HttpClient client = new HttpClient();
@@ -52,9 +62,7 @@ Config conf = new Config();
             if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
                 //check if the token is expired--
             }
-            PlayerViewModel pvm = new PlayerViewModel();
-            Player player = new Player();
-            OAuthResponse authToken = new OAuthResponse();
+           
 
             // populate appropriate memories with player info
             //persistence needed? 
@@ -62,8 +70,15 @@ Config conf = new Config();
             _logger.LogInformation("Session Token: {SeshToken}",code);
            // ViewData["token"] = code;
             authToken = await _playerRepository.AuthorizeUser(code);
-            
-             ViewData["autht"] = authToken.access_token;
+
+            var key = "bearer";
+            var membership_id_key = "membership_id";
+            var value = authToken.access_token;
+            CookieOptions cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddSeconds(Convert.ToDouble(authToken.expires_in));
+            Response.Cookies.Append(key,value,cookieOptions);
+            Response.Cookies.Append(membership_id_key,authToken.membership_id);
+            Console.WriteLine("cookie from request {0}",Request.Cookies["bearer"]);
             //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
             if(authToken.access_token != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
@@ -81,10 +96,10 @@ Config conf = new Config();
             }
 /*             pvm.Player = player;
             pvm.OAuthResponse = authToken; */
-            if(player.membershipId != null){
-                HttpContext.Session.SetString("bearer",authToken.access_token);
-                HttpContext.Session.SetString("membership_id",authToken.membership_id);
-                return await Task.Run(() => RedirectToAction("Player",authToken));
+            if(player.membershipId > 0)
+            {      
+
+            return await Task.Run(() => RedirectToAction("Player",authToken));
             }
             else {
                 return await Task.Run(() => View("Player"));
@@ -119,23 +134,26 @@ Config conf = new Config();
     }
      public  async Task<IActionResult> Player(OAuthResponse oAuthResponse)
     {
-        PlayerViewModel pvm = new PlayerViewModel();
+
         Config conf = new Config();
-        Player player = new Player();
+        
         conf.clientID = int.Parse(_configuration["clientID"]);
         conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
         conf.memType = "3";
-        string bearer = HttpContext.Session.GetString("bearer");
-        string membership_id = HttpContext.Session.GetString("membership_id");
-        var seshToken = HttpContext.Session.GetString(SessionToken);
-            _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
-            ViewData["token"] = seshToken;
+        string key = "bearer";
+        var membership_id_key = "membership_id";
+        string bearer = Request.Cookies[key];
+        string membership_id = Request.Cookies[membership_id_key];
+       
+            _logger.LogInformation("Session Token in player conroller{SeshToken}",bearer);
             ViewData["LayoutName"] = "_Layout";
-            _logger.LogInformation("Session Token in player conroller{SeshToken}",seshToken);
+
            // var playerRes = _playerRepository.GetById();
            // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             try{
+                
+                Console.WriteLine("bearer: {0}",bearer);
                 GetUserMembershipData getUserMembershipData = new GetUserMembershipData();
                 GetProfileResponse profile = new GetProfileResponse();
                 getUserMembershipData = await _playerRepository.GetMembershipDataById(Convert.ToInt64(membership_id),Convert.ToInt32(conf.memType),bearer);
@@ -144,7 +162,8 @@ Config conf = new Config();
                 Console.WriteLine("profile");
                 Console.WriteLine(profile);
                 pvm.destinyProfileResponse = profile.Response;
-                
+                string pvmJson = JsonSerializer.Serialize(pvm);
+                HttpContext.Session.SetString(pvmData,pvmJson);
                 return await Task.Run(() => View("Player",pvm));
             }catch(Exception e)
             {
@@ -153,7 +172,23 @@ Config conf = new Config();
             }
             
     }
-  
+    public async Task<IActionResult> ViewCharacter(Int32 id)
+    {
+        return await Task.Run(() => View("Character"));
+    }
+    public async Task<IActionResult> CharacterList()
+    {
+        try{
+            var pvm = JsonSerializer.Deserialize<PlayerViewModel>(HttpContext.Session.GetString(pvmData));
+            ViewData["characters"] = pvm.destinyProfileResponse.characters.data.Values;
+            return await Task.Run(() => PartialView("_charactersPartial"));
+        }catch(Exception e)
+        {
+            Console.WriteLine("Error in partial view: {0}",e.Message);
+            return await Task.Run(() => PartialView("_charactersPartial"));
+        }
+        
+    }
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
     {  
         try{
