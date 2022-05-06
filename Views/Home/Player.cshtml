@@ -1,7 +1,7 @@
 @model PlayerViewModel
 
 <partial name="_Notification"/>
-    <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="p-5 mb-4 bg-dark text-white rounded-3">
       <div class="container-fluid py-5">
         
         <h1 class="display-5 fw-bold">@Model.destinyProfileResponse.profile.data.userInfo.displayName<span class="displayNameCode"> #@Model.destinyProfileResponse.profile.data.userInfo.bungieGlobalDisplayNameCode</span></h1>
@@ -11,7 +11,7 @@
     </div>
 
     
-<div class="col-m-4 m-2">
+<div class="col-m-3 m-2">
     <div class="h-100 p5 bg-light border rounded-3">
           
     </div>
@@ -20,31 +20,46 @@
     <div class="row align-items-md-stretch">
       @foreach (var character in Model.destinyProfileResponse.characters.data)
 {
-  
-     <div onclick="location.href='@Url.Action("ViewCharacter")'" class="col-md-6" style="background-image: url('https://www.bungie.net/Platform{@character.Value.emblemBackgroundPath}');">
-        <div class="h-100 p-5 text-white bg-dark rounded-3">
-        <p>https://www.bungie.net/Platform @character.Value.emblemBackgroundPath</p>
+    
+     <div onclick="location.href='@Url.Action("ViewCharacter")'" class="col mb-2 d-flex justify-content-around" style="background-image: url('@character.Value.emblemBackgroundPath');">
+        <div class="p-5 text-white bg-dark rounded-3">
+        <img src="@character.Value.emblemPath"/>
         @switch (@character.Value.classType)
             {
                 case 0:
-                <h2>Class: Titan</h2>
+                <h2>Titan</h2>
                 break;
                 case 1:
-                <h2>Class: Hunter</h2>
+                <h2>Hunter</h2>
                 break;
                 case 2:
-                <h2>Class: Warlock</h2>
+                <h2>Warlock</h2>
                 break;
                 default:
-                <h2>Class: Unknown</h2>
+                <h2>Unknown</h2>
                 break;
             }
+           @switch(@character.Value.raceType)
+           {
+             case 0:
+             <h3>Human</h3>
+             break;
+             case 1:
+             <h3>Awoken</h3>
+             break;
+             case 2:
+             <h3>Exo</h3>
+             break;
+             default:
+             <h3>Unknown</h3>
+             break;
+           }
             <h2>Light Level: @character.Value.light</h2>
         
         </div>
       </div>
 }
     <footer class="pt-3 mt-4 text-muted border-top">
-      © 2021
+      <p id="footerDate"></p>
     </footer>
   
