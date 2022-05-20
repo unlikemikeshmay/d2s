@@ -140,7 +140,7 @@ namespace bulkybook.Data
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
              _config.secret = _configuration["secret"];
-            string endpointUrl = $"/Destiny2/{membershipType}/Profile/{destinyMembershipId}/?components=100,200";
+            string endpointUrl = $"/Destiny2/{membershipType}/Profile/{destinyMembershipId}/?components=100,200,102";
             string completeUrl = $"{_config.rootUrl}{endpointUrl}";
             Console.WriteLine("Complete url: {0}",completeUrl);
              Player player = new Player();

@@ -21,7 +21,7 @@
       @foreach (var character in Model.destinyProfileResponse.characters.data)
 {
     
-     <div onclick="location.href='@Url.Action("ViewCharacter")'" class="col mb-2 d-flex justify-content-around" style="background-image: url('@character.Value.emblemBackgroundPath');">
+     <div onclick="location.href='@Url.Action("ViewCharacter","Home",character.Value.characterId)'" class="col mb-2 d-flex justify-content-around" style="background-image: url('@character.Value.emblemBackgroundPath');">
         <div class="p-5 text-white bg-dark rounded-3">
         <img src="@character.Value.emblemPath"/>
         @switch (@character.Value.classType)
