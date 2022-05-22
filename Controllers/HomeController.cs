@@ -162,7 +162,7 @@ Config conf = new Config();
                 profile = await _playerRepository.GetProfile(Convert.ToInt64(getUserMembershipData.Response.destinyMemberships[0].membershipId),3,bearer);
                 Console.WriteLine("profile");
 
-                var enumerator = profile.Response.characters.data.GetEnumerator();
+                /* var enumerator = profile.Response.characters.data.GetEnumerator();
                 enumerator.MoveNext();
                 do{
                     Console.WriteLine(enumerator.Current.Key);
@@ -174,7 +174,10 @@ Config conf = new Config();
                         enum2.MoveNext();
                     }while(enum2.MoveNext());
 
-                }while(enumerator.MoveNext());
+                }while(enumerator.MoveNext()); */
+                foreach(var item in profile.Response.profileInventory.data.items){
+                    Console.WriteLine("item: {0}",item.itemHash);
+                }
                 pvm.destinyProfileResponse = profile.Response;
                 string pvmJson = JsonSerializer.Serialize(pvm);
 

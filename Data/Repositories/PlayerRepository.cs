@@ -151,7 +151,7 @@ namespace bulkybook.Data
               //  request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1o9hRgw__bwh; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPQrk9YXqJMpwM; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
                 var response = await client.ExecuteGetAsync(request);
                 var resdes = JsonConvert.DeserializeObject<GetProfileResponse>(response.Content);
-                Console.WriteLine("getprofileresponse: {0}",resdes);
+                Console.WriteLine("getprofileresponse: {0}",resdes.Response);
                 return resdes;
         }
         public async Task<VendorResponse> GetVendorList(long characterId, long destinyMembershipId, int membershipType)
