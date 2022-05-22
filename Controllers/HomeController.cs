@@ -74,6 +74,9 @@ Config conf = new Config();
             var key = "bearer";
             var membership_id_key = "membership_id";
             var value = authToken.access_token;
+
+            //setting bearer token and membership_id to cookies for later retrieval.
+
             CookieOptions cookieOptions = new CookieOptions();
             cookieOptions.Expires = DateTime.Now.AddSeconds(Convert.ToDouble(authToken.expires_in));
             Response.Cookies.Append(key,value,cookieOptions);
@@ -149,8 +152,6 @@ Config conf = new Config();
             _logger.LogInformation("Session Token in player conroller{SeshToken}",bearer);
             ViewData["LayoutName"] = "_Layout";
 
-           // var playerRes = _playerRepository.GetById();
-           // OAuthResponse authd =  _playerRepository.AuthorizeUser(seshToken);
             try{
                 
                 Console.WriteLine("bearer: {0}",bearer);
@@ -160,9 +161,24 @@ Config conf = new Config();
 
                 profile = await _playerRepository.GetProfile(Convert.ToInt64(getUserMembershipData.Response.destinyMemberships[0].membershipId),3,bearer);
                 Console.WriteLine("profile");
-                Console.WriteLine(profile);
+
+                var enumerator = profile.Response.characters.data.GetEnumerator();
+                enumerator.MoveNext();
+                do{
+                    Console.WriteLine(enumerator.Current.Key);
+                    var enum2 = enumerator.Current.Value.stats.GetEnumerator();
+                    enum2.MoveNext();
+                    do{
+                        enum2.MoveNext();
+                        Console.WriteLine(enum2.Current.Value);
+                        enum2.MoveNext();
+                    }while(enum2.MoveNext());
+
+                }while(enumerator.MoveNext());
                 pvm.destinyProfileResponse = profile.Response;
                 string pvmJson = JsonSerializer.Serialize(pvm);
+
+                //why is this here? <<<<******>>>>>>>
                 HttpContext.Session.SetString(pvmData,pvmJson);
                 return await Task.Run(() => View("Player",pvm));
             }catch(Exception e)
@@ -174,6 +190,7 @@ Config conf = new Config();
     }
     public async Task<IActionResult> ViewCharacter(Int32 id)
     {
+        
         return await Task.Run(() => View("Character"));
     }
     public async Task<IActionResult> CharacterList()

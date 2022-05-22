@@ -15,7 +15,6 @@ namespace bulkybook.Data
          public PlayerRepository(HttpClient httpClient,IConfiguration configuration){
              _configuration = configuration;
              _httpClient = httpClient;
-             
 
          }
         public async Task<Player> GetById(string memid,string bt)
@@ -140,9 +139,9 @@ namespace bulkybook.Data
              _config.clientID = int.Parse(_configuration["clientID"]);
              _config.rootUrl = _configuration["rootUrl"].ToString();
              _config.secret = _configuration["secret"];
-            string endpointUrl = $"/Destiny2/{membershipType}/Profile/{destinyMembershipId}/?components=100,200,102";
+            string endpointUrl = $"/Destiny2/{membershipType}/Profile/{destinyMembershipId}/?components=200,102,100,201,205";
             string completeUrl = $"{_config.rootUrl}{endpointUrl}";
-            Console.WriteLine("Complete url: {0}",completeUrl);
+           // Console.WriteLine("Complete url: {0}",completeUrl);
              Player player = new Player();
               var client = new RestClient(completeUrl);
 
@@ -152,7 +151,7 @@ namespace bulkybook.Data
               //  request.AddHeader("Cookie", "Q6dA7j3mn3WPBQVV6Vru5CbQXv0q+I9ddZfGro+PognXQwjWM8PS+VE_=v1o9hRgw__bwh; __cflb=04dToX7HjFoF4QAzoaHehFaMj5fkjPQrk9YXqJMpwM; bungleanon=sv=BAAAAABwKwAAAAAAAAb7OAAAAAAAAAAAAAAAAAAHZ3Lq4AzaCEAAAACQg46DxdP2yYl6zi9Z94CQjKinNiyhSXsDchGidR7XXhY14t5PWUT3xv+GLR5WggwiP3B2AJgH6dEK7hjvY2Qx&cl=MC4xMTEyMC4zNzM0Mjc4; bungled=3028881891976556922; bungledid=B1keE+HDgvNGoFOJZca+gFEHZ3Lq4AzaCAAA");
                 var response = await client.ExecuteGetAsync(request);
                 var resdes = JsonConvert.DeserializeObject<GetProfileResponse>(response.Content);
-                Console.WriteLine("getprofileresponse: {0}",resdes.Response);
+                Console.WriteLine("getprofileresponse: {0}",resdes);
                 return resdes;
         }
         public async Task<VendorResponse> GetVendorList(long characterId, long destinyMembershipId, int membershipType)
