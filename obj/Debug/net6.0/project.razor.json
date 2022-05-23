@@ -12050,6 +12050,38 @@
         }
       },
       {
+        "HashCode": -2078825283,
+        "Kind": "ITagHelper",
+        "Name": "bulkybook.TagHelpers.CharacterClassParser",
+        "AssemblyName": "bulkybook",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "classParser"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "bulkybook.TagHelpers.CharacterClassParser"
+        }
+      },
+      {
+        "HashCode": -2000265710,
+        "Kind": "ITagHelper",
+        "Name": "bulkybook.TagHelpers.CharacterRaceParser",
+        "AssemblyName": "bulkybook",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "raceParser"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "bulkybook.TagHelpers.CharacterRaceParser"
+        }
+      },
+      {
         "HashCode": -1132855933,
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper",
