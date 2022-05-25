@@ -43,6 +43,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "6.0.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.NET.Test.Sdk": "17.2.0-preview-20220401-08",
+          "Microsoft.TypeScript.MSBuild": "4.6.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2",
           "RestSharp": "107.3.0",
           "RestSharp.Serializers.NewtonsoftJson": "107.3.0",
@@ -1347,22 +1348,22 @@
           "runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm",
             "assetType": "native",
-            "fileVersion": "2.1.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "2.1.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "2.1.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "2.1.1.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1962,6 +1963,7 @@
           "lib/netcoreapp2.1/testhost.dll": {}
         }
       },
+      "Microsoft.TypeScript.MSBuild/4.6.4": {},
       "Microsoft.VisualStudio.Debugger.Contracts/17.2.0": {
         "dependencies": {
           "MessagePack": "2.1.152",
@@ -2030,12 +2032,12 @@
           "runtimes/win-arm/lib/net6.0/dotnet-aspnet-codegenerator-design.exe": {
             "rid": "win-arm",
             "assetType": "runtime",
-            "fileVersion": "6.0.222.10402"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-arm64/lib/net6.0/dotnet-aspnet-codegenerator-design.exe": {
             "rid": "win-arm64",
             "assetType": "runtime",
-            "fileVersion": "6.0.222.10402"
+            "fileVersion": "0.0.0.0"
           }
         },
         "compile": {
@@ -3241,7 +3243,7 @@
         "runtime": {
           "lib/netstandard2.0/xunit.abstractions.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
+            "fileVersion": "0.0.0.0"
           }
         },
         "compile": {
@@ -5574,6 +5576,13 @@
       "sha512": "sha512-jC/WlCudHSIDlETP+nvDQN5I+3oiv7XWwfU9/ZhVSAs2nLzMNu8G9IbccnCZBJCubbAW2K8gIrLtRccf6rbOXA==",
       "path": "microsoft.testplatform.testhost/17.2.0-preview-20220401-08",
       "hashPath": "microsoft.testplatform.testhost.17.2.0-preview-20220401-08.nupkg.sha512"
+    },
+    "Microsoft.TypeScript.MSBuild/4.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-G6cBFIGapWt85/Zi17GL2PBboy/6Xt2vZNmZj0xHXuKHbqbULKKvClHyiIfzAFCN10QqgVt0e9fxwC/1A1CcAA==",
+      "path": "microsoft.typescript.msbuild/4.6.4",
+      "hashPath": "microsoft.typescript.msbuild.4.6.4.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Debugger.Contracts/17.2.0": {
       "type": "package",
