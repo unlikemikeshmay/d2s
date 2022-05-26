@@ -82,7 +82,6 @@ Config conf = new Config();
             Response.Cookies.Append(key,value,cookieOptions);
             Response.Cookies.Append(membership_id_key,authToken.membership_id);
             Console.WriteLine("cookie from request {0}",Request.Cookies["bearer"]);
-            //CHECK WHY ID DOESNT ACTUALLY EQUAL ID. RUN DEBUG AGAIN BESIDE LIVE
             if(authToken.access_token != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
 
