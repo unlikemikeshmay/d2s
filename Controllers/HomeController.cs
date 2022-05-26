@@ -174,9 +174,9 @@ Config conf = new Config();
                     }while(enum2.MoveNext());
 
                 }while(enumerator.MoveNext()); */
-                foreach(var item in profile.Response.profileInventory.data.items){
+                /* foreach(var item in profile.Response.profileInventory.data.items){
                     Console.WriteLine("item: {0}",item.itemHash);
-                }
+                } */
                 pvm.destinyProfileResponse = profile.Response;
                 string pvmJson = JsonSerializer.Serialize(pvm);
 

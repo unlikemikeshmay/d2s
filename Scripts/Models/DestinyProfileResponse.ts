@@ -1,0 +1,33 @@
+export interface DestinyProfileResponse
+{
+    vendorReceipts:SingleComponentResponseOfDestinyVendorReceiptsComponent;
+    profileInventory: SingleComponentResponseOfDestinyInventoryComponent;
+    profileCurrencies:SingleComponentResponseOfDestinyInventoryComponent;
+    profile: SingleComponentResponseOfDestinyProfileComponent;
+    platformSilver: SingleComponentResponseOfDestinyPlatformSilverComponent;
+    profileKiosks: SingleComponentResponseOfDestinyKiosksComponent;
+    profilePlugSets: SingleComponentResponseOfDestinyPlugSetsComponent;
+    profileProgression: SingleComponentResponseOfDestinyProfileProgressionComponent;
+    profilePresentationNodes: SingleComponentResponseOfDestinyPresentationNodesComponent;
+    profileRecords: SingleComponentResponseOfDestinyProfileRecordsComponent;
+    profileCollectibles: SingleComponentResponseOfDestinyProfileCollectiblesComponent;
+    profileTransitoryData: SingleComponentResponseOfDestinyProfileTransitoryComponent;
+    metrics: SingleComponentResponseOfDestinyMetricsComponent;
+    profileStringVariables: SingleComponentResponseOfDestinyStringVariablesComponent;
+    characters: DictionaryComponentResponseOfint64AndDestinyCharacterComponent;
+    characterInventories: DictionaryComponentResponseOfint64AndDestinyInventoryComponent;
+    characterProgressions: DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent;
+    characterRenderData: DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent;
+    characterActivities: DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent;
+    characterEquipment: DictionaryComponentResponseOfint64AndDestinyInventoryComponent;
+    characterKiosks: DictionaryComponentResponseOfint64AndDestinyKiosksComponent;
+    characterPlugSets: DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent;
+    characterUninstancedItemComponents: Map<number,DestinyBaseItemComponentSetOfuint32>;
+    characterPresentationNodes: DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent;
+    characterRecords: DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent;
+    characterCollectibles: DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent;
+    characterStringVariables: DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent;
+    characterCraftables: DictionaryComponentResponseOfint64AndDestinyCraftablesComponent;
+    itemComponents: DestinyItemComponentSetOfint64;
+    characterCurrencyLookups: DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent;
+}

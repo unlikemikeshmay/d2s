@@ -1,3 +1,3 @@
 interface IGetCharacters {
-   function GetMembershipDataById(membership_id: number,membershipType:number,bearer:string): {};
+   //function GetMembershipDataById(membership_id: number,membershipType:number,bearer:string): {};
 }
