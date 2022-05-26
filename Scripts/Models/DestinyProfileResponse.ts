@@ -1,3 +1,7 @@
+import { SingleComponentResponseOfDestinyVendorReceiptsComponent } from "./SingleComponentResponseOfDestinyVendorReceiptsComponent";
+import {SingleComponentResponseOfDestinyInventoryComponent} from './SingleComponentResponseOfDestinyInventoryComponent';
+import {SingleComponentResponseOfDestinyProfileComponent} from './SingleComponentResponseOfDestinyProfileComponent';
+import { SingleComponentResponseOfDestinyPlatformSilverComponent } from "./SingleComponentResponseOfDestinyPlatformSilverComponent";
 export interface DestinyProfileResponse
 {
     vendorReceipts:SingleComponentResponseOfDestinyVendorReceiptsComponent;
