@@ -1,4 +1,4 @@
-
+import { DestinyProfileResponse } from "./DestinyProfileResponse";
 export interface GetProfileResponse {
     Response: DestinyProfileResponse;
     ErrorCode: number;

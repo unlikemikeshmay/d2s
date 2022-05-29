@@ -1,4 +1,7 @@
 import { DestinyVendorItemQuantity } from "./DestinyVendorItemQuantity";
+import { DestinyItemCreationEntryLevelDefinition } from "./DestinyItemCreationEntryLevelDefinition";
+import { DestinyVendorSaleItemActionBlockDefinition } from "./DestinyVendorSaleItemActionBlockDefinition";
+import { DestinyVendorItemSocketOverride } from "./DestinyVendorItemSocketOverride";
 export interface DestinyVendorItemDefinition
 {
     vendorItemIndex:number;

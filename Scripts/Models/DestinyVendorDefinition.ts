@@ -4,6 +4,11 @@ import { DestinyVendorActionDefinition } from "./DestinyVendorActionDefinition";
 import { DestinyVendorCategoryEntryDefinition } from "./DestinyVendorCategoryEntryDefinition";
 import { DestinyDisplayCategoryDefinition } from "./DestinyDisplayCategoryDefinition";
 import { DestinyVendorInteractionDefinition } from "./DestinyVendorInteractionDefinition";
+import { DestinyVendorItemDefinition } from "./DestinyVendorItemDefinition";
+import { DestinyVendorServiceDefinition } from "./DestinyVendorServiceDefinition";
+import { DestinyVendorAcceptedItemDefinition } from "./DestinyVendorAcceptedItemDefinition";
+import { DestinyVendorLocationDefinition } from "./DestinyVendorLocationDefinition";
+import { DestinyVendorGroupReference } from "./DestinyVendorGroupReference";
 export interface DestinyVendorDefinition
 {
     displayProperties: DestinyVendorDisplayPropertiesDefinition;
