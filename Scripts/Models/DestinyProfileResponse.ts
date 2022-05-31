@@ -4,6 +4,12 @@ import {SingleComponentResponseOfDestinyProfileComponent} from './SingleComponen
 import { SingleComponentResponseOfDestinyPlatformSilverComponent } from "./SingleComponentResponseOfDestinyPlatformSilverComponent";
 import { SingleComponentResponseOfDestinyKiosksComponent } from "./SingleComponentResponseOfDestinyKiosksComponent";
 import { SingleComponentResponseOfDestinyPlugSetsComponent } from "./SingleComponentResponseOfDestinyPlugSetsComponent";
+import { SingleComponentResponseOfDestinyProfileProgressionComponent } from "./SingleComponentResponseOfDestinyProfileProgressionComponent";
+import { SingleComponentResponseOfDestinyPresentationNodesComponent } from "./SingleComponentResponseOfDestinyPresentationNodesComponent";
+import { SingleComponentResponseOfDestinyProfileRecordsComponent } from "./SingleComponentResponseOfDestinyProfileRecordsComponent";
+import { SingleComponentResponseOfDestinyProfileCollectiblesComponent } from "./SingleComponentResponseOfDestinyProfileCollectiblesComponent";
+import { SingleComponentResponseOfDestinyProfileTransitoryComponent } from "./SingleComponentResponseOfDestinyProfileTransitoryComponent";
+import { SingleComponentResponseOfDestinyMetricsComponent } from "./SingleComponentResponseOfDestinyMetricsComponent";
 export interface DestinyProfileResponse
 {
     vendorReceipts:SingleComponentResponseOfDestinyVendorReceiptsComponent;

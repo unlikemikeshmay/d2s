@@ -1,7 +1,7 @@
 import { DestinyPresentationNodesComponent } from "./DestinyPresentationNodesComponent";
-export interface SingleComponentResponseOfDestinyPresentationNodesComponent
+export interface SingleComponentResponseOfDestinyProfileRecordsComponent
 {
-    data: DestinyPresentationNodesComponent;
+    data: DestinyPresentationNodesComponent
     privacy: number;
     disabled: boolean;
 }
