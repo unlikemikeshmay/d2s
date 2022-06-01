@@ -10,6 +10,9 @@ import { SingleComponentResponseOfDestinyProfileRecordsComponent } from "./Singl
 import { SingleComponentResponseOfDestinyProfileCollectiblesComponent } from "./SingleComponentResponseOfDestinyProfileCollectiblesComponent";
 import { SingleComponentResponseOfDestinyProfileTransitoryComponent } from "./SingleComponentResponseOfDestinyProfileTransitoryComponent";
 import { SingleComponentResponseOfDestinyMetricsComponent } from "./SingleComponentResponseOfDestinyMetricsComponent";
+import { SingleComponentResponseOfDestinyStringVariablesComponent } from "./SingleComponentResponseOfDestinyStringVariablesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCharacterComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterComponent";
+import { DictionaryComponentResponseOfint64AndDestinyInventoryComponent } from "./DictionaryComponentResponseOfint64AndDestinyInventoryComponent";
 export interface DestinyProfileResponse
 {
     vendorReceipts:SingleComponentResponseOfDestinyVendorReceiptsComponent;
