@@ -1,5 +1,7 @@
 import { DestinyProgression } from "./DestinyProgression";
 import { DestinyFactionProgression } from "./DestinyFactionProgression";
+import { DestinyMilestone } from "./DestinyMilestone";
+import { DestinyQuestStatus } from "./DestinyQuestStatus";
 export interface DestinyCharacterProgressionComponent
 {
        /* 
