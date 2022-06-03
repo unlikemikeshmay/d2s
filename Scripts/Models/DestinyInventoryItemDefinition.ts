@@ -8,6 +8,24 @@ import { DestinyItemInventoryBlockDefinition } from "./DestinyItemInventoryBlock
 import { DestinyItemSetBlockDefinition } from "./DestinyItemSetBlockDefinition";
 import { DestinyItemStatBlockDefinition } from "./DestinyItemStatBlockDefinition";
 import { DestinyEquippingBlockDefinition } from "./DestinyEquippingBlockDefinition";
+import { DestinyItemTranslationBlockDefinition } from "./DestinyItemTranslationBlockDefinition";
+import { DestinyItemPreviewBlockDefinition } from "./DestinyItemPreviewBlockDefinition";
+import { DestinyItemQualityBlockDefinition } from "./DestinyItemQualityBlockDefinition";
+import { DestinyItemValueBlockDefinition } from "./DestinyItemValueBlockDefinition";
+import { DestinyItemSourceBlockDefinition } from "./DestinyItemSourceBlockDefinition";
+import { DestinyItemObjectiveBlockDefinition } from "./DestinyItemObjectiveBlockDefinition";
+import { DestinyItemMetricBlockDefinition } from "./DestinyItemMetricBlockDefinition";
+import { DestinyItemPlugDefinition } from "./DestinyItemPlugDefinition";
+import { DestinyItemGearsetBlockDefinition } from "./DestinyItemGearsetBlockDefinition";
+import { DestinyItemSackBlockDefinition } from "./DestinyItemSackBlockDefinition";
+import { DestinyItemSocketBlockDefinition } from "./DestinyItemSocketBlockDefinition";
+import { DestinyItemSummaryBlockDefinition } from "./DestinyItemSummaryBlockDefinition";
+import { DestinyItemTalentGridBlockDefinition } from "./DestinyItemTalentGridBlockDefinition";
+import { DestinyItemInvestmentStatDefinition } from "./DestinyItemInvestmentStatDefinition";
+import { DestinyItemPerkEntryDefinition } from "./DestinyItemPerkEntryDefinition";
+import { DestinyLoreDefinition } from "./DestinyLoreDefinition";
+import { DestinyAnimationReference } from "./DestinyAnimationReference";
+import { HyperlinkReference } from "./HyperlinkReference";
 export interface DestinyInventoryItemDefinition
 {
     displayProperties: DestinyDisplayPropertiesDefinition;
@@ -51,10 +69,10 @@ export interface DestinyInventoryItemDefinition
     talentGrid: DestinyItemTalentGridBlockDefinition;
     investmentStats: Array<DestinyItemInvestmentStatDefinition>;
     perks: Array<DestinyItemPerkEntryDefinition>;
-    loreHash: Map<UInt32, DestinyLoreDefinition> ;
+    loreHash: Map<number, DestinyLoreDefinition> ;
     /*  Mapped to Manifest Database Definition: Destiny.Definitions.DestinyInventoryItemDefinition  */
     summaryItemHash: number;
-    animations: List<DestinyAnimationReference>;
+    animations: Array<DestinyAnimationReference>;
     allowActions: boolean;
     links: Array<HyperlinkReference>;
     doesPostmasterPullHaveSideEffects: boolean;

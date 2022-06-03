@@ -10,8 +10,8 @@ namespace bulkybook.Controllers;
 
 public class HomeController : Controller
 {
-    
-   
+
+
     string bearer;
     Player player = new Player();
     PlayerViewModel pvm = new PlayerViewModel();
@@ -36,7 +36,7 @@ Config conf = new Config();
         conf.clientID = int.Parse(_configuration["clientID"]);
         conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
-        conf.memType = "3"; 
+        conf.memType = "3";
         try
         {
             // set if  block to catch session data and test if its valid.g
@@ -49,7 +49,7 @@ Config conf = new Config();
             return View();
         }
     }
-    
+
     public async Task<IActionResult> Loggedin(string code){
         //conditional rendering so non logged in users get redirected to login/home page
 
@@ -62,10 +62,10 @@ Config conf = new Config();
             if(!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionToken))){
                 //check if the token is expired--
             }
-           
+
 
             // populate appropriate memories with player info
-            //persistence needed? 
+            //persistence needed?
             ViewData["LayoutName"] = "_Layout";
             _logger.LogInformation("Session Token: {SeshToken}",code);
            // ViewData["token"] = code;
@@ -89,7 +89,7 @@ Config conf = new Config();
             if(authToken.access_token != null && player.uniqueName != null){
                ViewData["authmem"] = authToken.access_token;
                 ViewData["disp"] = player.uniqueName;
-                
+
 
             }
             else{
@@ -99,13 +99,13 @@ Config conf = new Config();
 /*             pvm.Player = player;
             pvm.OAuthResponse = authToken; */
             if(player.membershipId > 0)
-            {      
+            {
 
             return await Task.Run(() => RedirectToAction("Player",authToken));
             }
             else {
                 return await Task.Run(() => View("Player"));
-            }  
+            }
         }
     }
     public IActionResult Index(string code)
@@ -138,7 +138,7 @@ Config conf = new Config();
     {
 
         Config conf = new Config();
-        
+
         conf.clientID = int.Parse(_configuration["clientID"]);
         conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
@@ -147,12 +147,12 @@ Config conf = new Config();
         var membership_id_key = "membership_id";
         string bearer = Request.Cookies[key];
         string membership_id = Request.Cookies[membership_id_key];
-       
+
             _logger.LogInformation("Session Token in player conroller{SeshToken}",bearer);
             ViewData["LayoutName"] = "_Layout";
 
             try{
-                
+
                 Console.WriteLine("bearer: {0}",bearer);
                 GetUserMembershipData getUserMembershipData = new GetUserMembershipData();
                 GetProfileResponse profile = new GetProfileResponse();
@@ -188,11 +188,11 @@ Config conf = new Config();
                 Debug.WriteLine("Exception Message: "+ e.Message);
                 return await Task.Run(() => View("Player"));
             }
-            
+
     }
     public async Task<IActionResult> ViewCharacter(Int32 id)
     {
-        
+
         return await Task.Run(() => View("Character"));
     }
     public async Task<IActionResult> CharacterList()
@@ -206,10 +206,10 @@ Config conf = new Config();
             Console.WriteLine("Error in partial view: {0}",e.Message);
             return await Task.Run(() => PartialView("_charactersPartial"));
         }
-        
+
     }
     private static async Task<string> CallBungieNetUser(string apiKey, string rootUrl,string clientID)
-    {  
+    {
         try{
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Add("x-api-key",$"{apiKey}");
@@ -222,7 +222,7 @@ Config conf = new Config();
             Console.WriteLine("Message: {0} ",e.Message);
             return e.Message;
         }
-        
+
     }
     public IActionResult Privacy()
     {
@@ -235,4 +235,4 @@ Config conf = new Config();
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
-//System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1[bulkybook.Models.OAuthResponse,bulkybook.Data.PlayerRepository+<AuthorizeUser>d__4] 
+//System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1[bulkybook.Models.OAuthResponse,bulkybook.Data.PlayerRepository+<AuthorizeUser>d__4]

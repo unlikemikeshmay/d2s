@@ -2,6 +2,10 @@ import { DestinyProgression } from "./DestinyProgression";
 import { DestinyFactionProgression } from "./DestinyFactionProgression";
 import { DestinyMilestone } from "./DestinyMilestone";
 import { DestinyQuestStatus } from "./DestinyQuestStatus";
+import { DestinyInventoryItemDefinition } from "./DestinyInventoryItemDefinition";
+import { DestinyItemPerksComponent } from "./DestinyItemPerksComponent";
+import { DestinyChecklistDefinition } from "./DestinyChecklistDefinition";
+import { DestinyArtifactCharacterScoped } from "./DestinyArtifactCharacterScoped";
 export interface DestinyCharacterProgressionComponent
 {
        /* 

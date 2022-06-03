@@ -13,6 +13,9 @@ import { SingleComponentResponseOfDestinyMetricsComponent } from "./SingleCompon
 import { SingleComponentResponseOfDestinyStringVariablesComponent } from "./SingleComponentResponseOfDestinyStringVariablesComponent";
 import { DictionaryComponentResponseOfint64AndDestinyCharacterComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterComponent";
 import { DictionaryComponentResponseOfint64AndDestinyInventoryComponent } from "./DictionaryComponentResponseOfint64AndDestinyInventoryComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent";
+
 export interface DestinyProfileResponse
 {
     vendorReceipts:SingleComponentResponseOfDestinyVendorReceiptsComponent;
