@@ -36,7 +36,7 @@ Config conf = new Config();
         conf.clientID = int.Parse(_configuration["clientID"]);
         conf.apiKey = _configuration["apiKey"];
         conf.rootUrl = _configuration["rootUrl"].ToString();
-        conf.memType = "3";
+        conf.memType = "-1";
         try
         {
             // set if  block to catch session data and test if its valid.g
@@ -73,6 +73,7 @@ Config conf = new Config();
 
             var key = "bearer";
             var membership_id_key = "membership_id";
+
             var value = authToken.access_token;
 
             //setting bearer token and membership_id to cookies for later retrieval.
@@ -81,6 +82,7 @@ Config conf = new Config();
             cookieOptions.Expires = DateTime.Now.AddSeconds(Convert.ToDouble(authToken.expires_in));
             Response.Cookies.Append(key,value,cookieOptions);
             Response.Cookies.Append(membership_id_key,authToken.membership_id);
+            //Response.Cookies.Append(membership_type_key,authToken.)
             Console.WriteLine("cookie from request {0}",Request.Cookies["bearer"]);
             if(authToken.access_token != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
@@ -158,8 +160,11 @@ Config conf = new Config();
                 GetProfileResponse profile = new GetProfileResponse();
                 getUserMembershipData = await _playerRepository.GetMembershipDataById(Convert.ToInt64(membership_id),Convert.ToInt32(conf.memType),bearer);
 
-                profile = await _playerRepository.GetProfile(Convert.ToInt64(getUserMembershipData.Response.destinyMemberships[0].membershipId),3,bearer);
-                Console.WriteLine("profile");
+                profile = await _playerRepository.GetProfile(Convert.ToInt64(getUserMembershipData.Response.destinyMemberships[0].membershipId),getUserMembershipData.Response.destinyMemberships[0].membershipType,bearer);
+
+                //Note: membershiptype is set to cookie value here so network calls in javascript can use it.
+                string membership_type_key = "membership_type";
+                Response.Cookies.Append(membership_type_key,Convert.ToString(getUserMembershipData.Response.destinyMemberships[0].membershipType));
 
                 /* var enumerator = profile.Response.characters.data.GetEnumerator();
                 enumerator.MoveNext();

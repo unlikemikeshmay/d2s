@@ -1,4 +1,4 @@
-
+import { DestinyProgression } from "./DestinyProgression";
 export interface DestinyArtifactProfileScoped
 {
       /*  Type: uint32

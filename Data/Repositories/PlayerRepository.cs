@@ -43,6 +43,7 @@ namespace bulkybook.Data
                     player.displayName= "res is null";
                     return player;
                 }
+                
                 player.membershipId = Convert.ToInt64(res.membershipId);
                 player.uniqueName = res.uniqueName;
                 player.normalizedName = res.normalizedName;
@@ -175,6 +176,8 @@ namespace bulkybook.Data
                 request.AddHeader("Authorization", $"Bearer{bearer}");
                 var response = await client.ExecuteGetAsync(request);
                 var resdes = JsonConvert.DeserializeObject<GetUserMembershipData>(response.Content);
+                Console.WriteLine("@@@@Membershiptype: {0}",resdes.Response.destinyMemberships[0].membershipType);
+                
                 Console.WriteLine("membership details: {0}",resdes.Response);
                 
                 return resdes;

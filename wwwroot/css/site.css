@@ -16,6 +16,7 @@ html {
 body {
   margin-bottom: 60px;
   background-image: url("/Images/registration_traveler_bg.png");
+  overflow-y:hidden;
 }
 /* profile page */
 .displayNameCode {

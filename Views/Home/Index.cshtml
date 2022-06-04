@@ -1,12 +1,16 @@
 ﻿@model Config
 
 <partial name="_Notification"/>
-
-<div class="container parent d-flex justify-content-center align-items-center h-100">
-
+<div><h1>D2 Scanner</h1></div>
+<div class="container parent d-flex flex-column justify-content-center align-items-center style="border-radius: 10px; background-color: rgba(255, 255, 255, 0.37)">
+    
     <div class="child">
+           
              <h1 class="m-5 signInHeader">Please sign in</h1>
             <button  onclick="location.href='@Url.Action("Authorize", "Home")'" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
             
+    </div>
+    <div class="child">
+     <h3 class="m-5 signInHeader"><span style="color: orange">Track inventories and equip loadouts</span></h1>
     </div>
   </div>

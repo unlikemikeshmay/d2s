@@ -1,7 +1,7 @@
 //pass a key/name and it returns the value or null
 //if the key doesn't exist
 
-function getCookie(name: string): string|null {
+export function GetCookie(name: string): string|null {
     const nameLenPlus = (name.length + 1);
     return document.cookie
         .split(';')

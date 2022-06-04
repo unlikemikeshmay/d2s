@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TckoYwwHL2xVYmsgqyd1zYjkTVRj4RI3e5FGsFUU+Yxk2jVrqhb/OT1hKTSLei5lcqWr9w6Ac0u6MlDecHRFOQ==",
+  "dgSpecHash": "BODcfAEBbXtcFEFBOux0EzEVgE1MAxb3tONM47phx85uygP6CElb10kYVv2QWLPwHdE6djBghcNHs6rp3C3sVQ==",
   "success": true,
   "projectFilePath": "/home/mike/Code/d2s/bulkybook.csproj",
   "expectedPackageFiles": [
@@ -81,7 +81,6 @@
     "/home/mike/.nuget/packages/microsoft.netcore.targets/1.1.3/microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "/home/mike/.nuget/packages/microsoft.testplatform.objectmodel/17.2.0-preview-20220401-08/microsoft.testplatform.objectmodel.17.2.0-preview-20220401-08.nupkg.sha512",
     "/home/mike/.nuget/packages/microsoft.testplatform.testhost/17.2.0-preview-20220401-08/microsoft.testplatform.testhost.17.2.0-preview-20220401-08.nupkg.sha512",
-    "/home/mike/.nuget/packages/microsoft.typescript.msbuild/4.6.4/microsoft.typescript.msbuild.4.6.4.nupkg.sha512",
     "/home/mike/.nuget/packages/microsoft.visualstudio.debugger.contracts/17.2.0/microsoft.visualstudio.debugger.contracts.17.2.0.nupkg.sha512",
     "/home/mike/.nuget/packages/microsoft.visualstudio.web.codegeneration/6.0.2/microsoft.visualstudio.web.codegeneration.6.0.2.nupkg.sha512",
     "/home/mike/.nuget/packages/microsoft.visualstudio.web.codegeneration.core/6.0.2/microsoft.visualstudio.web.codegeneration.core.6.0.2.nupkg.sha512",
