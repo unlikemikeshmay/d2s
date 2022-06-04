@@ -1,0 +1,7 @@
+import { DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent } from "./DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent";
+import { DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent } from "./DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent";
+export interface DestinyBaseItemComponentSetOfuint32
+{
+    objectives: DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent;
+    perks: DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent;
+}

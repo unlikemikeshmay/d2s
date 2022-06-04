@@ -15,6 +15,17 @@ import { DictionaryComponentResponseOfint64AndDestinyCharacterComponent } from "
 import { DictionaryComponentResponseOfint64AndDestinyInventoryComponent } from "./DictionaryComponentResponseOfint64AndDestinyInventoryComponent";
 import { DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent";
 import { DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyKiosksComponent } from "./DictionaryComponentResponseOfint64AndDestinyKiosksComponent";
+import { DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent } from "./DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent";
+import { DestinyBaseItemComponentSetOfuint32 } from "./DestinyBaseItemComponentSetOfuint32";
+import { DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent } from "./DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent } from "./DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent } from "./DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent } from "./DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyCraftablesComponent } from "./DictionaryComponentResponseOfint64AndDestinyCraftablesComponent";
+import { DestinyItemComponentSetOfint64 } from "./DestinyItemComponentSetOfint64";
+import { DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent } from "./DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent";
 
 export interface DestinyProfileResponse
 {

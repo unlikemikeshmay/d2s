@@ -1,0 +1,23 @@
+import { DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemRenderComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemRenderComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemStatsComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemStatsComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent";
+import { DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent } from "./DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent";
+import { DictionaryComponentResponseOfint64AndDestinyItemPerksComponent } from "./DictionaryComponentResponseOfint64AndDestinyItemPerksComponent";
+export interface DestinyItemComponentSetOfint64
+{
+    instances: DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent;
+    renderData: DictionaryComponentResponseOfint64AndDestinyItemRenderComponent;
+    stats: DictionaryComponentResponseOfint64AndDestinyItemStatsComponent;
+    sockets: DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent;
+    reusablePlugs: DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent;
+    plugObjectives: DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent;
+    talentGrids: DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent;
+    plugStates: DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent;
+    objectives: DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent;
+    perks: DictionaryComponentResponseOfint64AndDestinyItemPerksComponent;
+}
