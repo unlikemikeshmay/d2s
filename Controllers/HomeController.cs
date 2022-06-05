@@ -149,7 +149,7 @@ Config conf = new Config();
         var membership_id_key = "membership_id";
         string bearer = Request.Cookies[key];
         string membership_id = Request.Cookies[membership_id_key];
-
+        Response.Cookies.Append(key,bearer);
             _logger.LogInformation("Session Token in player conroller{SeshToken}",bearer);
             ViewData["LayoutName"] = "_Layout";
 
