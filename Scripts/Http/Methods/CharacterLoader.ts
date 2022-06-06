@@ -1,7 +1,8 @@
 import { IGetCharacters } from "./IGetCharacters";
-import { GetCookie } from "../../Helper/GetCookie";
 
-export class CharacterLoader{
+
+export class CharacterLoader
+{
     //this is a good opportunity to check if the tokens are valid.....
     
     private _getCharacters: IGetCharacters;
@@ -9,13 +10,27 @@ export class CharacterLoader{
     constructor(
         getCharacters: IGetCharacters
     ){
-        this._getCharacters = getCharacters
+        this._getCharacters = getCharacters;
     }
+    //pass a key/name and it returns the value or null
+//if the key doesn't exist
+    GetCookie(name) {
+    const nameLenPlus = (name.length + 1);
+    return document.cookie
+        .split(';')
+        .map(c => c.trim())
+        .filter(cookie => {
+        return cookie.substring(0, nameLenPlus) === `${name}=`;
+    })
+        .map(cookie => {
+        return decodeURIComponent(cookie.substring(nameLenPlus));
+    })[0] || null;
+}
         GetCharacterInfo(){
         console.log("getCharacterinfo")
         let key = "bearer";
         let membership_id_key = "membership_id";
-        let membership_id = GetCookie(membership_id_key);
+        let membership_id = CharacterLoader.prototype.GetCookie(membership_id_key);
         console.log("called Characterloader.getcharacterinfobyid")
         //let info = this._getCharacters.GetMembershipDataById(membership_id,)
     }
@@ -23,15 +38,13 @@ export class CharacterLoader{
             console.log("getbungienetuser")
         let membership_id = "membership_id";
         let bearer = "bearer";
-        let id =  parseInt(GetCookie(membership_id));
-        let token = GetCookie(bearer);
-        let info = this._getCharacters.GetBungieNetUserById(id,token);
-        console.log("getbungienetuser: ",info);
+        let id =  parseInt(CharacterLoader.prototype.GetCookie(membership_id));
+        let token = CharacterLoader.prototype.GetCookie(bearer);
+        let info = getCharacters.GetBungieNetUserById(id,token);
+        console.log("info: ",info);
         
 
     }
 }
-if(document.readyState == 'complete'){
-    console.log("if doc ready state complete: ")
-    CharacterLoader.prototype.GetBungieNetUser();
-}
+console.log("this should load");
+CharacterLoader.prototype.GetBungieNetUser();
