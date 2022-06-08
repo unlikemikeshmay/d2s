@@ -4,7 +4,7 @@ import {Config} from "../../Config/config";
 import { Player } from "../../Models/Player";
 let config: Config = require('../../config.json')
 
-class GetCharacters implements IGetCharacters {
+export class GetCharacters implements IGetCharacters {
     
   async  GetBungieNetUserById(membership_id: number, bearer: string): Promise<Player> {
         let url: string = `https://www.bungie.net/Platform/User/GetBungieNetUserById/${membership_id}/`;

@@ -1,6 +1,5 @@
 import { IGetCharacters } from "./IGetCharacters";
 
-
 export class CharacterLoader
 {
     //this is a good opportunity to check if the tokens are valid.....
@@ -11,6 +10,7 @@ export class CharacterLoader
         getCharacters: IGetCharacters
     ){
         this._getCharacters = getCharacters;
+        
     }
     //pass a key/name and it returns the value or null
 //if the key doesn't exist
@@ -26,7 +26,7 @@ export class CharacterLoader
         return decodeURIComponent(cookie.substring(nameLenPlus));
     })[0] || null;
 }
-        GetCharacterInfo(){
+        GetCharacterInfo(): void{
         console.log("getCharacterinfo")
         let key = "bearer";
         let membership_id_key = "membership_id";
@@ -34,17 +34,22 @@ export class CharacterLoader
         console.log("called Characterloader.getcharacterinfobyid")
         //let info = this._getCharacters.GetMembershipDataById(membership_id,)
     }
-        GetBungieNetUser(){
+        GetBungieNetUser(): void{
+            const characterLoader = new CharacterLoader(this._getCharacters);
             console.log("getbungienetuser")
         let membership_id = "membership_id";
         let bearer = "bearer";
-        let id =  parseInt(CharacterLoader.prototype.GetCookie(membership_id));
-        let token = CharacterLoader.prototype.GetCookie(bearer);
-        let info = getCharacters.GetBungieNetUserById(id,token);
+        let id =  parseInt(characterLoader.GetCookie(membership_id));
+        let token = characterLoader.GetCookie(bearer);
+        let info = characterLoader._getCharacters.GetBungieNetUserById(id,token);
         console.log("info: ",info);
         
 
     }
+    
+    
 }
-console.log("this should load");
-CharacterLoader.prototype.GetBungieNetUser();
+
+let gc: IGetCharacters;
+const characterLoader: CharacterLoader = new CharacterLoader(gc);
+characterLoader.GetBungieNetUser();
