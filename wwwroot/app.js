@@ -1,4 +1,4 @@
-import { CharacterLoader } from "./Http/Methods/CharacterLoader";
+import  CharacterLoader from "./Http/Methods/CharacterLoader";
 if (document.readyState == 'complete') {
     console.log("if document.ready state is complete; ");
     CharacterLoader.prototype.GetBungieNetUser();

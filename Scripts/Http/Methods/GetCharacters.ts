@@ -1,46 +1,37 @@
-import { GetUserMembershipData } from "../../Models/GetUserMembershipData"; 
-import { IGetCharacters } from "./IGetCharacters";
-import {Config} from "../../Config/config";
-import { Player } from "../../Models/Player";
-let config: Config = require('../../config.json')
+import {Player} from "../../Models/Player";
 
-export class GetCharacters implements IGetCharacters {
+export namespace Characters {
     
-  async  GetBungieNetUserById(membership_id: number, bearer: string): Promise<Player> {
-        let url: string = `https://www.bungie.net/Platform/User/GetBungieNetUserById/${membership_id}/`;
-        const response = await fetch(url,{
-            method: 'GET',
-            headers: {
-                "x-api-key": config.apiKey,
-                "Authorization": bearer,
-                'content-type': 'application/json'
-            },
-            
-        }).then(response => response.json())
-        .catch((error)=> {
-            console.error("Error: ",error);
-        })
-        console.log(response)
-        return response
-    }
-    
-
-    async GetMembershipDataById(membership_id: number, membershipType: number, bearer: string): Promise<GetUserMembershipData> {
-        
-            let url: string = `https://www.bungie.net/Platform/User/GetMembershipsById/${membership_id}/${membershipType}/`;
-            const response = await fetch(url,{
-                method: 'GET',
-                headers: {
-                    "x-api-key": config.apiKey,
-                    "Authorization": bearer,
-                    'content-type': 'application/json'
-                }
-            }).then(response => response.json())
-            .catch((error)=> {
-                console.error("Error: ",error);
+    export class GetCharacters implements IGetCharacters {
+        private _getCharacters: IGetCharacters;
+        constructor(getCharacter: IGetCharacters)
+        {
+            this._getCharacters = getCharacter;
+        }
+        GetCookie(name) {
+            const nameLenPlus = (name.length + 1);
+            return document.cookie
+                .split(';')
+                .map(c => c.trim())
+                .filter(cookie => {
+                return cookie.substring(0, nameLenPlus) === `${name}=`;
             })
-            console.log("response: ",response);
-            return response;
+                .map(cookie => {
+                return decodeURIComponent(cookie.substring(nameLenPlus));
+            })[0] || null;
+        }
+         GetBungieNetUserById(membership_id: number, bearer: string): string {
+           console.log(`getbungienetuser: ${membership_id}, bearer: ${bearer}`)
+           
+           //const player: Player = await this._getCharacters.GetBungieNetUserById(id,token);
+           return "hello";
+        }
+        CallBNetUserById(): void {
+            let mem_id = "membership_id";
+            let bt = "bearer";
+           let id =  parseInt(this.GetCookie(mem_id));
+            let token = this.GetCookie(bt);
+            console.log(this.GetBungieNetUserById(id,token));
+        }
     }
-    
 }

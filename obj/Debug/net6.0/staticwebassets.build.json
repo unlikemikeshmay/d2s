@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kwQpRnXZqRsUqXpbp9OhEPCgeRArAighIpzJaNAwonY=",
+  "Hash": "fe4WtIbIO+yhRJGoMSb4nYQvWXT9pblkhW5QRS5F0Kg=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -1477,6 +1477,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/Http/IGetCharacters.js.map"
+    },
+    {
+      "Identity": "/home/mike/Code/d2s/wwwroot/js/Http/Methods/BaseRepository.js",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/d2s/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "js/Http/Methods/BaseRepository.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/Http/Methods/BaseRepository.js"
+    },
+    {
+      "Identity": "/home/mike/Code/d2s/wwwroot/js/Http/Methods/BaseRepository.js.map",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/d2s/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "js/Http/Methods/BaseRepository.js.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/Http/Methods/BaseRepository.js.map"
     },
     {
       "Identity": "/home/mike/Code/d2s/wwwroot/js/Http/Methods/CharacterLoader.js",

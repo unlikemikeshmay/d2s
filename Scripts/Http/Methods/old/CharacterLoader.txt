@@ -1,4 +1,4 @@
-import { IGetCharacters } from "./IGetCharacters";
+import IGetCharacters from "./IGetCharacters";
 
 export class CharacterLoader
 {
@@ -41,13 +41,11 @@ export class CharacterLoader
         let bearer = "bearer";
         let id =  parseInt(characterLoader.GetCookie(membership_id));
         let token = characterLoader.GetCookie(bearer);
-        let info = characterLoader._getCharacters.GetBungieNetUserById(id,token);
-        console.log("info: ",info);
-        
+        console.log(`token: ${token}`);
 
-    }
-    
-    
+        let info = this._getCharacters.GetBungieNetUserById(id,token)
+        console.log("displayname",info.then(x => x.displayName));
+    }  
 }
 
 let gc: IGetCharacters;
