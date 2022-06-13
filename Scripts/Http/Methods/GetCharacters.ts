@@ -1,13 +1,14 @@
 import {Player} from "../../Models/Player";
+import {IGetCharacters} from "./IGetCharacters";
 
-export namespace Characters {
-    
-    export class GetCharacters implements IGetCharacters {
+
+    export class GetCharacters implements IGetCharacters{
         private _getCharacters: IGetCharacters;
         constructor(getCharacter: IGetCharacters)
         {
             this._getCharacters = getCharacter;
         }
+       
         GetCookie(name) {
             const nameLenPlus = (name.length + 1);
             return document.cookie
@@ -20,11 +21,11 @@ export namespace Characters {
                 return decodeURIComponent(cookie.substring(nameLenPlus));
             })[0] || null;
         }
-         GetBungieNetUserById(membership_id: number, bearer: string): string {
+         async GetBungieNetUserById(membership_id: number, bearer: string): Promise<Player> {
            console.log(`getbungienetuser: ${membership_id}, bearer: ${bearer}`)
            
-           //const player: Player = await this._getCharacters.GetBungieNetUserById(id,token);
-           return "hello";
+           const player: Player = await this._getCharacters.GetBungieNetUserById(membership_id,bearer);
+           return player;
         }
         CallBNetUserById(): void {
             let mem_id = "membership_id";
@@ -34,4 +35,3 @@ export namespace Characters {
             console.log(this.GetBungieNetUserById(id,token));
         }
     }
-}

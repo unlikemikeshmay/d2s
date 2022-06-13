@@ -1,6 +1,5 @@
 {
   "name": "d2s",
-  "type": "module",
   "version": "1.0.0",
   "description": "//for ubuntu 22.04 with openssl 3.  //currently a glitch with razor language server that cant use openssl3 export CLR_OPENSSL_VERSION_OVERRIDE=1.1; code",
   "main": "index.js",
@@ -23,5 +22,8 @@
     "typescript": "^4.6.4",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "uniq": "^1.0.1"
   }
 }
