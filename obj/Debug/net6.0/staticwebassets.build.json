@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "W85Gsvi10sPjXFVPFsSQeiLj263ooudYyeh0pNyeuMY=",
+  "Hash": "6T7D2x01JFq60/aCNKYUZFsXVkV2mmmiAI9e1yxShM0=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -1375,6 +1375,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/app.js.map"
+    },
+    {
+      "Identity": "/home/mike/Code/d2s/wwwroot/js/bundle.js",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/d2s/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "js/bundle.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/bundle.js"
     },
     {
       "Identity": "/home/mike/Code/d2s/wwwroot/js/Config/config.js",

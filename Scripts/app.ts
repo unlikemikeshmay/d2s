@@ -1,4 +1,4 @@
-import {GetCharacters} from "./Http/Methods/GetCharacters";
+import { GetCharacters } from "./Http/Methods/GetCharacters"
     if(document.readyState == 'complete')
     {
         console.log("if document.ready state is complete; ")
