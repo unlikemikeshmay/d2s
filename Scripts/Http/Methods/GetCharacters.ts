@@ -1,3 +1,4 @@
+import { GetDestinyCharacterResponse } from "../../Models/GetDestinyCharacterResponse";
 import { GetProfileResponse } from "../../Models/GetProfileResponse";
 import { GetUserMembershipData } from "../../Models/GetUserMembershipData";
 
@@ -11,6 +12,24 @@ import {IGetCharacters} from "./IGetCharacters";
         constructor(getCharacter: IGetCharacters)
         {
             this._getCharacters = getCharacter;
+        }
+        async GetCharacter(character_id: number, destiny_membership_id: number, membership_type: any,bearer: string): Promise<GetDestinyCharacterResponse> {
+            let url = `https://www.bungie.net/Platform/Destiny2/${membership_type}/Profile/${destiny_membership_id}/Character/${character_id}/?components=200`;
+            let getDestinyCharacterResponse: GetDestinyCharacterResponse;
+            await fetch(url,{
+                method: "GET",
+                headers: {
+                    "X-API-KEY": "811c50969fca4ca784c5d14fe290244f",
+                    "Authorization": bearer,
+                    "content-type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => getDestinyCharacterResponse = data)
+            .catch((error) => {
+                console.error(`Error: ${error}`);
+            })
+            return getDestinyCharacterResponse;
         }
         async GetProfile(destinyMembershipId: number, membershipType: number, bearer: string): Promise<GetProfileResponse> {
             let getProfileResponse: GetProfileResponse;

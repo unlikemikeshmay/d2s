@@ -1293,3 +1293,4 @@ C:/Users/mikes/source/repos/d2s/obj/Debug/net6.0/ref/bulkybook.dll
 /home/mike/Code/d2s/bin/Debug/net6.0/package.json
 /home/mike/Code/d2s/bin/Debug/net6.0/tsconfig.json
 /home/mike/Code/d2s/bin/Debug/net6.0/config.json
+/home/mike/Code/d2s/bin/Debug/net6.0/charinventoriesResponse.json
