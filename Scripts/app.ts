@@ -3,15 +3,21 @@ import { DestinyInventoryComponent } from "./Models/DestinyInventoryComponent";
 import { GetDestinyCharacterResponse } from "./Models/GetDestinyCharacterResponse";
 import { GetProfileResponse } from "./Models/GetProfileResponse";
 import { Player } from "./Models/Player";
+import { DestinyCharacterComponent } from "./Models/DestinyCharacterComponent";
 
+const characterSorter = (character: DestinyCharacterComponent) => {
 
+}
 const startPopulating = (charArray: Array<GetDestinyCharacterResponse>) => {
     if(charArray.length !== 3){
         console.log(`globalCharacterArray len: ${charArray.length}`)
     }else{
         console.log("did it");
         console.log(charArray);
+        
+        
     }
+    
 }
 
 function IsNotNullOrUndefined<T>(object: T | undefined | null): object is T {
@@ -35,7 +41,6 @@ const PopulateCharacterInventories = (getProfileResponse: GetProfileResponse,mem
         //get characterids
         for (let key in getProfileResponse.Response.characterInventories.data){
             let i = 0;
-            console.log(`key: ${key}`);
             //globalCharacterIds.push(key);
                 GetCharacters.prototype.GetCharacter(parseInt(key),membership_id,membership_type,token)
                 .then(data => {
@@ -79,7 +84,7 @@ const PopulateCharacterInventories = (getProfileResponse: GetProfileResponse,mem
                     //i believe the -1 tag is for all platforms so you can call getmembershipdatabyid,
                     //this is relevant because you need getmebershipdatabyid to get destinymembershipid
                     //to call get profile you need destinymembership id but the response contains membershiptype- which was needed in the prior request???
-                    setPlayer(player);
+                    
                     GetCharacters.prototype.GetMembershipDataById(player.membershipId,-1,token)
                     .then(data => {
                         console.log(`data in getmembershipbyid: ${data.Response.destinyMemberships[0].membershipType}`);
