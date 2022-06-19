@@ -10,8 +10,6 @@ namespace bulkybook.Controllers;
 
 public class HomeController : Controller
 {
-
-
     string bearer;
     Player player = new Player();
     PlayerViewModel pvm = new PlayerViewModel();
@@ -63,7 +61,6 @@ Config conf = new Config();
                 //check if the token is expired--
             }
 
-
             // populate appropriate memories with player info
             //persistence needed?
             ViewData["LayoutName"] = "_Layout";
@@ -81,12 +78,11 @@ Config conf = new Config();
             CookieOptions cookieOptions = new CookieOptions();
             cookieOptions.Expires = DateTime.Now.AddSeconds(Convert.ToDouble(authToken.expires_in));
             Response.Cookies.Append(key,value,cookieOptions);
-            Response.Cookies.Append(membership_id_key,authToken.membership_id);
+            Response.Cookies.Append(membership_id_key,authToken.membership_id,cookieOptions);
             //Response.Cookies.Append(membership_type_key,authToken.)
             Console.WriteLine("cookie from request {0}",Request.Cookies["bearer"]);
             if(authToken.access_token != null){
                 player = await _playerRepository.GetById(authToken.membership_id,authToken.access_token);
-
             }
             if(authToken.access_token != null && player.uniqueName != null){
                ViewData["authmem"] = authToken.access_token;
