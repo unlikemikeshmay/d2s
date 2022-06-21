@@ -25,6 +25,7 @@ function IsNotNullOrUndefined<T>(object: T | undefined | null): object is T {
 }
 const PopulateCharacterInventories = (getProfileResponse: GetProfileResponse,membership_type,membership_id) => {
     console.log("PopulateCharacterInventories is called:");
+    // i have profile and characters in this function:;:::
     try
     {
 
