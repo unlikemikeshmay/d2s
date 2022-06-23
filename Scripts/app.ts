@@ -4,6 +4,7 @@ import { GetDestinyCharacterResponse } from "./Models/GetDestinyCharacterRespons
 import { GetProfileResponse } from "./Models/GetProfileResponse";
 import { Player } from "./Models/Player";
 import { DestinyCharacterComponent } from "./Models/DestinyCharacterComponent";
+import { CharactersViewModel } from "./Models/CharactersViewModel";
 
 const characterSorter = (character: DestinyCharacterComponent) => {
 
@@ -14,7 +15,8 @@ const startPopulating = (charArray: Array<GetDestinyCharacterResponse>) => {
     }else{
         console.log("did it");
         console.log(charArray);
-        
+        let username = document.getElementById("username");
+        username.innerHTML = 
         
     }
     
@@ -79,24 +81,27 @@ const PopulateCharacterInventories = (getProfileResponse: GetProfileResponse,mem
             let id =  parseInt(GetCharacters.prototype.GetCookie(mem_id));
             let token = GetCharacters.prototype.GetCookie(bt);
             let player: Player;
+            let charactersViewModel: CharactersViewModel;
             GetCharacters.prototype.GetBungieNetUserById(id,token)
             .then(
                 player => {
                     //i believe the -1 tag is for all platforms so you can call getmembershipdatabyid,
                     //this is relevant because you need getmebershipdatabyid to get destinymembershipid
                     //to call get profile you need destinymembership id but the response contains membershiptype- which was needed in the prior request???
-                    
+                    charactersViewModel.playerData = player;
                     GetCharacters.prototype.GetMembershipDataById(player.membershipId,-1,token)
                     .then(data => {
                         console.log(`data in getmembershipbyid: ${data.Response.destinyMemberships[0].membershipType}`);
                         //set these as vars to passthem into the populate character inventories so i can use them
                         //down the line when access is lost
+                        charactersViewModel.userMembershipData = data;
                         var membershipId = data.Response.destinyMemberships[0].membershipId;
                         var membershipType = data.Response.destinyMemberships[0].membershipType;
                         GetCharacters.prototype.GetProfile(data.Response.destinyMemberships[0].membershipId,data.Response.destinyMemberships[0].membershipType,token)
                         .then(
                             data => {
-                                PopulateCharacterInventories(data,membershipType,membershipId)
+                                charactersViewModel.profileResponse = data;
+                                PopulateCharacterInventories(charactersViewModel);
                                 /* console.log(`data test: ${data.Response.characterInventories.data}`); */
                             }
                         )

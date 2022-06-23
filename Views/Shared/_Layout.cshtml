@@ -46,13 +46,11 @@
         </main>
     </div>
 
-@*     <footer class="border-top footer text-muted bg-dark">
-        <div class="container">
-            &copy; 2022 - bulkybook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> *@
+@*!!!! remember the order these scripts load is important. if you notice funny behaviour, take a look at this *@
     <script>var exports = {};</script>
-  
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+      <script src="~/lib/bootstrap/dist/js/sidebars.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script  src="~/js/bundle.js"></script>

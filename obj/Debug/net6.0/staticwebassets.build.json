@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "B0AqsocA7i5+mNLfSro0duRkJuWOIymUuJIs6BXVLJ4=",
+  "Hash": "Xe9nwuTnfGOWompAPlKtXxv8PGrTafbAl3L/+DkovEY=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -1154,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/bootswatchtheme.css"
+    },
+    {
+      "Identity": "/home/mike/Code/d2s/wwwroot/css/sidebars.css",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/d2s/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "css/sidebars.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/sidebars.css"
     },
     {
       "Identity": "/home/mike/Code/d2s/wwwroot/css/site.css",
@@ -9620,6 +9637,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Identity": "/home/mike/Code/d2s/wwwroot/lib/bootstrap/dist/js/sidebars.js",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/d2s/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "lib/bootstrap/dist/js/sidebars.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/sidebars.js"
     },
     {
       "Identity": "/home/mike/Code/d2s/wwwroot/lib/bootstrap/LICENSE",
