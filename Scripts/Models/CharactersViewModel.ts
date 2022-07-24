@@ -4,8 +4,8 @@ import { GetUserMembershipData } from "./GetUserMembershipData";
 import { Player } from "./Player";
 export interface CharactersViewModel
 {   
-    userMembershipData: GetUserMembershipData;
-    destinyCharacterResponse: Array<GetDestinyCharacterResponse>;
-    profileResponse: GetProfileResponse;
-    playerData: Player;
+    userMembershipData?: GetUserMembershipData;
+    destinyCharacterResponse?: Array<GetDestinyCharacterResponse>;
+    profileResponse?: GetProfileResponse;
+    playerData?: Player;
 }
