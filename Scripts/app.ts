@@ -16,15 +16,7 @@ const characterSorter = (character: DestinyCharacterComponent) => {
 
 }
 const startPopulatingCharacters = () => {
-    if(charactersViewModel.destinyCharacterResponse){
-        console.log(`globalCharacterArray len: ${charactersViewModel.destinyCharacterResponse.length}`)
-    }else{
-        console.log("did it");
-        console.log(charactersViewModel.destinyCharacterResponse);
-        console.log(charactersViewModel.destinyCharacterResponse.length);
-        console.log(`charactersViewModel.playerData.displayName: ${charactersViewModel.playerData.displayName}`);
-        document.getElementById("username").innerHTML = charactersViewModel.playerData.displayName;
-    }
+   console.log(`inside startpopulatingcharacters ${charactersViewModel.profileResponse.Response.characterInventories.data.values.length}`)
 }
 
 function IsNotNullOrUndefined<T>(object: T | undefined | null): object is T {
@@ -103,7 +95,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     
                 })
                 .then(data => {
-                    startPopulatingCharacters(charactersViewModel);
+                    startPopulatingCharacters();
                 })
                 .catch((error) => console.error("Error: ",error));
         }
@@ -168,8 +160,8 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     //var profileResponse: GetProfileResponse;
                     console.log("data in third then after being passed veiwmodel with membershipdata: ",data)
                     /* GetCharacters.prototype.GetProfile(data.Response.bungieNetUser..userMembershipData.Response.destinyMemberships[0].membershipId,data.userMembershipData.Response.destinyMemberships[0].membershipType,token) */
-                    GetCharacters.prototype.GetProfile(data.userMembershipData.Response.destinyMemberships[0].membershipId,data.userMembershipData.Response.destinyMemberships[0].membershipType,token)
-            //4
+                    GetCharacters.prototype.GetProfile(data.userMembershipData.Response.bungieNetUser.membershipId,data.userMembershipData.Response.destinyMemberships[0].membershipType,token)
+            ////4
                     .then(data => {
                         console.log("data of getprofile response passed in fourth then: ",data);
 
@@ -187,7 +179,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
 
                     console.log(`charactersViewModel.profileResonse after it was assigned in fifth .this()${data}`);
                     //console.log(`charactersViewModel before it is sent to populatecharacterinventories: ${charactersViewModel.userMembershipData.Response.bungieNetUser.displayName}`);
-                    startPopulatingCharacters(charactersViewModel);
+                    startPopulatingCharacters();
                         
                                 
                         })
