@@ -12,11 +12,25 @@ const PROFILE_RESPONSE = "PROFILERESPONSE";
 const GET_MEMBERSHIP_DATA = "GETMEMBERSHIPDATA";
 const PLAYER = "PLAYER";
 
-const characterSorter = (character: DestinyCharacterComponent) => {
-
+const characterSorter = (charactersviewmodel: CharactersViewModel): string[] => {
+    var i: number = 0;
+    let characters:any[][];
+    for (let key in charactersViewModel.profileResponse.Response.characters.data){
+        let value = charactersViewModel.profileResponse.Response.characters.data[key];
+        characters[i] = value;
+        console.log("characters: ",characters);
+    }
+ return [];
 }
 const startPopulatingCharacters = () => {
-   console.log(`inside startpopulatingcharacters ${charactersViewModel.profileResponse.Response.characterInventories.data.values.length}`)
+    var characters: string[];
+  // console.log(`inside startpopulatingcharacters ${charactersViewModel.profileResponse.Response.characterInventories.data.values.length}`)
+  console.log("startpop called with charactersviewmodel: ",charactersViewModel.playerData.displayName);
+  var username = document.getElementById("username");
+  username.innerHTML = charactersViewModel.playerData.displayName;
+
+  characters = characterSorter(charactersViewModel)
+
 }
 
 function IsNotNullOrUndefined<T>(object: T | undefined | null): object is T {
@@ -133,7 +147,8 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
 
             //1
 
-            GetCharacters.prototype.GetBungieNetUserById(ParsedId,token)
+            var getchars = Promise.resolve(GetCharacters.prototype.GetBungieNetUserById(ParsedId,token));
+            getchars
             .then(player => {
                 //AssignGlobalVariable(player,PLAYER,charactersViewModel);
                     //i believe the -1 tag is for all platforms so you can call getmembershipdatabyid,
@@ -142,42 +157,33 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     console.log(`player: ${player.displayName}`);
                     //var memData: GetUserMembershipData;
                     charactersViewModel.playerData = player;
-
-            //2  
-                    GetCharacters.prototype.GetMembershipDataById(player.membershipId,-1,token).then(data => {
-                      //  AssignGlobalVariable(data,GET_MEMBERSHIP_DATA,charactersViewModel);
-                      console.log("data in second then of getmembershiptdata",data);
-                        //memData = data;
-                        charactersViewModel.userMembershipData = data;
-                    })
-                    console.log("charactersviewmodel being returned from second then: ",charactersViewModel);
-                    return charactersViewModel;
-                })
-
+                return charactersViewModel.playerData;})
+             //2   
+                .then(data => {
+                    console.log("promise.resolve getmembyid ",Promise.resolve(GetCharacters.prototype.GetMembershipDataById(data.membershipId,-1,token)));
+                    /* charactersViewModel.userMembershipData */
+                    var memid = Promise.resolve(GetCharacters.prototype.GetMembershipDataById(data.membershipId,-1,token));
+                    charactersViewModel.playerData = data;
+                      console.log("charactersviewmodel being returned from second then: ",charactersViewModel);
+                      return memid;
+                  })
+                
             //3
-            .then(data => {
-
+                .then(data => {
+                    charactersViewModel.userMembershipData = data;
                     //var profileResponse: GetProfileResponse;
                     console.log("data in third then after being passed veiwmodel with membershipdata: ",data)
                     /* GetCharacters.prototype.GetProfile(data.Response.bungieNetUser..userMembershipData.Response.destinyMemberships[0].membershipId,data.userMembershipData.Response.destinyMemberships[0].membershipType,token) */
-                    GetCharacters.prototype.GetProfile(data.userMembershipData.Response.bungieNetUser.membershipId,data.userMembershipData.Response.destinyMemberships[0].membershipType,token)
+                   var profile = Promise.resolve(GetCharacters.prototype.GetProfile(data.Response.destinyMemberships[0].membershipId,data.Response.destinyMemberships[0].membershipType,token));
             ////4
-                    .then(data => {
-                        console.log("data of getprofile response passed in fourth then: ",data);
-
-                       // AssignGlobalVariable(data,PROFILE_RESPONSE, charactersViewModel);
-                        //profileResponse = data;
-                        charactersViewModel.profileResponse = data;
-                        console.log(`charactersviewmodel after being passed getprofile response in fourth then ${charactersViewModel}`)
-                        return charactersViewModel;
-                        
-                    })
-                   
+                    
+                   return profile;
                    
                 })
                 .then(data => {
-
+                    charactersViewModel.profileResponse = data;
                     console.log(`charactersViewModel.profileResonse after it was assigned in fifth .this()${data}`);
+                    console.log(`charactersviewmodel after last chain ${charactersViewModel.profileResponse.Response.characters}`)
                     //console.log(`charactersViewModel before it is sent to populatecharacterinventories: ${charactersViewModel.userMembershipData.Response.bungieNetUser.displayName}`);
                     startPopulatingCharacters();
                         
