@@ -12,19 +12,23 @@ const PROFILE_RESPONSE = "PROFILERESPONSE";
 const GET_MEMBERSHIP_DATA = "GETMEMBERSHIPDATA";
 const PLAYER = "PLAYER";
 
-const characterSorter = (charactersviewmodel: CharactersViewModel): string[] => {
+const characterSorter = (charactersviewmodel: CharactersViewModel): string[][] => {
     var i: number = 0;
+    var ul = document.getElementById("dropdownCharacters");
     let characters:any[][];
     for (let key in charactersViewModel.profileResponse.Response.characters.data){
         let value = charactersViewModel.profileResponse.Response.characters.data[key];
         characters[i] = value;
-        console.log("characters: ",characters);
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(value));
+        ul.appendChild(li);
+        console.log("characters: ",characters[i]);
     }
- return [];
+ return characters;
 }
 const startPopulatingCharacters = () => {
 
-    var characters: string[];
+    var characters: string[][];
   // console.log(`inside startpopulatingcharacters ${charactersViewModel.profileResponse.Response.characterInventories.data.values.length}`)
   console.log("startpop called with charactersviewmodel: ",charactersViewModel.playerData.displayName);
   var username = document.getElementById("username");
