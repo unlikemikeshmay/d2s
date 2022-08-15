@@ -23,7 +23,7 @@ const characterSorter = (charactersviewmodel: CharactersViewModel): string[] => 
  return [];
 }
 const startPopulatingCharacters = () => {
-<<<<<<< HEAD
+
     var characters: string[];
   // console.log(`inside startpopulatingcharacters ${charactersViewModel.profileResponse.Response.characterInventories.data.values.length}`)
   console.log("startpop called with charactersviewmodel: ",charactersViewModel.playerData.displayName);
@@ -32,9 +32,9 @@ const startPopulatingCharacters = () => {
 
   characters = characterSorter(charactersViewModel)
 
-=======
+
   console.log(`startpopulatingcharacters: ${charactersViewModel.profileResponse.Response.characters.data}`)
->>>>>>> refs/remotes/origin/characterinv
+
 }
 
 function IsNotNullOrUndefined<T>(object: T | undefined | null): object is T {
@@ -119,7 +119,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     console.log(`player: ${player.displayName}`);
                     //var memData: GetUserMembershipData;
                     charactersViewModel.playerData = player;
-<<<<<<< HEAD
+
                 return charactersViewModel.playerData;})
              //2   
                 .then(data => {
@@ -149,7 +149,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     console.log(`charactersviewmodel after last chain ${charactersViewModel.profileResponse.Response.characters}`)
                     //console.log(`charactersViewModel before it is sent to populatecharacterinventories: ${charactersViewModel.userMembershipData.Response.bungieNetUser.displayName}`);
                     startPopulatingCharacters();
-=======
+
 
             //2  
                    
@@ -179,7 +179,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                             charactersViewModel.profileResponse =  data;
                             startPopulatingCharacters();
                         }
->>>>>>> refs/remotes/origin/characterinv
+
                         
                     )
                     
