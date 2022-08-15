@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/home/mike/Code/d2s/bulkybook.csproj": {}
+    "C:\\Users\\mikes\\Code\\d2s\\bulkybook.csproj": {}
   },
   "projects": {
-    "/home/mike/Code/d2s/bulkybook.csproj": {
+    "C:\\Users\\mikes\\Code\\d2s\\bulkybook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mike/Code/d2s/bulkybook.csproj",
+        "projectUniqueName": "C:\\Users\\mikes\\Code\\d2s\\bulkybook.csproj",
         "projectName": "bulkybook",
-        "projectPath": "/home/mike/Code/d2s/bulkybook.csproj",
-        "packagesPath": "/home/mike/.nuget/packages/",
-        "outputPath": "/home/mike/Code/d2s/obj/",
+        "projectPath": "C:\\Users\\mikes\\Code\\d2s\\bulkybook.csproj",
+        "packagesPath": "C:\\Users\\mikes\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mikes\\Code\\d2s\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/mike/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\mikes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -119,7 +125,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

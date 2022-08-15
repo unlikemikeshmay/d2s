@@ -23,6 +23,7 @@ const characterSorter = (charactersviewmodel: CharactersViewModel): string[] => 
  return [];
 }
 const startPopulatingCharacters = () => {
+<<<<<<< HEAD
     var characters: string[];
   // console.log(`inside startpopulatingcharacters ${charactersViewModel.profileResponse.Response.characterInventories.data.values.length}`)
   console.log("startpop called with charactersviewmodel: ",charactersViewModel.playerData.displayName);
@@ -31,55 +32,16 @@ const startPopulatingCharacters = () => {
 
   characters = characterSorter(charactersViewModel)
 
+=======
+  console.log(`startpopulatingcharacters: ${charactersViewModel.profileResponse.Response.characters.data}`)
+>>>>>>> refs/remotes/origin/characterinv
 }
 
 function IsNotNullOrUndefined<T>(object: T | undefined | null): object is T {
     return <T>object !== undefined && <T>object !== null;
 }
 
-function AssignGlobalVariable<T>(obj: T,trigger: string,charactersViewModel: CharactersViewModel) {
-    switch(trigger){
-        case PLAYER: 
-            player.membershipId = obj["membershipId"];
-            player.uniqueName = obj["uniqueName"];
-            player.normalizedName = obj["normalizedName"];
-            player.displayName = obj["displayName"];
-            player.profilePicture = obj["profilePicture"];
-            player.profileTheme = obj["profileTheme"];
-            player.userTitle = obj["userTitle"];
-            player.successMessageFlags = obj["successMessageFlags"];
-            player.isDeleted = obj["isDeleted"];
-            player.about = obj["about"];
-            player.firstAccess = obj["firstAccess"];
-            player.lastUpdate = obj["lastUpdate"];
-            player.legacyPortalUID = obj["legacyPortalUID"];
-            player.context = obj["context"];
-            player.psnDisplayName = obj["psnDisplayName"];
-            player.xboxDisplayName = obj["xboxDisplayName"];
-            player.fbDisplayName = obj["fbDisplayName"];
-            player.showActivity = obj["showActivity"];
-            player.locale = obj["locale"];
-            player.localeInheritDefault = obj["localeInheritDefault"];
-            player.lastBanReportId = obj["lastBanReportId"];
-            player.showGroupMessaging = obj["showGroupMessaging"];
-            player.profilePicturePath = obj["profilePicturePath"];
-            player.profileThemeName = obj["profileThemeName"];
-            player.userTitleDisplay = obj["userTitleDisplay"];
-            player.statusText = obj["statusText"];
-            player.statusDate = obj["statusDate"];
-            player.profileBanExpire = obj["profileBanExpire"];
-            player.blizzardDisplayName = obj["blizzardDisplayName"];
-            player.steamDisplayName = obj["steamDisplayName"];
-            player.stadiaDisplayName = obj["stadiaDisplayName"];
-            player.twitchDisplayName = obj["twitchDisplayName"];
-            player.cachedBungieGlobalDisplayName = obj["cachedBungieGlobalDisplayName"];
-            player.cachedBungieGlobalDisplayNameCode = obj["cachedBungieGlobalDisplayNameCode"];
-            break;
-        default:
-            console.log("default");
-    }
-    console.log("after switch: ",player);
-}
+
 const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) => {
     console.log("& * & * & * PopulateCharacterInventories is called:");
     var charactersViewModel: CharactersViewModel;
@@ -157,6 +119,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     console.log(`player: ${player.displayName}`);
                     //var memData: GetUserMembershipData;
                     charactersViewModel.playerData = player;
+<<<<<<< HEAD
                 return charactersViewModel.playerData;})
              //2   
                 .then(data => {
@@ -186,9 +149,43 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     console.log(`charactersviewmodel after last chain ${charactersViewModel.profileResponse.Response.characters}`)
                     //console.log(`charactersViewModel before it is sent to populatecharacterinventories: ${charactersViewModel.userMembershipData.Response.bungieNetUser.displayName}`);
                     startPopulatingCharacters();
+=======
+
+            //2  
+                   
+                    return charactersViewModel;
+                })
+
+            //3
+            .then(data => {
+               
+                GetCharacters.prototype.GetMembershipDataById(data.playerData.membershipId,-1,token).then(data => {
+ 
+
+                    charactersViewModel.userMembershipData = data;
+                    
+                    
+                })
+                return charactersViewModel;
+            })
+            .then(data => {
+
+                 
+                    console.log("data in third then after being passed veiwmodel with membershipdata: ",data)
+
+                    GetCharacters.prototype.GetProfile(data.userMembershipData.Response.destinyMemberships[0].membershipId,data.userMembershipData.Response.destinyMemberships[0].membershipType,token)
+                    .then(
+                        data => {
+                            charactersViewModel.profileResponse =  data;
+                            startPopulatingCharacters();
+                        }
+>>>>>>> refs/remotes/origin/characterinv
                         
-                                
-                        })
+                    )
+                    
+            })
+            ////4
+
                 .catch((error) => console.error("Error in PopulateCharacterInventories: ",error)); 
 
     }
