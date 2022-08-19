@@ -6,25 +6,71 @@ import { Player } from "./Models/Player";
 import { DestinyCharacterComponent } from "./Models/DestinyCharacterComponent";
 import { CharactersViewModel } from "./Models/CharactersViewModel";
 import { GetUserMembershipData } from "./Models/GetUserMembershipData";
+import { CharacterList } from "./Models/CharacterList";
 var player = {} as Player;
 var charactersViewModel = {} as CharactersViewModel;
+var characterList = [] as Array<DestinyCharacterComponent>;
 const PROFILE_RESPONSE = "PROFILERESPONSE";
 const GET_MEMBERSHIP_DATA = "GETMEMBERSHIPDATA";
 const PLAYER = "PLAYER";
 
-const characterSorter = (charactersviewmodel: CharactersViewModel): string[][] => {
-    var i: number = 0;
-    var ul = document.getElementById("dropdownCharacters");
-    let characters:any[][];
-    for (let key in charactersViewModel.profileResponse.Response.characters.data){
-        let value = charactersViewModel.profileResponse.Response.characters.data[key];
-        characters[i] = value;
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(value));
-        ul.appendChild(li);
-        console.log("characters: ",characters[i]);
+const ClassTypeConverter = (hash: number): string => {
+    var conversion: string;
+    switch(hash){
+        case 0:
+            //console.log("hash: ",hash);
+            conversion = "Titan";
+            break;
+        case 1:
+            //console.log("hash: ",hash);
+            conversion = "Hunter";
+            break;
+        case 2:
+            //console.log("hash: ",hash);
+            conversion = "Warlock";
+            break;
+        default:
+            //console.log("hash: ",hash);
+            conversion = "Unknown";
+            break;
     }
- return characters;
+    return conversion;
+}
+const characterSorter = (charactersviewmodel: CharactersViewModel) => {
+    let bt = "bearer";
+    let token = GetCharacters.prototype.GetCookie(bt);
+    var ul = document.getElementById("dropdownCharactersUl");
+    var data = charactersViewModel.profileResponse.Response.characters.data;
+    var iterator = 0;
+    
+    for (var key in data){
+
+        let value = data[key];
+        console.log("data in charsorter: ",value);
+        console.log("data in charsorter: membershipid ",value.membershipId);
+        console.log("data in charsorter: characterid",value.characterId);
+        console.log("data in charsorter: memtype",value.membershipType);
+        var character = {} as DestinyCharacterComponent;
+        GetCharacters.prototype.GetCharacter(value.characterId,value.membershipId,value.membershipType,token).then(
+            data => {
+                //console.log(`getdestinycharacterresponse iteration ${key}: ${classTypeConverter(data.Response.character.data.classType)}`);
+                character = data.Response.character.data
+                //console.log("character: ",character);
+                characterList.push(character) ;
+                //console.log(`characterList: ${characterList}`);
+            }
+        )
+        console.log("iterator: ",iterator);
+        console.log("charlist: ",characterList);
+        var li = document.createElement("li");
+        var nodeText = ClassTypeConverter(value.classType);
+        li.appendChild(document.createTextNode(nodeText));
+        li.setAttribute("class","dropdown-item");
+        ul.appendChild(li);
+       // console.log("characters: ",characters[i]);
+       iterator++;
+    }
+ 
 }
 const startPopulatingCharacters = () => {
 
@@ -34,7 +80,7 @@ const startPopulatingCharacters = () => {
   var username = document.getElementById("username");
   username.innerHTML = charactersViewModel.playerData.displayName;
 
-  characters = characterSorter(charactersViewModel)
+  characterSorter(charactersViewModel);
 
 
   console.log(`startpopulatingcharacters: ${charactersViewModel.profileResponse.Response.characters.data}`)
@@ -74,11 +120,9 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     charactersViewModel.destinyCharacterResponse.push(data);
                     
                 })
-                .then(data => {
-                    startPopulatingCharacters();
-                })
                 .catch((error) => console.error("Error: ",error));
         }
+        
 
         
         //lookup character by characterid
@@ -87,6 +131,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
     }else{
         console.error("Error: GetProfileResponse Passed to populatecharacterinventories is null or undefined:: ",charactersViewModel.profileResponse)
     }
+    
 }catch{
     //todo: add appropriate error message:
     throw new Error("guess populate didnt work lol");
@@ -152,7 +197,7 @@ const PopulateCharacterInventories = (charactersViewModel: CharactersViewModel) 
                     console.log(`charactersViewModel.profileResonse after it was assigned in fifth .this()${data}`);
                     console.log(`charactersviewmodel after last chain ${charactersViewModel.profileResponse.Response.characters}`)
                     //console.log(`charactersViewModel before it is sent to populatecharacterinventories: ${charactersViewModel.userMembershipData.Response.bungieNetUser.displayName}`);
-                    startPopulatingCharacters();
+                   
 
 
             //2  

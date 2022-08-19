@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "w3xVmPREhlc+r9uUDuMj2eEB591Lg2F2U3RzMTq3TqI=",
+  "Hash": "aaHlc/Vyu6uIGdDvlvfgxxiSjBtaiCj7qUqzbC3IzEc=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -1613,6 +1613,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Http\\Methods\\old\\BaseRepository.js.map"
+    },
+    {
+      "Identity": "C:\\Users\\mikes\\Code\\d2s\\wwwroot\\js\\Models\\CharacterList.js",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mikes\\Code\\d2s\\wwwroot\\",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "js/Models/CharacterList.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Models\\CharacterList.js"
+    },
+    {
+      "Identity": "C:\\Users\\mikes\\Code\\d2s\\wwwroot\\js\\Models\\CharacterList.js.map",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mikes\\Code\\d2s\\wwwroot\\",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "js/Models/CharacterList.js.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Models\\CharacterList.js.map"
     },
     {
       "Identity": "C:\\Users\\mikes\\Code\\d2s\\wwwroot\\js\\Models\\CharactersViewModel.js",
