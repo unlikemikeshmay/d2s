@@ -13,7 +13,14 @@ var characterList = [] as Array<DestinyCharacterComponent>;
 const PROFILE_RESPONSE = "PROFILERESPONSE";
 const GET_MEMBERSHIP_DATA = "GETMEMBERSHIPDATA";
 const PLAYER = "PLAYER";
+const characterFocus = ( event:Event) => {
+    event.preventDefault();
+    var button = document.getElementById("dropdownCharacters");
+     button.innerHTML = event.target["innerHTML"]
+     //set body of list to a spinner then call method to populate it.
+     //good luck me 
 
+}
 const ClassTypeConverter = (hash: number): string => {
     var conversion: string;
     switch(hash){
@@ -34,7 +41,9 @@ const ClassTypeConverter = (hash: number): string => {
             conversion = "Unknown";
             break;
     }
+    console.log("watchify changed");
     return conversion;
+    
 }
 const characterSorter = (charactersviewmodel: CharactersViewModel) => {
     let bt = "bearer";
@@ -56,19 +65,24 @@ const characterSorter = (charactersviewmodel: CharactersViewModel) => {
                 //console.log(`getdestinycharacterresponse iteration ${key}: ${classTypeConverter(data.Response.character.data.classType)}`);
                 character = data.Response.character.data
                 //console.log("character: ",character);
-                characterList.push(character) ;
+                characterList.push(character);
                 //console.log(`characterList: ${characterList}`);
+                return characterList
             }
-        )
-        console.log("iterator: ",iterator);
-        console.log("charlist: ",characterList);
+        ).then(data => {
+            console.log("iterator: ",iterator);
+        console.log("charlist: ",data);
+       ;
         var li = document.createElement("li");
-        var nodeText = ClassTypeConverter(value.classType);
+        var nodeText = ClassTypeConverter(data[iterator].classType);
         li.appendChild(document.createTextNode(nodeText));
         li.setAttribute("class","dropdown-item");
+        li.addEventListener("click",characterFocus,);
         ul.appendChild(li);
        // console.log("characters: ",characters[i]);
        iterator++;
+        })
+        
     }
  
 }
