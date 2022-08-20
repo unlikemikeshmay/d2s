@@ -78,8 +78,9 @@ const characterSorter = (charactersviewmodel: CharactersViewModel) => {
             
             e.preventDefault();
            
-             
-             console.log(`clicked:`);
+             var i = iterator;
+             console.log(`clicked${i}:`);
+
              
              //
         },);

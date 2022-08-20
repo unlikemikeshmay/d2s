@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M/okutDVAIBXa4kOKw5MYJSR1i1MWUPWW+E6/gIEb2s=",
+  "Hash": "dHF4oqftbzQdlJmTA46YA5A9NfQyHKMIxZ2JrVruV44=",
   "Source": "bulkybook",
   "BasePath": "_content/bulkybook",
   "Mode": "Default",
@@ -1341,6 +1341,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Http/Methods/IGetCharacters.js.map"
+    },
+    {
+      "Identity": "/home/mike/Code/d2s/wwwroot/Images/loading-svgrepo-com.svg",
+      "SourceId": "bulkybook",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mike/Code/d2s/wwwroot/",
+      "BasePath": "_content/bulkybook",
+      "RelativePath": "Images/loading-svgrepo-com.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/loading-svgrepo-com.svg"
     },
     {
       "Identity": "/home/mike/Code/d2s/wwwroot/Images/registration_traveler_bg.png",
