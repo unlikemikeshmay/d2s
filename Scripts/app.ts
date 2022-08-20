@@ -13,14 +13,7 @@ var characterList = [] as Array<DestinyCharacterComponent>;
 const PROFILE_RESPONSE = "PROFILERESPONSE";
 const GET_MEMBERSHIP_DATA = "GETMEMBERSHIPDATA";
 const PLAYER = "PLAYER";
-const characterFocus = ( event:Event) => {
-    event.preventDefault();
-    var button = document.getElementById("dropdownCharacters");
-     button.innerHTML = event.target["innerHTML"]
-     //set body of list to a spinner then call method to populate it.
-     //good luck me 
 
-}
 const ClassTypeConverter = (hash: number): string => {
     var conversion: string;
     switch(hash){
@@ -72,12 +65,20 @@ const characterSorter = (charactersviewmodel: CharactersViewModel) => {
         ).then(data => {
             console.log("iterator: ",iterator);
         console.log("charlist: ",data);
-       ;
+
         var li = document.createElement("li");
         var nodeText = ClassTypeConverter(data[iterator].classType);
         li.appendChild(document.createTextNode(nodeText));
         li.setAttribute("class","dropdown-item");
-        li.addEventListener("click",characterFocus,);
+        li.addEventListener("click",(e) => {
+            ///
+            
+            e.preventDefault();
+            var button = document.getElementById("dropdownCharacters");
+             button.innerHTML = e.target["innerHTML"];
+             console.log("clicked");
+             //
+        },);
         ul.appendChild(li);
        // console.log("characters: ",characters[i]);
        iterator++;
