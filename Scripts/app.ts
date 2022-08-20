@@ -65,21 +65,25 @@ const characterSorter = (charactersviewmodel: CharactersViewModel) => {
         ).then(data => {
             console.log("iterator: ",iterator);
         console.log("charlist: ",data);
-
-        var li = document.createElement("li");
+        var key = `spinTarget${iterator}`;
+        console.log(`key: ${key}`);
+        var a = document.getElementById(key);
+        a.classList.remove("spinner-border")
+        console.log(`what will be innnerhtml: ${data[iterator].classType}`)
         var nodeText = ClassTypeConverter(data[iterator].classType);
-        li.appendChild(document.createTextNode(nodeText));
-        li.setAttribute("class","dropdown-item");
-        li.addEventListener("click",(e) => {
+        a.innerHTML = nodeText;
+        
+        a.addEventListener("click",(e) => {
             ///
             
             e.preventDefault();
-            var button = document.getElementById("dropdownCharacters");
-             button.innerHTML = e.target["innerHTML"];
-             console.log("clicked");
+           
+             
+             console.log(`clicked:`);
+             
              //
         },);
-        ul.appendChild(li);
+        
        // console.log("characters: ",characters[i]);
        iterator++;
         })
